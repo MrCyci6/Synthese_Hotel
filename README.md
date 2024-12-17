@@ -1,0 +1,10 @@
+Configurer github version CMD:
+
+```sh
+git init
+git add "les fichiers à ajouter, mettre un point (.) pour mettre tout le projet"
+git commit -m "Description de votre commit. 'J'ai ajouté une navbar'"
+git branch -m "votre prénom, exemple: cyriac"
+git remote add origin https://github.com/MrCyci6/Synthese_Hotel.git
+git push -u origin "votre prénom, exemplre: cyriac"
+```
