@@ -14,6 +14,9 @@ pour la suite
 ```sh
 git add "fichiers"
 git commit -m "message du commit"
+```
+Avant de push, vérifier vous êtes bien sur la bonne branche (pas sur le main) avec `git branch`
+```
 git push
 ```
 
