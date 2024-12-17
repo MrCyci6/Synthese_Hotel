@@ -116,6 +116,6 @@ drop table if exists Roles CASCADE;
 create table Roles
 (
 	id_role SERIAL,
-	nom VARCHAR(50) NOT NULL
+	nom VARCHAR(50) NOT NULL,
 PRIMARY KEY(id_role)
 );
