@@ -1,0 +1,11 @@
+drop table if exists Classe CASCADE ;
+drop table if exists Categorie CASCADE ;
+drop table if exists Prix_chambre CASCADE ;
+drop table if exists Hotel CASCADE ;
+drop table if exists Chambre CASCADE ;
+drop table if exists Reservation CASCADE ;
+drop table if exists Conso CASCADE ;
+drop table if exists Prix_conso CASCADE ;
+drop table if exists Conso_client CASCADE ;
+drop table if exists Users CASCADE;
+drop table if exists Roles CASCADE;
