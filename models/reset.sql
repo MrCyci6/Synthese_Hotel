@@ -99,6 +99,8 @@ FOREIGN KEY (id_sejour) REFERENCES Reservation (id_sejour)
 );
 
 drop table if exists Users CASCADE;
+drop extension if exists pgcrypto;
+create extension pgcrypto;
 create table Users
 (
 	id_user SERIAL,
