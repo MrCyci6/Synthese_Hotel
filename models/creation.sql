@@ -89,6 +89,7 @@ FOREIGN KEY (id_conso) REFERENCES Conso (id_conso),
 FOREIGN KEY (id_sejour) REFERENCES Reservation (id_sejour)
 );
 
+create extension pgcrypto;
 create table Users
 (
 	id_user SERIAL,
