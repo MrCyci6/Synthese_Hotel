@@ -1,0 +1,5 @@
+CREATE ROLE hotel_admin LOGIN PASSWORD 'hotel';
+GRANT ALL PRIVILEGES ON DATABASE hotel TO hotel_admin
+GRANT ALL PRIVILEGES ON SCHEMA public TO hotel_admin;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO hotel_admin;
+GRANT ALL ON SCHEMA public TO hotel_admin;
