@@ -7,5 +7,6 @@ drop table if exists Reservation CASCADE ;
 drop table if exists Conso CASCADE ;
 drop table if exists Prix_conso CASCADE ;
 drop table if exists Conso_client CASCADE ;
+drop extension if exists pgcrypto;
 drop table if exists Users CASCADE;
 drop table if exists Roles CASCADE;
