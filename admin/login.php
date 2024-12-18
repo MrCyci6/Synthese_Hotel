@@ -29,7 +29,7 @@
             $id = $id['id_user'];
 
             $_SESSION['id'] = $id;
-            if($stayLogged) {
+            if($stayLogged == "on") {
                 setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
             }
 

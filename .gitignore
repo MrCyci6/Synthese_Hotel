@@ -1,1 +1,3 @@
-sujet.pdf
+.gitignore
+*.pdf
+livrables/*
