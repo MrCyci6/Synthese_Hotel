@@ -93,14 +93,22 @@ create extension pgcrypto;
 create table Users
 (
 	id_user SERIAL,
-	id_role INTEGER,
 	nom VARCHAR(50) NOT NULL,
 	prenom VARCHAR(50) NOT NULL,
 	addresse VARCHAR NOT NULL,
 	email VARCHAR NOT NULL,
 	hash TEXT NOT NULL,
-PRIMARY KEY(id_user),
-FOREIGN KEY(id_role) REFERENCES Roles(id_role)
+PRIMARY KEY(id_user)
+);
+
+create table Roles_Users
+(
+	id_user INTEGER NOT NULL,
+	id_role INTEGER NOT NULL,
+	date_ajout DATE NOT NULL,
+PRIMARY KEY(id_user, id_role),
+FOREIGN KEY (id_user) REFERENCES Users(id_user),
+FOREIGN KEY (id_role) REFERENCES Roles(id_role)
 );
 
 create table Roles

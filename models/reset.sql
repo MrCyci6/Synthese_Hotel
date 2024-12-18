@@ -114,6 +114,17 @@ PRIMARY KEY(id_user),
 FOREIGN KEY(id_role) REFERENCES Roles(id_role)
 );
 
+drop table if exists Roles_Users CASCADE;
+create table Roles_Users
+(
+	id_user INTEGER NOT NULL,
+	id_role INTEGER NOT NULL,
+	date_ajout DATE NOT NULL,
+PRIMARY KEY(id_user, id_role),
+FOREIGN KEY (id_user) REFERENCES Users(id_user),
+FOREIGN KEY (id_role) REFERENCES Roles(id_role)
+);
+
 drop table if exists Roles CASCADE;
 create table Roles
 (
