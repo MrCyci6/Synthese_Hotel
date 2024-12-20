@@ -122,6 +122,4 @@ INSERT INTO Conso_client(id_sejour, id_conso, date_conso, nombre) VALUES
 (22, 5, '2022-02-05', 2),
 (22, 1, '2022-02-06', 2);
 
-INSERT INTO roles(nom) VALUES ('Administrateur'), ('Client');
 INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('Lenoir', 'Cyriac', '60 rue d''hérouville', 'cyriac.lenoir@isen-ouest.yncrea.fr', crypt('isen', gen_salt('bf')));
-INSERT INTO roles_users(id_user, id_role, date_ajout) VALUES (1, 1, NOW());

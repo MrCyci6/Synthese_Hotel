@@ -101,19 +101,27 @@ create table Users
 PRIMARY KEY(id_user)
 );
 
-create table Roles_Users
-(
-	id_user INTEGER NOT NULL,
-	id_role INTEGER NOT NULL,
-	date_ajout DATE NOT NULL,
-PRIMARY KEY(id_user, id_role),
-FOREIGN KEY (id_user) REFERENCES Users(id_user),
-FOREIGN KEY (id_role) REFERENCES Roles(id_role)
-);
-
 create table Roles
 (
 	id_role SERIAL,
 	nom VARCHAR(50) NOT NULL,
 PRIMARY KEY(id_role)
+);
+
+CREATE TABLE Perms
+(
+	id_perm SERIAL NOT NULL, 
+	nom TEXT NOT NULL,
+PRIMARY KEY(id_perm)
+);
+
+CREATE TABLE Perms_Users
+(
+	id_perm INTEGER NOT NULL,
+	id_user INTEGER NOT NULL,
+	id_hotel INTEGER NOT NULL,
+PRIMARY KEY (id_perm, id_user, id_hotel),
+FOREIGN KEY (id_perm) REFERENCES Perms(id_perm),
+FOREIGN KEY (id_user) REFERENCES Users(id_user),
+FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
 );

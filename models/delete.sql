@@ -9,5 +9,6 @@ drop table if exists Prix_conso CASCADE ;
 drop table if exists Conso_client CASCADE ;
 drop extension if exists pgcrypto;
 drop table if exists Users CASCADE;
-drop table if exists Roles_Users CASCADE;
 drop table if exists Roles CASCADE;
+drop table if exists Perms CASCADE;
+drop table if exists Perms_Users CASCADE;

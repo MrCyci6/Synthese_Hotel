@@ -10,31 +10,33 @@
         exit();
     }
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $stayLogged = $_POST['staylogged'];
-    
-    if(isset($email) && isset($password)) {
-        $statement = $databaseManager->preparedQuery(
-            "SELECT id_user FROM users WHERE email=? AND hash=crypt(?, hash);",
-            [$email, $password]
-        );
+    if($_SERVER['REQUEST_METHOD'] === "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $stayLogged = $_POST['staylogged'];
+        
+        if(isset($email) && isset($password)) {
+            $statement = $databaseManager->preparedQuery(
+                "SELECT id_user FROM users WHERE email=? AND hash=crypt(?, hash);",
+                [$email, $password]
+            );
 
-        $id = $statement->fetch();
-        if($id === false) {
-            // error
-            echo 'identifiants invalides';
-            // TODO
-        } else {
-            $id = $id['id_user'];
+            $id = $statement->fetch();
+            if($id === false) {
+                // error
+                echo 'identifiants invalides';
+                // TODO
+            } else {
+                $id = $id['id_user'];
 
-            $_SESSION['id'] = $id;
-            if($stayLogged == "on") {
-                setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
+                $_SESSION['id'] = $id;
+                if($stayLogged == "on") {
+                    setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
+                }
+
+                header('Location: panel.php');
+                exit();
             }
-
-            header('Location: panel.php');
-            exit();
         }
     }
 ?>
@@ -57,7 +59,8 @@
         <br>
         <label for="stay">Rester connecter : </label>
         <input type="checkbox" name="staylogged" id="stay"><br>
-        <input type="submit" value="Se connecter">
+        <input type="submit" value="Se connecter"><br>
+        <a href="signup.php">S'inscrire</a>
     </form>
 
 </body>
