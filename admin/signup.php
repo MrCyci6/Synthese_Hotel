@@ -1,8 +1,7 @@
 <?php
     session_start();
-    //require_once $_SERVER['DOCUMENT_ROOT'].'/libs/database.php'; quand le serveur sera setup
-    require_once './libs/database.php';
-
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
+    
     $databaseManager = new DatabaseManager();
 
     if(isset($_SESSION['id']) || isset($_COOKIE['id'])) {

@@ -101,13 +101,6 @@ create table Users
 PRIMARY KEY(id_user)
 );
 
-create table Roles
-(
-	id_role SERIAL,
-	nom VARCHAR(50) NOT NULL,
-PRIMARY KEY(id_role)
-);
-
 CREATE TABLE Perms
 (
 	id_perm SERIAL NOT NULL, 

@@ -1,6 +1,5 @@
 <?php
-    //require_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php'; quand le serveur sera setup
-    require_once './config/config.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/config/config.php';
 
     class DatabaseManager {
         private string $dsn = ""; 

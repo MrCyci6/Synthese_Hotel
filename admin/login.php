@@ -1,7 +1,6 @@
 <?php
     session_start();
-    //require_once $_SERVER['DOCUMENT_ROOT'].'/libs/database.php'; quand le serveur sera setup
-    require_once './libs/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
 
     $databaseManager = new DatabaseManager();
 
@@ -21,7 +20,7 @@
                 [$email, $password]
             );
 
-            $id = $statement->fetch();
+            $id = $statement == false ? false : $statement->fetch();
             if($id === false) {
                 // error
                 echo 'identifiants invalides';
@@ -46,22 +45,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="./styles/login.css">
+
     <title>Administration</title>
 </head>
 <body>
 
-    <form action="login.php" method="POST">
-        <label for="email">Identifiant :</label><br>
-        <input type="text" name="email" id="email"><br>
-        <br>
-        <label for="password">Mot de passe :</label><br>
-        <input type="password" name="password" id="password"><br>
-        <br>
-        <label for="stay">Rester connecter : </label>
-        <input type="checkbox" name="staylogged" id="stay"><br>
-        <input type="submit" value="Se connecter"><br>
-        <a href="signup.php">S'inscrire</a>
-    </form>
+    <nav>
+        
+    </nav>
+
+    <section>
+        <form action="login.php" method="POST">
+            <p>Connexion</p>
+            
+            <input type="text" name="email" id="email"><br>
+            <input type="password" name="password" id="password"><br>
+            
+            <div class="stay">
+                <label for="stay">Rester connecter : </label>
+                <input type="checkbox" name="staylogged" id="stay"><br>
+            </div>
+
+            <input type="submit" value="Connexion" id="connexion"><br>
+            <input type="submit" value="Inscription" id="inscription">
+        </form>
+    </section>
 
 </body>
 </html>
