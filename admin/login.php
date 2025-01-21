@@ -1,7 +1,6 @@
 <?php
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/perms.php';
 
     $databaseManager = new DatabaseManager();
 
@@ -33,14 +32,6 @@
                     "SELECT id_perm FROM perms_users WHERE id_user=?",
                     [$id]
                 );
-
-                $isAdmin = $statement == false ? false : checkPerm($statement->fetch(), 1);
-
-                if(!$isAdmin) {
-                    //header('Location: https://hotel.local/');
-                    echo "TODO: non admin, redirection hotel.local";
-                    exit();
-                }
 
                 $_SESSION['id'] = $id;
                 if($stayLogged == "on") {

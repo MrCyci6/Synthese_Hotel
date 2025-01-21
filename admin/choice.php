@@ -1,7 +1,6 @@
 <?php 
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/perms.php';
 
     $databaseManager = new DatabaseManager();
 
@@ -28,7 +27,8 @@
     <nav class="navbar px-3">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <h3 class="m-0 dt">Hotel2Lux - Administration</h3>
+                <i class="fa-solid fa-building fa-xl me-2" style="color: #74C0FC;"></i>
+                <h3 class="m-0 dt">Au-Tel-2-Lux | Administration</h3>
             </div>
             <div class="d-flex align-items-center">
                 <?php 
@@ -53,20 +53,27 @@
                     SELECT h.id_hotel, h.nom, c.denomination, COUNT(ch.id_chambre) as chambres, COUNT(r.id_sejour) as reservations FROM hotel h
                     INNER JOIN classe c ON c.id_classe=h.id_classe
                     LEFT JOIN chambre ch ON ch.id_hotel=h.id_hotel
-                    LEFT JOIN reservation r ON r.id_chambre=ch.id_chambre AND NOW() BETWEEN r.date_debut AND r.date_fin
-                    INNER JOIN perms_users p ON p.id_user=? AND p.id_hotel=h.id_hotel
-                    GROUP BY h.id_hotel, h.nom, c.denomination
+                    LEFT JOIN reservation r ON r.id_chambre=ch.id_chambre AND NOW() BETWEEN r.date_debut AND r.date_fin ".
+                    ($userId==ADMIN_ID ? "" : "INNER JOIN perms_users p ON p.id_user=? AND p.id_hotel=h.id_hotel")
+                    ." GROUP BY h.id_hotel, h.nom, c.denomination
                     ORDER BY h.id_hotel ASC;", 
-                    [$userId]
+                    ($userId==ADMIN_ID ? [] : [$userId])
                 );
                 $hotels = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+                if($userId != ADMIN_ID && sizeof($hotels) == 0) {
+                    //header('Location: https://hotel.local/');
+                    echo "TODO: non admin, redirection hotel.local";
+                    exit();
+                }
+
                 foreach($hotels as $_hotel) {
                     echo "<div class=\"col-md-4\">
                         <a href=\"panel.php?hotel_id=".$_hotel['id_hotel']."\" class=\"card-link\">
                             <div class=\"card p-3 shadow\" style=\"border-radius: 12px; border: none;\">
                                 <div class=\"d-flex align-items-start\">
                                     <div class=\"bg-light rounded p-3 me-3\" style=\"width: 50px; height: 50px;\">
-                                        <i class=\"fa-solid fa-hotel\" style=\"color: #74C0FC;\"></i>
+                                        <i class=\"fa-solid fa-hotel fa-xl\" style=\"color: #74C0FC;\"></i>
                                     </div>
                                     <div>
                                         <h5 class=\"mb-0\">".$_hotel['nom']."</h5>
