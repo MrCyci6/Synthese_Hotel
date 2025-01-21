@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Administrations | Hotels</title>
+    <title>Gestion | Hotels</title>
 
     <link rel="stylesheet" href="./styles/choice.css">
     <script src="https://kit.fontawesome.com/c4352304cc.js" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="d-flex align-items-center">
                 <i class="fa-solid fa-building fa-xl me-2" style="color: #74C0FC;"></i>
-                <h3 class="m-0 dt">Au-Tel-2-Lux | Administration</h3>
+                <h3 class="m-0 dt">Au-Tel-2-Lux | Gestion</h3>
             </div>
             <div class="d-flex align-items-center">
                 <?php 
