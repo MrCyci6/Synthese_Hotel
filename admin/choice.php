@@ -30,10 +30,17 @@
             <div class="d-flex align-items-center">
                 <h3 class="m-0 dt">Hotel2Lux - Administration</h3>
             </div>
-            <div>
+            <div class="d-flex align-items-center">
+                <?php 
+                if($userId==ADMIN_ID)
+                    echo "<a href=\"permissions.php\" class=\"text-decoration-none d-flex align-items-center justify-content-around text-secondary me-3\">
+                        <i class=\"fa-solid fa-gear\"></i>
+                        <h5 class=\"ms-1 mt-1\">Gérer les permissions</h5>
+                    </a>"
+                ?>
                 <a href="logout.php" class="text-decoration-none d-flex align-items-center justify-content-around text-secondary">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <h5 class="ms-2 mt-1">Déconnexion</h5>
+                    <h5 class="ms-1 mt-1">Déconnexion</h5>
                 </a>
             </div>
         </div>
