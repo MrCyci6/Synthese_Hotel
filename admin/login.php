@@ -6,7 +6,7 @@
     $databaseManager = new DatabaseManager();
 
     if(isset($_SESSION['id']) || isset($_COOKIE['id'])) {
-        header('Location: panel.php');
+        header('Location: choice.php');
         exit();
     }
 
@@ -47,7 +47,7 @@
                     setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
                 }
 
-                header('Location: panel.php');
+                header('Location: choice.php');
                 exit();
             }
         }
@@ -76,7 +76,7 @@
             <input type="text" name="email" id="email"><br>
             <input type="password" name="password" id="password"><br>
             
-            <div class="stay">
+            <div>
                 <label for="stay">Rester connecter : </label>
                 <input type="checkbox" name="staylogged" id="stay"><br>
             </div>
