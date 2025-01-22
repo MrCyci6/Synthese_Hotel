@@ -48,17 +48,27 @@
     <div class="container mt-5">
         <div class="row g-4">
             <?php
-                $statement = $databaseManager->preparedQuery("
-                    SELECT h.id_hotel, h.nom, c.denomination, COUNT(ch.id_chambre) as chambres, COUNT(r.id_sejour) as reservations FROM hotel h
-                    INNER JOIN classe c ON c.id_classe=h.id_classe
-                    LEFT JOIN chambre ch ON ch.id_hotel=h.id_hotel
-                    LEFT JOIN reservation r ON r.id_chambre=ch.id_chambre AND NOW() BETWEEN r.date_debut AND r.date_fin ".
-                    ($userId==ADMIN_ID ? "" : "INNER JOIN perms_users p ON p.id_user=? AND p.id_hotel=h.id_hotel")
-                    ." GROUP BY h.id_hotel, h.nom, c.denomination
-                    ORDER BY h.id_hotel ASC;", 
+                $statement = $databaseManager->preparedQuery(
+                    "SELECT COUNT(ch.id_chambre) as chambres, ch.id_hotel, h.nom, c.denomination FROM chambre ch
+                    INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
+                    INNER JOIN classe c ON c.id_classe=h.id_classe ".
+                    ($userId==ADMIN_ID ? "" : "WHERE ch.id_hotel IN(SELECT DISTINCT id_hotel FROM perms_users WHERE id_user=?)")
+                    ." GROUP BY ch.id_hotel, h.nom, c.denomination
+                    ORDER BY ch.id_hotel ASC;", 
                     ($userId==ADMIN_ID ? [] : [$userId])
                 );
                 $hotels = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+                $statement = $databaseManager->preparedQuery(
+                    "SELECT COUNT(r.id_chambre), ch.id_hotel FROM reservation r
+                    INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre AND NOW() BETWEEN r.date_debut AND r.date_fin
+                    GROUP BY ch.id_hotel;", []
+                );
+                $_reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $reservations = [];
+                foreach($_reservations as $reservation) {
+                    $reservations[$reservation['id_hotel']] = $reservation['count'];
+                }
 
                 if($userId != ADMIN_ID && sizeof($hotels) == 0) {
                     //header('Location: https://hotel.local/');
@@ -86,7 +96,7 @@
                                     </div>
                                     <div class=\"text-center bg-light p-2 rounded\" style=\"flex: 1; margin-left: 5px;\">
                                         <p class=\"mb-0 text-muted\">Occupées</p>
-                                        <h5 class=\"mb-0\">".$_hotel['reservations']."</h5>
+                                        <h5 class=\"mb-0\">".(isset($reservations[$_hotel['id_hotel']]) ? $reservations[$_hotel['id_hotel']] : 0)."</h5>
                                     </div>
                                 </div>
                             </div>
