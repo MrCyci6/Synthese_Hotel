@@ -1,4 +1,7 @@
 body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+body {
     display: flex;
     height: 100vh;
 }
@@ -13,7 +16,7 @@ body {
     text-decoration: none;
 }
 .sidebar a:hover {
-    background-color: #e2e6ea;
+    background-color: #c6c6c6;
     color: #000;
 }
 .topbar {
