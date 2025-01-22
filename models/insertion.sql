@@ -66,32 +66,31 @@ values(1, 3, 1),
 insert into Chambre(id_hotel, id_categorie, numero_chambre)
 select id_hotel+2, id_categorie,numero_chambre from Chambre;
 
-insert into Reservation(id_chambre, date_debut, date_fin, date_arrivee, nom_client, paiement) values
-(1,'2022-02-01', '2022-02-12', '2022-02-01', 'Dupont', NULL),
-(1,'2022-02-12', '2022-02-13', '2022-02-12', 'Dupond', NULL),
-(1,'2022-02-15', '2022-02-21', NULL, NULL, NULL),
-(1,'2022-02-25', '2022-02-26', NULL, NULL, NULL),
-(1,'2022-02-27', '2022-02-28', NULL, NULL, NULL),
-(2,'2022-02-15', '2022-02-18', NULL, NULL, NULL),
-(2,'2022-02-20', '2022-02-25', NULL, NULL, NULL),
-(2,'2022-02-25', '2022-02-28', NULL, NULL, NULL),
-(3,'2022-02-20', '2022-02-27', NULL, NULL, NULL),
+insert into Reservation(id_chambre, date_debut, date_fin, date_arrivee, id_user, paiement) values
+(1,'2022-02-01', '2022-02-12', '2022-02-01', 2, NULL),
+(1,'2022-02-12', '2022-02-13', '2022-02-12', 2, NULL),
+(1,'2022-02-15', '2022-02-21', NULL, 2, NULL),
+(1,'2022-02-25', '2022-02-26', NULL, 2, NULL),
+(1,'2022-02-27', '2022-02-28', NULL, 2, NULL),
+(2,'2022-02-15', '2022-02-18', NULL, 2, NULL),
+(2,'2022-02-20', '2022-02-25', NULL, 2, NULL),
+(2,'2022-02-25', '2022-02-28', NULL, 2, NULL),
+(3,'2022-02-20', '2022-02-27', NULL, 2, NULL),
 
-(4,'2022-02-15', '2022-02-16', NULL, NULL, NULL),
-(4,'2022-02-16', '2022-02-22', NULL, NULL, NULL),
-(4,'2022-02-27', '2022-02-28', NULL, NULL, NULL),
-(5,'2022-02-16', '2022-02-18', NULL, NULL, NULL),
-(5,'2022-02-19', '2022-02-21', NULL, NULL, NULL),
-(5,'2022-02-22', '2022-02-23', NULL, NULL, NULL),
-(5,'2022-02-27', '2022-02-28', NULL, NULL, NULL),
-(6,'2022-02-05', '2022-02-15', '2022-02-05', 'Tintin', NULL),
-(6,'2022-02-16', '2022-02-22', NULL, NULL, NULL),
-(6,'2022-02-24', '2022-02-26', NULL, NULL, NULL),
-(6,'2022-02-27', '2022-02-28', NULL, NULL, NULL),
-(7,'2022-02-15', '2022-02-20', NULL, NULL, NULL),
-
-(8,'2022-02-01', '2022-02-12', '2022-02-01', 'Haddock', NULL),
-(8,'2022-02-16', '2025-01-31', '2022-02-16', 'Castafiore', NULL);
+(4,'2022-02-15', '2022-02-16', NULL, 2, NULL),
+(4,'2022-02-16', '2022-02-22', NULL, 2, NULL),
+(4,'2022-02-27', '2022-02-28', NULL, 2, NULL),
+(5,'2022-02-16', '2022-02-18', NULL, 2, NULL),
+(5,'2022-02-19', '2022-02-21', NULL, 2, NULL),
+(5,'2022-02-22', '2022-02-23', NULL, 2, NULL),
+(5,'2022-02-27', '2022-02-28', NULL, 2, NULL),
+(6,'2022-02-05', '2022-02-15', '2022-02-05', 2, NULL),
+(6,'2022-02-16', '2022-02-22', NULL, 2, NULL),
+(6,'2022-02-24', '2022-02-26', NULL, 2, NULL),
+(6,'2022-02-27', '2022-02-28', NULL, 2, NULL),
+(7,'2022-02-15', '2022-02-20', NULL, 2, NULL),
+(8,'2022-02-01', '2022-02-12', '2022-02-01', 2, NULL),
+(8,'2022-02-16', '2025-01-31', '2022-02-16', 2, NULL);
 
 INSERT INTO Conso_client(id_sejour, id_conso, date_conso, nombre) VALUES
 (1, 1, '2022-02-02', 2),
@@ -123,5 +122,10 @@ INSERT INTO Conso_client(id_sejour, id_conso, date_conso, nombre) VALUES
 (22, 1, '2022-02-06', 2);
 
 INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('Super', 'Admin', '', 'admin@hotel.fr', crypt('isen', gen_salt('bf')));
+INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('LENOIR', 'Cyriac', '', 'cyriac@hotel.fr', crypt('isen', gen_salt('bf')));
 INSERT INTO perms(nom) VALUES ('Admin'), ('Module chambre'), ('Module conso');
-INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (1, 1, 1), (1, 1, 2), (1, 2, 2), (1, 2, 3), (1, 3, 3);
+INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 3);
+
+INSERT INTO logs(id_user, id_hotel, content, date) VALUES (1, 1, 'Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€', NOW()),
+(1, 1, 'Permission(AJOUT): [+] LENOIR Cyriac - Module chambre', NOW()),
+(2, 1, 'Connexion: 127.0.0.1', NOW());
