@@ -118,3 +118,23 @@ FOREIGN KEY (id_perm) REFERENCES Perms(id_perm),
 FOREIGN KEY (id_user) REFERENCES Users(id_user),
 FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
 );
+
+CREATE TABLE Logs
+(
+	id_log SERIAL NOT NULL,
+	id_user INTEGER NOT NULL,
+	content VARCHAR NOT NULL,
+	date DATE NOT NULL,
+PRIMARY KEY (id_log),
+FOREIGN KEY (id_user) REFERENCES Users(id_user)
+);
+
+CREATE TABLE Discount
+(
+	id_discount SERIAL NOT NULL,
+	percent NUMERIC(5,2) NOT NULL,
+	max_utilisations INTEGER NOT NULL,
+	utilisations INTEGER NOT NULL,
+	expiration DATE NOT NULL,
+PRIMARY KEY (id_discount)
+);
