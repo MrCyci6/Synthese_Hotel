@@ -19,7 +19,6 @@
     <title>Tableau de bord</title>
 
     <link rel="stylesheet" href="./styles/dashboard.css">
-    <script src="https://kit.fontawesome.com/c4352304cc.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -46,32 +45,32 @@
         </div>
         <!-- Modules -->
         <div class="container">
-            <a href="" class="mb-2 mt-2 selected" style="border-radius: 15px;">
+            <a href="#" class="mb-2 mt-2 selected" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-5 w-5"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
                 <span>Tableau de bord</span>
             </a>
-            <a href="" class="mb-2 mt-2" style="border-radius: 15px;">
+            <a href="rooms.php" class="mb-2 mt-2" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar h-5 w-5"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>                
                 <span>Réservations</span>
             </a>
-            <a href="" class="mb-2 mt-2" style="border-radius: 15px;">
+            <a href="rooms-price.php" class="mb-2 mt-2" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag h-5 w-5"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>                
                 <span>Prix - chambres</span>
             </a>
-            <a href="" class="mb-2 mt-2" style="border-radius: 15px;">
+            <a href="consums.php" class="mb-2 mt-2" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils h-5 w-5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>                
                 <span>Consommations</span>
             </a>
-            <a href="" class="mb-2 mt-2" style="border-radius: 15px;">
+            <a href="consums-price.php" class="mb-2 mt-2" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag h-5 w-5"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>                
                 <span>Prix - conso</span>
             </a>
         </div>
     </div>
 
-    <div class="content">
+    <div class="content bg-body-tertiary">
         <!-- Header -->
-        <div class="topbar d-flex align-items-center justify-content-between px-4">
+        <div class="topbar d-flex align-items-center justify-content-between px-4" style="background-color: white;">
             <div class="container d-flex flex-column">    
                 <h5 class="mb-0">Hotel de caen</h5>
                 <span class="text-secondary">Standard</span>
@@ -83,11 +82,12 @@
         </div>
 
         <!-- Content -->
-        <div class="bg-body-tertiary p-4">
+        <div class="p-4">
+            <!-- Stats -->
             <div class="row g-4">
                 <!-- Booking -->
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card p-3 rounded-xl border-0">
+                    <div class="card p-3 rounded-xl border-0 shadow">
                         <div class="d-flex flex-row align-items-center justify-content-around">
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="fs-6 text-secondary">Réservations</span>
@@ -101,7 +101,7 @@
                 </div>
                 <!-- Revenue -->
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card p-3 rounded-xl border-0">
+                    <div class="card p-3 rounded-xl border-0 shadow">
                         <div class="d-flex flex-row align-items-center justify-content-around">
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="fs-6 text-secondary">Revenus</span>
@@ -115,7 +115,7 @@
                 </div>
                 <!-- Occupation rate -->
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card p-3 rounded-xl border-0">
+                    <div class="card p-3 rounded-xl border-0 shadow">
                         <div class="d-flex flex-row align-items-center justify-content-around">
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="fs-6 text-secondary">Occupation</span>
@@ -129,7 +129,7 @@
                 </div>
                 <!-- Daily average revenue -->
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card p-3 rounded-xl border-0">
+                    <div class="card p-3 rounded-xl border-0 shadow">
                         <div class="d-flex flex-row align-items-center justify-content-around">
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="fs-6 text-secondary">Moy. jour</span>
@@ -137,6 +137,154 @@
                             </div>
                             <div class="bg-warning-subtle rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
                                 <svg style="color: rgb(234, 88, 12);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-orange-600"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recents -->
+            <div class="row g-4 mt-2">
+                <!-- Recents booking -->
+                <div class="col-12 col-lg-6">
+                    <div class="card p-3 border-0 rounded-xl shadow">
+                        <div>
+                            <h2 class="fs-5 fw-semibold mb-4">Réservations récentes</h2>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between gap-3">
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">LENOIR Cyriac</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">3 nuits</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px;" class="p-1 bg-success-subtle text-success">Confirmée</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">LENOIR Cyriac</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">3 nuits</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px; color: rgb(234, 88, 12);" class="p-1 bg-warning-subtle">En cours</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">LENOIR Cyriac</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">3 nuits</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px;" class="p-1 bg-success-subtle text-success">Confirmée</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recents consumptions -->
+                <div class="col-12 col-lg-6">
+                    <div class="card p-3 border-0 rounded-xl shadow">
+                        <div>
+                            <h2 class="fs-5 fw-semibold mb-4">Consommations récentes</h2>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between gap-3">
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">x3 Caffé gourmand</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">LENOIR Cyriac</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px;" class="p-1">14.59€</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">x3 Caffé gourmand</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">LENOIR Cyriac</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px;" class="p-1">14.59€</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">x3 Caffé gourmand</h5>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">15-02-2025</h5>
+                                    <span class="text-secondary">LENOIR Cyriac</span>
+                                </div>
+                                <div>
+                                    <span style="border-radius: 15px;" class="p-1">14.59€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-2">
+                <div class="col-12">
+                    <div class="card p-3 border-0 shadow">
+                        <div>
+                            <h2 class="fs-5 fw-semibold mb-4">Activité récente</h2>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between gap-3">
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">Super Admin</h5>
+                                </div>
+                                <div>
+                                    <span class="text-secondary">Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€</span>
+                                </div>
+                                <div>
+                                <span class="text-secondary">22-01-2025 17:01:36</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">Super Admin</h5>
+                                </div>
+                                <div>
+                                    <span class="text-secondary">Permission(AJOUT): [+] LENOIR Cyriac - Module chambre</span>
+                                </div>
+                                <div>
+                                <span class="text-secondary">22-01-2025 16:59:03</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-body-secondary bg-opacity-25 p-2 rounded d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fs-6">LENOIR Cyriac</h5>
+                                </div>
+                                <div>
+                                    <span class="text-secondary">Connexion: 127.0.0.1</span>
+                                </div>
+                                <div>
+                                <span class="text-secondary">22-01-2025 16:50:51</span>
+                                </div>
                             </div>
                         </div>
                     </div>
