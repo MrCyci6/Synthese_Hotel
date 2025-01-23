@@ -4,7 +4,7 @@
 
     $databaseManager = new DatabaseManager();
 
-    if(isset($_SESSION['id']) || isset($_COOKIE['id'])) {
+    if(isset($_SESSION['id'])) {
         header('Location: choice.php');
         exit();
     }
@@ -34,9 +34,9 @@
                 );
 
                 $_SESSION['id'] = $id;
-                if($stayLogged == "on") {
-                    setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
-                }
+                // if($stayLogged == "on") {
+                //     setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
+                // }
 
                 header('Location: choice.php');
                 exit();

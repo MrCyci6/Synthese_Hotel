@@ -5,11 +5,11 @@
     $databaseManager = new DatabaseManager();
 
     // Session checker
-    if(!isset($_SESSION['id']) && !isset($_COOKIE['id'])) {
+    if(!isset($_SESSION['id'])) {
         header('Location: login.php');
         exit();
     }
-    $userId = isset($_SESSION['id']) ? $_SESSION['id'] : $_COOKIE['id'];
+    $userId = $_SESSION['id'];
     $statement = $databaseManager->preparedQuery("SELECT nom, prenom FROM users WHERE id_user=?", [$userId]);
     $res = $statement->fetch();
     $userFirstname = $res['prenom'];
@@ -21,12 +21,6 @@
         echo "TODO: non admin, redirection hotel.local";
         exit();
     }
-
-    // Get hotels informations
-    $statement = $databaseManager->preparedQuery(
-        "SELECT id_hotel, nom FROM hotel;", []
-    );
-    $hotels = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     // Get table page
     $tablePage = $_GET['page'];
@@ -63,6 +57,12 @@
             <!-- Hotel list -->
             <select id="selectHotel" class="form-select mb-1 mt-1">
                 <?php
+                    // Get hotels informations
+                    $statement = $databaseManager->preparedQuery(
+                        "SELECT id_hotel, nom FROM hotel;", []
+                    );
+                    $hotels = $statement->fetchAll(PDO::FETCH_ASSOC);
+
                     foreach($hotels as $hotel) {
                         echo "<option value=\"".$hotel['id_hotel']."\">".$hotel['nom']."</option>";
                     }

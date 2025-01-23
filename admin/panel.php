@@ -5,11 +5,11 @@
     $databaseManager = new DatabaseManager();
 
     // Session checker
-    if(!isset($_SESSION['id']) && !isset($_COOKIE['id'])) {
+    if(!isset($_SESSION['id'])) {
         header('Location: login.php');
         exit();
     }
-    $userId = isset($_SESSION['id']) ? $_SESSION['id'] : $_COOKIE['id'];
+    $userId = $_SESSION['id'];
     $statement = $databaseManager->preparedQuery("SELECT nom, prenom FROM users WHERE id_user=?", [$userId]);
     $res = $statement->fetch();
     $userFirstname = $res['prenom'];

@@ -4,11 +4,11 @@
 
     $databaseManager = new DatabaseManager();
 
-    if(!isset($_SESSION['id']) && !isset($_COOKIE['id'])) {
+    if(!isset($_SESSION['id'])) {
         header('Location: login.php');
         exit();
     }
-    $userId = isset($_SESSION['id']) ? $_SESSION['id'] : $_COOKIE['id'];
+    $userId = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
