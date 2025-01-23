@@ -27,7 +27,7 @@ body {
     flex: 1;
     overflow-y: auto;
 }
-.selected span, .selected svg {
+.selected span, .selected svg, .selected h6 {
     color: rgb(37 99 235);
 }
 .selected {
