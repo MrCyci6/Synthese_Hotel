@@ -1,1 +1,8 @@
+<<<<<<< Updated upstream
 sujet.pdf
+=======
+.gitignore
+*.pdf
+livrables/*
+.idea
+>>>>>>> Stashed changes
