@@ -4,5 +4,5 @@ sujet.pdf
 .gitignore
 *.pdf
 livrables/*
-.idea
+.idea 
 >>>>>>> Stashed changes
