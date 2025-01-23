@@ -1,12 +1,11 @@
 <?php
     session_start();
-    //require_once $_SERVER['DOCUMENT_ROOT'].'/libs/database.php'; quand le serveur sera setup
-    require_once './libs/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
 
     $databaseManager = new DatabaseManager();
 
-    if(isset($_SESSION['id']) || isset($_COOKIE['id'])) {
-        header('Location: panel.php');
+    if(isset($_SESSION['id'])) {
+        header('Location: choice.php');
         exit();
     }
 
@@ -21,20 +20,25 @@
                 [$email, $password]
             );
 
-            $id = $statement->fetch();
+            $id = $statement == false ? false : $statement->fetch();
             if($id === false) {
-                // error
-                echo 'identifiants invalides';
+                echo 'TODO: identifiants invalides';
+                exit();
                 // TODO
             } else {
                 $id = $id['id_user'];
 
-                $_SESSION['id'] = $id;
-                if($stayLogged == "on") {
-                    setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
-                }
+                $statement = $databaseManager->preparedQuery(
+                    "SELECT id_perm FROM perms_users WHERE id_user=?",
+                    [$id]
+                );
 
-                header('Location: panel.php');
+                $_SESSION['id'] = $id;
+                // if($stayLogged == "on") {
+                //     setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
+                // }
+
+                header('Location: choice.php');
                 exit();
             }
         }
@@ -46,22 +50,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="./styles/login.css">
+
     <title>Administration</title>
 </head>
 <body>
 
-    <form action="login.php" method="POST">
-        <label for="email">Identifiant :</label><br>
-        <input type="text" name="email" id="email"><br>
-        <br>
-        <label for="password">Mot de passe :</label><br>
-        <input type="password" name="password" id="password"><br>
-        <br>
-        <label for="stay">Rester connecter : </label>
-        <input type="checkbox" name="staylogged" id="stay"><br>
-        <input type="submit" value="Se connecter"><br>
-        <a href="signup.php">S'inscrire</a>
-    </form>
+    <nav>
+        
+    </nav>
+
+    <section>
+        <form action="login.php" method="POST">
+            <p>Connexion</p>
+            
+            <input type="text" name="email" id="email"><br>
+            <input type="password" name="password" id="password"><br>
+            
+            <div>
+                <label for="stay">Rester connecter : </label>
+                <input type="checkbox" name="staylogged" id="stay"><br>
+            </div>
+
+            <input type="submit" value="Connexion" id="connexion"><br>
+            <input type="submit" value="Inscription" id="inscription">
+        </form>
+    </section>
 
 </body>
 </html>

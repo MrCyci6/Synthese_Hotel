@@ -4,6 +4,4 @@
     const DB_NAME = "hotel";
     const DB_HOST = "127.0.0.1";
     const DB_PORT = 5432;
-
-    const ADMIN_ID = 1;
 ?>

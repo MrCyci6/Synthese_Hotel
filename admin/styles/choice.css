@@ -1,0 +1,11 @@
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+.card:hover {
+    transform: scale(1.01);
+    transition: 0.3s scale;
+}

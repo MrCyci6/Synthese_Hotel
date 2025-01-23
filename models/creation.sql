@@ -45,20 +45,6 @@ FOREIGN KEY (id_hotel) REFERENCES Hotel (id_hotel),
 FOREIGN KEY (id_categorie) REFERENCES Categorie (id_categorie)
 );
 
-
-create table Reservation
-(
-	id_sejour SERIAL,
-	id_chambre int not null,
-	date_debut date not null,
-	date_fin date not null,
-	date_arrivee date,
-	nom_client varchar(50),
-	paiement numeric(8,2),
-PRIMARY KEY(id_sejour),
-FOREIGN KEY (id_chambre) REFERENCES Chambre (id_chambre)
-);
-
 create table Conso
 (
     id_conso SERIAL,
@@ -101,11 +87,18 @@ create table Users
 PRIMARY KEY(id_user)
 );
 
-create table Roles
+create table Reservation
 (
-	id_role SERIAL,
-	nom VARCHAR(50) NOT NULL,
-PRIMARY KEY(id_role)
+	id_sejour SERIAL,
+	id_chambre int not null,
+	id_user INTEGER NOT NULL,
+	date_debut date not null,
+	date_fin date not null,
+	date_arrivee date,
+	paiement numeric(8,2),
+PRIMARY KEY(id_sejour),
+FOREIGN KEY (id_chambre) REFERENCES Chambre (id_chambre),
+FOREIGN KEY (id_user) REFERENCES Users(id_user)
 );
 
 CREATE TABLE Perms
@@ -124,4 +117,26 @@ PRIMARY KEY (id_perm, id_user, id_hotel),
 FOREIGN KEY (id_perm) REFERENCES Perms(id_perm),
 FOREIGN KEY (id_user) REFERENCES Users(id_user),
 FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
+);
+
+CREATE TABLE Logs
+(
+	id_log SERIAL NOT NULL,
+	id_user INTEGER NOT NULL,
+	id_hotel INTEGER NOT NULL,
+	content VARCHAR NOT NULL,
+	date DATE NOT NULL,
+PRIMARY KEY (id_log),
+FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel),
+FOREIGN KEY (id_user) REFERENCES Users(id_user)
+);
+
+CREATE TABLE Discount
+(
+	id_discount SERIAL NOT NULL,
+	percent NUMERIC(5,2) NOT NULL,
+	max_utilisations INTEGER NOT NULL,
+	utilisations INTEGER NOT NULL,
+	expiration DATE NOT NULL,
+PRIMARY KEY (id_discount)
 );
