@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/admin/libs/database.php';
 
     $databaseManager = new DatabaseManager();
 
