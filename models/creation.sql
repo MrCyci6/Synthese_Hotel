@@ -62,19 +62,6 @@ create table Prix_conso
     FOREIGN KEY (id_hotel) REFERENCES Hotel (id_hotel)
 );
 
-
-create table Conso_client
-(
-    id_cc SERIAL,
-    id_conso int not null,
-	id_sejour int not null,
-	date_conso date not null,
-	nombre int not null,
-PRIMARY KEY(id_cc),
-FOREIGN KEY (id_conso) REFERENCES Conso (id_conso),
-FOREIGN KEY (id_sejour) REFERENCES Reservation (id_sejour)
-);
-
 create extension pgcrypto;
 create table Users
 (
@@ -84,6 +71,7 @@ create table Users
 	addresse VARCHAR NOT NULL,
 	email VARCHAR NOT NULL,
 	hash TEXT NOT NULL,
+	banned INTEGER NOT NULL,
 PRIMARY KEY(id_user)
 );
 
@@ -99,6 +87,18 @@ create table Reservation
 PRIMARY KEY(id_sejour),
 FOREIGN KEY (id_chambre) REFERENCES Chambre (id_chambre),
 FOREIGN KEY (id_user) REFERENCES Users(id_user)
+);
+
+create table Conso_client
+(
+    id_cc SERIAL,
+    id_conso int not null,
+	id_sejour int not null,
+	date_conso date not null,
+	nombre int not null,
+PRIMARY KEY(id_cc),
+FOREIGN KEY (id_conso) REFERENCES Conso (id_conso),
+FOREIGN KEY (id_sejour) REFERENCES Reservation (id_sejour)
 );
 
 CREATE TABLE Perms
