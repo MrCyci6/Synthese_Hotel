@@ -1,4 +1,4 @@
-insert into Classe(denomination) values ('*'), ('**'), ('***');
+insert into Classe(denomination) values ('Standard'), ('Confort'), ('Luxe');
 
 insert into Categorie(denomination) values ('Simple'), ('Double'), ('Double avec salle de bain');
 
