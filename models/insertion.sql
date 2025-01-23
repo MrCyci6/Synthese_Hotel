@@ -76,7 +76,6 @@ insert into Reservation(id_chambre, date_debut, date_fin, date_arrivee, id_user,
 (2,'2022-02-20', '2022-02-25', NULL, 2, NULL),
 (2,'2022-02-25', '2022-02-28', NULL, 2, NULL),
 (3,'2022-02-20', '2022-02-27', NULL, 2, NULL),
-
 (4,'2022-02-15', '2022-02-16', NULL, 2, NULL),
 (4,'2022-02-16', '2022-02-22', NULL, 2, NULL),
 (4,'2022-02-27', '2022-02-28', NULL, 2, NULL),
@@ -121,11 +120,43 @@ INSERT INTO Conso_client(id_sejour, id_conso, date_conso, nombre) VALUES
 (22, 5, '2022-02-05', 2),
 (22, 1, '2022-02-06', 2);
 
-INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('Super', 'Admin', '', 'admin@hotel.fr', crypt('isen', gen_salt('bf')));
-INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('LENOIR', 'Cyriac', '', 'cyriac@hotel.fr', crypt('isen', gen_salt('bf')));
-INSERT INTO perms(nom) VALUES ('Admin'), ('Module chambre'), ('Module conso');
+INSERT INTO users(nom, prenom, addresse, email, hash) VALUES ('Super', 'Admin', '', 'admin@hotel.fr', crypt('isen', gen_salt('bf'))),
+('LENOIR', 'Cyriac', '', 'cyriac@hotel.fr', crypt('isen', gen_salt('bf'))),
+('Dupont', 'Jean', '10 Rue de Paris, Paris', 'jean.dupont@gmail.com', crypt('isen', gen_salt('bf'))),
+('Martin', 'Marie', '5 Avenue des Champs, Lyon', 'marie.martin@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Bernard', 'Luc', '12 Boulevard Saint-Michel, Marseille', 'luc.bernard@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Thomas', 'Julie', '20 Rue du Soleil, Toulouse', 'julie.thomas@gmail.com', crypt('isen', gen_salt('bf'))),
+('Robert', 'Sophie', '8 Avenue de la Mer, Nice', 'sophie.robert@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Richard', 'Paul', '15 Rue des Fleurs, Nantes', 'paul.richard@gmail.com', crypt('isen', gen_salt('bf'))),
+('Petit', 'Emma', '22 Place de la République, Lille', 'emma.petit@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Durand', 'Alice', '30 Rue de l Église, Bordeaux', 'alice.durand@gmail.com', crypt('isen', gen_salt('bf'))),
+('Lemoine', 'Louis', '18 Boulevard Haussmann, Paris', 'louis.lemoine@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Moreau', 'Clara', '24 Rue Lafayette, Lyon', 'clara.moreau@gmail.com', crypt('isen', gen_salt('bf'))),
+('Dubois', 'Nicolas', '45 Chemin des Prés, Grenoble', 'nicolas.dubois@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Fontaine', 'Isabelle', '28 Rue Nationale, Rennes', 'isabelle.fontaine@gmail.com', crypt('isen', gen_salt('bf'))),
+('Blanc', 'Antoine', '16 Avenue Victor Hugo, Dijon', 'antoine.blanc@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Gauthier', 'Charlotte', '50 Boulevard Gambetta, Nancy', 'charlotte.gauthier@gmail.com', crypt('isen', gen_salt('bf'))),
+('Perrin', 'Hugo', '14 Rue de Strasbourg, Metz', 'hugo.perrin@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Moulin', 'Laura', '36 Avenue Alsace Lorraine, Orléans', 'laura.moulin@gmail.com', crypt('isen', gen_salt('bf'))),
+('Lemoine', 'Victor', '60 Rue du Faubourg, Tours', 'victor.lemoine@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Roux', 'Camille', '40 Boulevard des États-Unis, Reims', 'camille.roux@gmail.com', crypt('isen', gen_salt('bf'))),
+('Morel', 'Anna', '25 Rue de la Paix, Clermont-Ferrand', 'anna.morel@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Barbier', 'Lucas', '38 Rue des Lilas, Limoges', 'lucas.barbier@gmail.com', crypt('isen', gen_salt('bf'))),
+('Chevalier', 'Léa', '12 Avenue de Verdun, Brest', 'lea.chevalier@gmail.com', crypt('isen', gen_salt('bf'))),
+('Benoit', 'Adrien', '33 Rue des Acacias, Amiens', 'adrien.benoit@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Arnaud', 'Clémence', '9 Rue de la Gare, Besançon', 'clemence.arnaud@gmail.com', crypt('isen', gen_salt('bf'))),
+('Schneider', 'Maxime', '27 Boulevard Carnot, Mulhouse', 'maxime.schneider@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Marchand', 'Inès', '18 Rue des Cerisiers, Rouen', 'ines.marchand@gmail.com', crypt('isen', gen_salt('bf'))),
+('Girard', 'Émile', '15 Rue des Tulipes, Angers', 'emile.girard@hotmail.com', crypt('isen', gen_salt('bf'))),
+('Renaud', 'Lucie', '8 Place Saint-Pierre, Avignon', 'lucie.renaud@gmail.com', crypt('isen', gen_salt('bf'))),
+('Noël', 'Gabriel', '31 Rue des Jonquilles, Perpignan', 'gabriel.noel@yahoo.fr', crypt('isen', gen_salt('bf'))),
+('Dufour', 'Eva', '22 Rue des Violettes, Caen', 'eva.dufour@gmail.com', crypt('isen', gen_salt('bf'))),
+('Lopez', 'Théo', '17 Boulevard de la Liberté, Saint-Étienne', 'theo.lopez@hotmail.com', crypt('isen', gen_salt('bf')));
+
+INSERT INTO perms(nom) VALUES ('Admin'), ('Module chambre'), ('Module conso'), ('Prix chambres'), ('Prix conso'), ('Promotions'), ('Logs');
 INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 3);
 
-INSERT INTO logs(id_user, id_hotel, content, date) VALUES (1, 1, 'Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€', NOW()),
+INSERT INTO logs(id_user, id_hotel, content, date) VALUES 
+(1, 1, 'Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€', NOW()),
 (1, 1, 'Permission(AJOUT): [+] LENOIR Cyriac - Module chambre', NOW()),
 (2, 1, 'Connexion: 127.0.0.1', NOW());
