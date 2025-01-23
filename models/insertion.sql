@@ -154,7 +154,7 @@ INSERT INTO Conso_client(id_sejour, id_conso, date_conso, nombre) VALUES
 (22, 1, '2022-02-06', 2);
 
 INSERT INTO perms(nom) VALUES ('Admin'), ('Module chambre'), ('Module conso'), ('Prix chambres'), ('Prix conso'), ('Promotions'), ('Logs');
-INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 3);
+INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 3), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4);
 
 INSERT INTO logs(id_user, id_hotel, content, date) VALUES 
 (1, 1, 'Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€', NOW()),
