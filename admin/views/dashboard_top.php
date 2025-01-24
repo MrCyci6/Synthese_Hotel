@@ -21,7 +21,7 @@
         <div class="container border-bottom p-2">
             <?php 
                 if($userId==ADMIN_ID)
-                    echo "<a href=\"users.php\" class=\"d-flex align-items-center mb-2 justify-content-center\" style=\"border-radius: 15px;\">
+                    echo "<a href=\"users.php\" class=\"d-flex align-items-center mb-2 justify-content-center".($selected=="users" ? "selected" : "")."\" style=\"border-radius: 15px;".($selected=="users" ? " color: rgb(37 99 235);" : "")."\">
                         <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield h-5 w-5\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path></svg>
                         <h6 class=\"ms-2 mt-1\">Gestions utilisateurs</h6>
                     </a>";
@@ -33,7 +33,7 @@
                     $_i = 0;
                     foreach($hotels as $hotel) {
                         $_i++;
-                        echo "<option value=\"$_i\" ".($hotelId == $_i ? "selected" : "").">".$hotel[0][0]."</option>";
+                        echo "<option value=\"$_i\" ".(isset($hotelId) && $hotelId == $_i ? "selected" : "").">".$hotel[0][0]."</option>";
                     }
                 ?>
             </select>
@@ -41,7 +41,7 @@
 
         <!-- Modules -->
         <div class="container">
-            <a href="#" class="mb-2 mt-2 <?= $selected=="dashboard" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="dashboard.php?hotel_id=1" class="mb-2 mt-2 <?= $selected=="dashboard" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-5 w-5"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
                 <span>Tableau de bord</span>
             </a>
@@ -76,8 +76,8 @@
         <!-- Header -->
         <div class="topbar d-flex align-items-center justify-content-between px-4" style="background-color: white;">
             <div class="container d-flex flex-column">    
-                <h5 class="mb-0"><?= $hotelName ?></h5>
-                <span class="text-secondary"><?= $hotelClasse ?></span>
+                <h5 class="mb-0"><?= $selected=="users" ? "Administration" : $hotelName ?></h5>
+                <span class="text-secondary"><?= $selected=="users" ? "Général" : $hotelClasse ?></span>
             </div>    
             <div class="container d-flex justify-content-end">    
                 <span class="me-2"><?= $user['nom']." ".$user['prenom'];?></span>

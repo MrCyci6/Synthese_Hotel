@@ -4,10 +4,19 @@
 
     class User {
 
+        static function loginUser(string $email, string $password) {
+            $statement = Database::preparedQuery(
+                "SELECT id_user FROM users WHERE email=? AND hash=crypt(?, hash);",
+                [$email, $password]
+            );
+            $result = $statement->fetch();
+            return $result['id_user'] ? $result['id_user'] : false;
+        }
+
         static function getUsers(int $start = -1, int $end = -1) {
             $statement = Database::preparedQuery(
                 "SELECT id_user, nom, prenom, addresse, email, banned FROM users ".
-                ($start == -1 || $end == -1) ? "" : " WHERE id_user BETWEEN ? AND ?",
+                (($start == -1 || $end == -1) ? "" : " WHERE id_user BETWEEN ? AND ?;"),
                 ($start == -1 || $end == -1) ? [] : [$start, $end]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -24,10 +33,10 @@
             return $user;
         }
 
-        static function searchUser(string $data) {
+        static function searchUser($data) {
             $statement = Database::preparedQuery(
-                "SELECT id_user, nom, prenom, addresse, email, banned FROM users
-                WHERE nom=? OR prenom=? OR email=?",
+                "SELECT id_user, nom, prenom, addresse, email, banned FROM users 
+                WHERE nom=? OR prenom=? OR email=?;",
                 [$data, $data, $data]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -12,7 +12,7 @@
                 INNER JOIN users u ON u.id_user=r.id_user
                 INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
                 INNER JOIN classe cl ON cl.id_classe=h.id_classe ".
-                ($start == -1 || $end == -1) ? "" : " WHERE r.id_sejour BETWEEN ? AND ?",
+                (($start == -1 || $end == -1) ? "" : " WHERE r.id_sejour BETWEEN ? AND ?"),
                 ($start == -1 || $end == -1) ? [] : [$start, $end]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
