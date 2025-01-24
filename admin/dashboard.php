@@ -25,7 +25,13 @@
         header('Location: choice.php');
         exit();
     }
+    
     $hotels = Perms::getFilteredPermissionsByUser($userId);
+    if(!isset($hotels[$hotelId])) {
+        header('Location: choice.php');
+        exit();
+    }
+
     $hotelName = $hotels[$hotelId][0][0];
     $hotelClasse = $hotels[$hotelId][0][1];
 
