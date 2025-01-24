@@ -4,7 +4,7 @@
     class Database {
         static string $db = "";
 
-        function getConnection() {
+        static function getConnection() {
             if(Database::$db != null)
                 return Database::$db;
 
@@ -19,7 +19,7 @@
             return $conn;
         }
 
-        function preparedQuery(string $request, array $params) {
+        static function preparedQuery(string $request, array $params) {
             $conn = Database::getConnection();
             if(!$conn) return false;
 
