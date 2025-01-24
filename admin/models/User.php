@@ -13,6 +13,14 @@
             return $result['id_user'] ? $result['id_user'] : false;
         }
 
+        static function deleteUser(int $userId) {
+            Database::preparedQuery("DELETE FROM users WHERE id_user=?", [$userId]);
+        }
+
+        static function banUser(int $userId) {
+            Database::preparedQuery("UPDATE users SET banned=1 WHERE id_user=?", [$userId]);
+        }
+
         static function getUsers(int $start = -1, int $end = -1) {
             $statement = Database::preparedQuery(
                 "SELECT id_user, nom, prenom, addresse, email, banned FROM users ".
