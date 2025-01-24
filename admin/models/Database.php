@@ -2,14 +2,17 @@
     require_once 'config/config.php';
 
     class Database {
-        static string $db = "";
+        static $db = "";
 
         static function getConnection() {
             if(Database::$db != null)
                 return Database::$db;
 
+            $dsn = "pgsql:dbname=".DB_NAME.";host=".DB_HOST.";port=".DB_PORT;
+            $username = DB_USERNAME;
+            $password = DB_PASSWORD;
             try {
-                $conn = new PDO($this->dsn, $this->username, $this->password);
+                $conn = new PDO($dsn, $username, $password);
             } catch (PDOException $e) {
                 error_log("Error while connection to database: ".$e->getMessage());
                 return false;

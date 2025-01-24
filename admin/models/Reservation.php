@@ -64,6 +64,16 @@
             return $results;
         }
 
+        static function getReservationsCountByHotel(int $hotelId) {
+            $statement = Database::preparedQuery(
+                "SELECT COUNT(r.id_sejour) as count FROM reservation r
+                INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
+                WHERE ch.id_hotel=?;",
+                [$hotelId]
+            );
+            return $statement->fetch()['count'];
+        }
+
         static function getReservationsByHotelAndUser(int $hotelId, int $userId) {
             $statement = Database::preparedQuery(
                 "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee FROM reservation r
