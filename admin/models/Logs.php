@@ -43,13 +43,13 @@
             return $results;
         }
 
-        static function getLogsByHotel(int $hotelId) {
+        static function getLogsByHotel(int $hotelId, string $filters) {
             $statement = Database::preparedQuery(
                 "SELECT l.id_log, l.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, l.id_hotel, h.nom as nom_hotel, cl.denomination as classe, l.content, l.date FROM logs l
                 INNER JOIN users u ON u.id_user=l.id_user
                 INNER JOIN hotel h ON h.id_hotel=l.id_hotel
                 INNER JOIN classe cl ON cl.id_classe=h.id_classe
-                WHERE l.id_hotel=?;",
+                WHERE l.id_hotel=? ".$filters.";",
                 [$hotelId]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);

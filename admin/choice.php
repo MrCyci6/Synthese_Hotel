@@ -78,7 +78,7 @@
 
                 foreach($hotels as $_hotel) {
                     echo "<div class=\"col-md-4\">
-                        <a href=\"panel.php?hotel_id=".$_hotel['id_hotel']."\" class=\"card-link\">
+                        <a href=\"dashboard.php?hotel_id=".$_hotel['id_hotel']."\" class=\"card-link\">
                             <div class=\"card p-3 shadow\" style=\"border-radius: 12px; border: none;\">
                                 <div class=\"d-flex align-items-start\">
                                     <div class=\"bg-primary-subtle rounded p-2 me-3 d-flex align-items-center justify-content-center\" style=\"width: 50px; height: 50px;\">
