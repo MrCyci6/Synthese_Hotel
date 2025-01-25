@@ -18,8 +18,23 @@
     }
     $user = User::getUser($userId);
 
-    // Hotels part
+    // Hotel part
+    $hotelId = $_GET['hotel_id'];
+    if(!isset($hotelId) || empty($hotelId)) {
+        header('Location: choice.php');
+        exit();
+    }    
+
+    // Delete user
+    if(isset($_GET['action']) && $_GET['action']=="delete") {
+        if(isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+            User::deleteUser($_GET['user_id']);
+        }
+    }
+
     $hotels = Perms::getFilteredPermissionsByUser($userId);
+    $hotelName = $hotels[$hotelId][0][0];
+    $hotelClasse = $hotels[$hotelId][0][1];
 
     // Actions
     if(isset($_GET['delete_user']) && !empty($_GET['delete_user'])) {
@@ -44,7 +59,7 @@
     $users = User::getUsers(($tablePage == 1 ? 1 : $tablePage*$tableStep-$tableStep), $tablePage*$tableStep);
     $prevPage = $tablePage==1 ? 1 : $tablePage-1;
     $nextPage = $tablePage+1;
-
+    
     require 'views/dashboard_top.php';
     require 'views/users.php';
 ?>

@@ -4,6 +4,34 @@
 
     class Perms {
 
+        static function updatePermissions(int $userId, int $hotelId, array $oldPerms, array $newPerms) {
+            $toActivate = [];
+            foreach ($oldPerms as $perm) {
+                if (in_array($perm['id_perm'], $newPerms) && $perm['has'] == 0) {
+                    array_push($toActivate, $perm['id_perm']);
+                }
+            }
+            foreach($toActivate as $id) {
+                Database::preparedQuery(
+                    "INSERT INTO perms_users(id_perm, id_user, id_hotel) VALUES (?,?,?);",
+                    [$id, $userId, $hotelId]
+                );
+            }
+
+            $toDesactivate = [];
+            foreach ($oldPerms as $perm) {
+                if (!in_array($perm['id_perm'], $newPerms) && $perm['has'] == 1) {
+                    array_push($toDesactivate, $perm['id_perm']);
+                }
+            }
+            foreach($toDesactivate as $id) {
+                Database::preparedQuery(
+                    "DELETE FROM perms_users WHERE id_perm=? AND id_user=? AND id_hotel=?;",
+                    [$id, $userId, $hotelId]
+                );
+            }
+        }
+
         static function getPermissions() {
             $statement = Database::preparedQuery(
                 "SELECT id_perm, nom FROM perms;", []
@@ -61,6 +89,22 @@
             );
             $permissions = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $permissions;
+        }
+
+        static function hasPermissionsByHotelAndUser(int $hotelId, int $userId) {
+            $statement = Database::preparedQuery(
+                "SELECT p.id_perm, p.nom AS perm,
+                    CASE
+                        WHEN pu.id_perm IS NOT NULL THEN 1
+                        ELSE 0
+                    END AS has 
+                FROM perms p
+                LEFT JOIN perms_users pu
+                ON p.id_perm = pu.id_perm AND pu.id_user = ? AND pu.id_hotel = ?;",
+                [$userId, $hotelId]
+            );
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
         }
 
         static function getFilteredPermissionsByUser(int $userId) {

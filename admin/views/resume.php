@@ -64,7 +64,7 @@
             <div class="row g-4 mt-2">
                 <!-- Recents booking -->
                 <div class="col-12 col-lg-6">
-                    <div class="card p-3 border-0 rounded-xl shadow">
+                    <div class="card p-3 border-0 rounded shadow">
                         <div>
                             <h2 class="fs-5 fw-semibold mb-4">Dernières réservations</h2>
                         </div>
@@ -99,7 +99,7 @@
 
                 <!-- Recents consumptions -->
                 <div class="col-12 col-lg-6">
-                    <div class="card p-3 border-0 rounded-xl shadow">
+                    <div class="card p-3 border-0 rounded shadow">
                         <div>
                             <h2 class="fs-5 fw-semibold mb-4">Dernières consommations</h2>
                         </div>

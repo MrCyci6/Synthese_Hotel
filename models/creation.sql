@@ -86,7 +86,7 @@ create table Reservation
 	paiement numeric(8,2),
 PRIMARY KEY(id_sejour),
 FOREIGN KEY (id_chambre) REFERENCES Chambre (id_chambre),
-FOREIGN KEY (id_user) REFERENCES Users(id_user)
+FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE
 );
 
 create table Conso_client
@@ -115,7 +115,7 @@ CREATE TABLE Perms_Users
 	id_hotel INTEGER NOT NULL,
 PRIMARY KEY (id_perm, id_user, id_hotel),
 FOREIGN KEY (id_perm) REFERENCES Perms(id_perm),
-FOREIGN KEY (id_user) REFERENCES Users(id_user),
+FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE,
 FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
 );
 
@@ -128,7 +128,7 @@ CREATE TABLE Logs
 	date DATE NOT NULL,
 PRIMARY KEY (id_log),
 FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel),
-FOREIGN KEY (id_user) REFERENCES Users(id_user)
+FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE Discount
