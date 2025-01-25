@@ -7,8 +7,9 @@
                     <h5 class="card-title ms-2 mt-1">Gestion des utilisateurs</h5>
                 </div>
                 <!-- Search -->
-                <div class="card p-4 border-0">
+                <div class="card p-4 border-0 shadow">
                     <form method="GET" action="users.php">
+                        <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Chercher un utilisateur (cyriac.lenoir@isen-ouest.yncrea.fr)">
                             <button type="submit" id="search" class="btn btn-outline-primary">Chercher</button>
@@ -30,53 +31,9 @@
                                             "<span style=\"border-radius: 15px;\" class=\"p-1 bg-success-subtle text-success\">Non-Banni</span>"
                                             )."</div>
                                         <div class=\"col-3 p-2 bg-body-secondary\">
-                                            <a title=\"Permissions\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#permsUser\">
-                                                <svg class=\"text-success\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/></svg>
-                                            </a>
-                                            <a title=\"Modifer\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#editUser\">
+                                            <a title=\"Gérer\" href=\"user.php?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
                                                 <svg class=\"text-primary\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-user-round-pen\"><path d=\"M2 21a8 8 0 0 1 10.821-7.487\"/><path d=\"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/><circle cx=\"10\" cy=\"8\" r=\"5\"/></svg>
                                             </a>
-                                            <a  title=\"Bannir\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#banUser\">
-                                                <svg class=\"text-warning\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-ban\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m4.9 4.9 14.2 14.2\"/></svg>
-                                            </a>
-                                            <a title=\"Supprimer\" href=\"\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteUser\">
-                                                <svg class=\"text-danger\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>
-                                            </a>
-                                        </div>
-                                        
-                                        <!-- Delete Modal -->
-                                        <div class=\"modal fade\" id=\"deleteUser\" tabindex=\"1\">
-                                            <div class=\"modal-dialog modal-dialog-centered\">
-                                                <div class=\"modal-content\">
-                                                    <div class=\"modal-header\">
-                                                        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Faut-il vraiment supprimer cet utilisateur ?</h1>
-                                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                                                    </div>
-                                                    <div class=\"modal-body\">
-                                                        <span class=\"text-danger fs-5 fw-bold\">Cette action est irréversible</span>
-                                                    </div>
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                                                        <a href=\"users.php?delete_user=".$_user['id_user']."\" class=\"btn btn-primary\">Supprimer</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Ban Modal -->
-                                        <div class=\"modal fade\" id=\"banUser\" tabindex=\"1\">
-                                            <div class=\"modal-dialog modal-dialog-centered\">
-                                                <div class=\"modal-content\">
-                                                    <div class=\"modal-header\">
-                                                        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Faut-il vraiment bannir cet utilisateur ?</h1>
-                                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                                                    </div>
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                                                        <a href=\"users.php?ban_user=".$_user['id_user']."\" class=\"btn btn-primary\">Bannir</a>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>";
                                 }
@@ -85,7 +42,7 @@
                     ?>
                 </div>
                 <!-- List -->
-                <div class="card p-4 border-0 bt-3">
+                <div class="card p-4 border-0 bt-3 shadow">
                     <!-- Table -->
                     <table class="table table-striped">
                         <thead>
@@ -110,54 +67,10 @@
                                             "<span style=\"border-radius: 15px;\" class=\"p-1 bg-success-subtle text-success\">Non-Banni</span>"
                                             )."</td>
                                         <td>
-                                            <a title=\"Permissions\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#permsUser\">
-                                                <svg class=\"text-success\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/></svg>
-                                            </a>
-                                            <a title=\"Modifer\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#editUser\">
+                                            <a title=\"Gérer\" href=\"user.php?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
                                                 <svg class=\"text-primary\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-user-round-pen\"><path d=\"M2 21a8 8 0 0 1 10.821-7.487\"/><path d=\"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/><circle cx=\"10\" cy=\"8\" r=\"5\"/></svg>
                                             </a>
-                                            <a  title=\"Bannir\" href=\"\" class=\"text-decoration-none\"  data-bs-toggle=\"modal\" data-bs-target=\"#banUser\">
-                                                <svg class=\"text-warning\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-ban\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m4.9 4.9 14.2 14.2\"/></svg>
-                                            </a>
-                                            <a title=\"Supprimer\" href=\"\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteUser\">
-                                                <svg class=\"text-danger\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>
-                                            </a>
                                         </td>
-                                        
-                                        <!-- Delete Modal -->
-                                        <div class=\"modal fade\" id=\"deleteUser\" tabindex=\"1\">
-                                            <div class=\"modal-dialog modal-dialog-centered\">
-                                                <div class=\"modal-content\">
-                                                    <div class=\"modal-header\">
-                                                        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Faut-il vraiment supprimer cet utilisateur ?</h1>
-                                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                                                    </div>
-                                                    <div class=\"modal-body\">
-                                                        <span class=\"text-danger fs-5 fw-bold\">Cette action est irréversible</span>
-                                                    </div>
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                                                        <a href=\"users.php?delete_user=".$_user['id_user']."\" class=\"btn btn-primary\">Supprimer</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Ban Modal -->
-                                        <div class=\"modal fade\" id=\"banUser\" tabindex=\"1\">
-                                            <div class=\"modal-dialog modal-dialog-centered\">
-                                                <div class=\"modal-content\">
-                                                    <div class=\"modal-header\">
-                                                        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Faut-il vraiment bannir cet utilisateur ?</h1>
-                                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                                                    </div>
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                                                        <a href=\"users.php?ban_user=".$_user['id_user']."\" class=\"btn btn-primary\">Bannir</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </tr>";
                                 }
                             ?>

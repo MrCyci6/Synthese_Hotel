@@ -18,18 +18,23 @@
     }
     $user = User::getUser($userId);
 
-    // Hotels part
-    $hotels = Perms::getFilteredPermissionsByUser($userId);
+    // Hotel part
+    $hotelId = $_GET['hotel_id'];
+    if(!isset($hotelId) || empty($hotelId)) {
+        header('Location: choice.php');
+        exit();
+    }    
 
-    // Actions
-    if(isset($_GET['delete_user']) && !empty($_GET['delete_user'])) {
-        $userActionId = $_GET['delete_user'];
-        User::deleteUser($userActionId);
+    // Delete user
+    if(isset($_GET['action']) && $_GET['action']=="delete") {
+        if(isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+            User::deleteUser($_GET['user_id']);
+        }
     }
-    if(isset($_GET['ban_user']) && !empty($_GET['ban_user'])) {
-        $userActionId = $_GET['ban_user'];
-        User::banUser($userActionId);
-    }
+
+    $hotels = Perms::getFilteredPermissionsByUser($userId);
+    $hotelName = $hotels[$hotelId][0][0];
+    $hotelClasse = $hotels[$hotelId][0][1];
 
     // List part
     $search = $_GET['search'];
@@ -44,7 +49,7 @@
     $users = User::getUsers(($tablePage == 1 ? 1 : $tablePage*$tableStep-$tableStep), $tablePage*$tableStep);
     $prevPage = $tablePage==1 ? 1 : $tablePage-1;
     $nextPage = $tablePage+1;
-
+    
     require 'views/dashboard_top.php';
     require 'views/users.php';
 ?>

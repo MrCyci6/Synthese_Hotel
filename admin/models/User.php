@@ -4,6 +4,16 @@
 
     class User {
 
+        static function updateUser(int $userId, string $nom, string $prenom, string $email, string $addresse, string $password = "") {
+            Database::preparedQuery(
+                "UPDATE users SET 
+                nom=?, prenom=?, addresse=?, email=?".
+                ($password == "" ? " " : ", hash=crypt(?, gen_salt('bf')) ").
+                "WHERE id_user=?",
+                ($pasword == "" ? [$nom, $prenom, $addresse, $email, $userId] : [$nom, $prenom, $addresse, $email, $password, $userId])
+            );
+        }
+
         static function loginUser(string $email, string $password) {
             $statement = Database::preparedQuery(
                 "SELECT id_user FROM users WHERE email=? AND hash=crypt(?, hash);",
