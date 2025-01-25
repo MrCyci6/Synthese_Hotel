@@ -78,21 +78,21 @@
                     </table>
                     <nav class="d-flex justify-content-center">
                         <ul class="pagination d-flex">
-                            <li class="page-item"><a class="page-link" href="users.php?page=<?= $prevPage ?>">Précédent</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=<?= $prevPage ?>">Précédent</a></li>
                             <li class="page-item"><a class="page-link">..</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=1">1</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=2">2</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=3">3</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=4">4</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=5">5</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=6">6</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=7">7</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=8">8</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=9">9</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=10">10</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=10">11</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=3">3</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=4">4</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=5">5</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=6">6</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=7">7</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=8">8</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=9">9</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=10">10</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=10">11</a></li>
                             <li class="page-item"><a class="page-link">..</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?page=<?= $nextPage ?>">Suivant</a></li>
+                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=<?= $nextPage ?>">Suivant</a></li>
                         </ul>
                     </nav>
                 </div>
