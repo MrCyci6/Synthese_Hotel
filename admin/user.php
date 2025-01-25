@@ -54,11 +54,9 @@
                 break;
             case "perms":
                 $oldPerms = Perms::hasPermissionsByHotelAndUser($hotelId, $targetId);
-                $newPerms = $_GET['perms'];
-                if(isset($newPerms) && !empty($newPerms)) {
-                    Perms::updatePermissions($targetId, $hotelId, $oldPerms, $newPerms);
-                    //Logs::addLog($userId, $hotelId, "Mise à jour les permissions de $targetId");
-                }
+                $newPerms = $_GET['perms'] ?? [];
+                Perms::updatePermissions($targetId, $hotelId, $oldPerms, $newPerms);
+                //Logs::addLog($userId, $hotelId, "Mise à jour les permissions de $targetId");
                 break;
         }
     }
