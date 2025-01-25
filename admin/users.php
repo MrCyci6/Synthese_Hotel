@@ -36,6 +36,16 @@
     $hotelName = $hotels[$hotelId][0][0];
     $hotelClasse = $hotels[$hotelId][0][1];
 
+    // Actions
+    if(isset($_GET['delete_user']) && !empty($_GET['delete_user'])) {
+        $userActionId = $_GET['delete_user'];
+        User::deleteUser($userActionId);
+    }
+    if(isset($_GET['ban_user']) && !empty($_GET['ban_user'])) {
+        $userActionId = $_GET['ban_user'];
+        User::banUser($userActionId);
+    }
+
     // List part
     $search = $_GET['search'];
     if(isset($search) && !empty($search))
