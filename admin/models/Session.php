@@ -41,7 +41,7 @@
         static function isUserLogged() {
             if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true && isset($_SESSION['userId'])) {
                 if (isset($_SESSION['lastSeen']) && (time() - $_SESSION['lastSeen'] > 60*30)) { // 30 minutes
-                    logoutUser();
+                    self::logoutUser();
                     return false;
                 }
                 $_SESSION['lastSeen'] = time();

@@ -237,7 +237,7 @@
             </div>
             <div class="modal-body border-0">
                 <span>Êtes-vous sûr de vouloir débannir cet utilisateur ?</span><br>
-                <span>Il ne pourra de nouveau accéder à ce site.</span>
+                <span>Il pourra de nouveau accéder à ce site.</span>
             </div>
             <div class="modal-footer border-0">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
