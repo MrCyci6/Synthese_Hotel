@@ -1,31 +1,28 @@
 <?php
-    session_start();
+    require_once 'models/Session.php';
+    Session::start();
+
     require_once 'models/User.php';
     require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
 
-    if(isset($_SESSION['id'])) {
+    if(Session::isUserLogged()) {
         header('Location: choice.php');
         exit();
     }
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $stayLogged = $_POST['staylogged'];
-
-    if(isset($email) && isset($password)) {
-        $id = User::loginUser($email, $password);
+    // Form
+    if(isset($_POST['email']) && isset($_POST['password'])) {
+        $id = User::loginUser($_POST['email'], $_POST['password']);
 
         if($id === false) {
             echo 'TODO: identifiants invalides';
             exit();
             // TODO
         } else {
-            $_SESSION['id'] = $id;
-            // if($stayLogged == "on") {
-            //     setcookie('id', $id, time() + (15), "/"); // cookie de 15 secondes
-            // }
-
+            // TODO: $stayLogged = $_POST['staylogged'] ?? false;
+            Session::loginUser($id);
+            
             header('Location: choice.php');
             exit();
         }

@@ -4,6 +4,10 @@
 
     class User {
 
+        static function isUserAdmin(int $userId) {
+            return $userId == ADMIN_ID;
+        }
+
         static function updateUser(int $userId, string $nom, string $prenom, string $email, string $addresse, string $password = "") {
             Database::preparedQuery(
                 "UPDATE users SET 

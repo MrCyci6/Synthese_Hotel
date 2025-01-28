@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    require_once 'models/Session.php';
+    Session::start();
+
     require_once 'models/User.php';
     require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
@@ -8,11 +10,13 @@
     $selected = "users";
 
     // User part
-    $userId = $_SESSION['id'];
-    if(!isset($userId) || empty($userId)) {
+    if(!Session::isUserLogged()) {
         header('Location: login.php');
         exit();
-    } else if($userId!=ADMIN_ID) {
+    } 
+    
+    $userId = $_SESSION['id'];
+    if(!User::isUserAdmin($userId)) {
         header('Location: choice.php');
         exit();
     }
