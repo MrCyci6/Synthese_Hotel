@@ -3,7 +3,7 @@
     require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
     require_once 'models/Chambre.php';
-    require_once 'models/Reservation.php';
+    require_once 'models/Hotel.php';
 
     $title = "Gestion | Utilisateurs";
     $selected = "users";
@@ -26,7 +26,7 @@
     $hotels = Hotel::getHotels();
     for($i = 0; $i < sizeof($hotels); $i++) {
         $hotels[$i]['chambres'] = Chambre::getRoomsCountByHotel($hotels[$i]['id_hotel']);
-        $hotels[$i]['occupees'] = Reservation::getReservationsCountByHotel($hotels[$i]['id_hotel']);
+        $hotels[$i]['occupees'] = Hotel::getHotelRoomsCount($hotels[$i]['id_hotel'])['occupees'];
     }
 
     require 'views/choice.php';
