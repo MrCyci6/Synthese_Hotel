@@ -121,3 +121,23 @@ create table Roles
 	nom VARCHAR(50) NOT NULL,
 PRIMARY KEY(id_role)
 );
+
+drop table if exists Perms CASCADE;
+CREATE TABLE Perms
+(
+	id_perm SERIAL NOT NULL, 
+	nom TEXT NOT NULL,
+PRIMARY KEY(id_perm)
+);
+
+drop table if exists Perms_Users CASCADE;
+CREATE TABLE Perms_Users
+(
+	id_perm INTEGER NOT NULL,
+	id_user INTEGER NOT NULL,
+	id_hotel INTEGER NOT NULL,
+PRIMARY KEY (id_perm, id_user, id_hotel),
+FOREIGN KEY (id_perm) REFERENCES Perms(id_perm),
+FOREIGN KEY (id_user) REFERENCES Users(id_user),
+FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
+);
