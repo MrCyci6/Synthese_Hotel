@@ -23,15 +23,28 @@
                         </div>
                     </div>
                     <div>
-                        <h5><?= $hotelName ?></h5>
+                        <h5><?= $hotels[$hotelId]['name'] ?></h5>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#banModal">
-                            <div class="d-flex align-items-center gap-2">    
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban h-5 w-5"><circle cx="12" cy="12" r="10"></circle><path d="m4.9 4.9 14.2 14.2"></path></svg>                                
-                                <span>Bannir</span>
-                            </div>
-                        </button>
+                        <?php
+                        
+                            if($target['banned']) {
+                                echo "<button type=\"button\" class=\"btn btn-outline-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#unbanModal\">
+                                    <div class=\"d-flex align-items-center gap-2\">    
+                                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-ban h-5 w-5\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"m4.9 4.9 14.2 14.2\"></path></svg>                                
+                                        <span>Débannir</span>
+                                    </div>
+                                </button>";
+                            } else {
+                                echo "<button type=\"button\" class=\"btn btn-outline-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#banModal\">
+                                    <div class=\"d-flex align-items-center gap-2\">    
+                                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-ban h-5 w-5\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"m4.9 4.9 14.2 14.2\"></path></svg>                                
+                                        <span>Bannir</span>
+                                    </div>
+                                </button>";
+                            }
+
+                        ?>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             <div class="d-flex align-items-center gap-2">    
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-5 w-5"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
@@ -209,6 +222,30 @@
             </div>
         </div>
     </div>
+
+<!-- Unban modal -->
+<div class="modal fade" id="unbanModal" tabindex="-1" aria-labelledby="unbanModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-2">
+            <div class="modal-header border-0">
+                <div class="modal-title d-flex align-items-center gap-2">
+                    <div class="bg-warning-subtle p-2 rounded-circle d-flex align-items-center">    
+                        <svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban h-5 w-5"><circle cx="12" cy="12" r="10"></circle><path d="m4.9 4.9 14.2 14.2"></path></svg>                                
+                    </div>
+                    <h1 class="fs-5">Débannir l'utilisateur</h1>
+                </div>
+            </div>
+            <div class="modal-body border-0">
+                <span>Êtes-vous sûr de vouloir débannir cet utilisateur ?</span><br>
+                <span>Il ne pourra de nouveau accéder à ce site.</span>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a href="user.php?action=unban&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-warning text-light">Débannir l'utilisateur</a>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Delete modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">

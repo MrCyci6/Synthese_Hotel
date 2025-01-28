@@ -18,7 +18,6 @@
         if($id === false) {
             echo 'TODO: identifiants invalides';
             exit();
-            // TODO
         } else {
             // TODO: $stayLogged = $_POST['staylogged'] ?? false;
             Session::loginUser($id);

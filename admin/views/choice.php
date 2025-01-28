@@ -29,27 +29,27 @@
     <div class="container mt-5">
         <div class="row g-4">
             <?php
-                foreach($hotels as $hotel) {
+                foreach($hotels as $hotelId => $hotelData) {
                     echo "<div class=\"col-md-4\">
-                        <a href=\"dashboard.php?hotel_id=".$hotel['id_hotel']."\" class=\"card-link\">
+                        <a href=\"dashboard.php?hotel_id=".$hotelId."\" class=\"card-link\">
                             <div class=\"card p-3 shadow\" style=\"border-radius: 12px; border: none;\">
                                 <div class=\"d-flex align-items-start\">
                                     <div class=\"bg-primary-subtle rounded p-2 me-3 d-flex align-items-center justify-content-center\" style=\"width: 50px; height: 50px;\">
                                         <svg style=\"color: rgb(37, 99, 235);\"  xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-building2 h-6 w-6 text-blue-600\"><path d=\"M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z\"></path><path d=\"M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2\"></path><path d=\"M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2\"></path><path d=\"M10 6h4\"></path><path d=\"M10 10h4\"></path><path d=\"M10 14h4\"></path><path d=\"M10 18h4\"></path></svg>
                                     </div>
                                     <div>
-                                        <h5 class=\"mb-0\">".$hotel['nom_hotel']."</h5>
-                                        <small class=\"text-muted\">".$hotel['classe']."</small>
+                                        <h5 class=\"mb-0\">".$hotelData['name']."</h5>
+                                        <small class=\"text-muted\">".$hotelData['class']."</small>
                                     </div>
                                 </div>
                                 <div class=\"d-flex justify-content-between mt-3\">
                                     <div class=\"text-center bg-light p-2 rounded\" style=\"flex: 1; margin-right: 5px;\">
                                         <p class=\"mb-0 text-muted\">Chambres</p>
-                                        <h5 class=\"mb-0\">".$hotel['chambres']."</h5>
+                                        <h5 class=\"mb-0\">".$hotelData['rooms']."</h5>
                                     </div>
                                     <div class=\"text-center bg-light p-2 rounded\" style=\"flex: 1; margin-left: 5px;\">
                                         <p class=\"mb-0 text-muted\">Occupées</p>
-                                        <h5 class=\"mb-0\">".$hotel['occupees']."</h5>
+                                        <h5 class=\"mb-0\">".$hotelData['occupedRooms']."</h5>
                                     </div>
                                 </div>
                             </div>

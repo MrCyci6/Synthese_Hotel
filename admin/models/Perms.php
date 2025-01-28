@@ -117,31 +117,34 @@
                 ORDER BY pu.id_hotel, pu.id_perm;",
                 [$userId]
             );
+
             $_hotels = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-            $hotels = array();
+            $hotels = [];
             foreach($_hotels as $hotel) {
-                $_perm = $hotel['id_perm'];
-                $_hotel = $hotel['id_hotel'];
-                $_permName = $hotel['perm'];
-                $_hotelName = $hotel['hotel'];
-                $_hotelClass = $hotel['classe'];
+                $hotelId = $hotel['id_hotel'];
+                $permId = $hotel['id_perm'];
+
+                if(!isset($hotels[$hotelId])) {
+                    $hotels[$hotelId] = [
+                        'name' => $hotel['hotel'],
+                        'class' => $hotel['classe'],
+                        'perms' => [],
+                    ];
+                }
         
-                $hotels[$_hotel][0] = [$_hotelName, $_hotelClass];
-                $hotels[$_hotel][$_perm] = $_permName;
+                $hotels[$hotelId]['perms'][$permId] = $hotel['perm'];
             }
 
             /**
              * Format: 
              * [ 
-             *      "id_hotel1": {
-             *          0: [
-             *                  "hotel_name",
-             *                  "hotel_classe"
-             *              ],
-             *          id_perm1: "Nom perm 1",
-             *          id_perm2: "Nom perm1"
-             *      }
+             *      hotelId => [
+             *          "name" => "Name",
+             *          "class" => "Class",
+             *          "perms" => [
+             *              permId => "Name"
+             *          ]
+             *      ]
              * ]
              */
             return $hotels;

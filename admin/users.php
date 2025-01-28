@@ -15,39 +15,40 @@
         exit();
     } 
     
-    $userId = $_SESSION['id'];
-    if(!User::isUserAdmin($userId)) {
+    $userId = $_SESSION['userId'];
+    if(!User::isAdmin($userId)) {
         header('Location: choice.php');
         exit();
     }
     $user = User::getUser($userId);
 
     // Hotel part
-    $hotelId = $_GET['hotel_id'];
-    if(!isset($hotelId) || empty($hotelId)) {
+    if(!isset($_GET['hotel_id'])) {
         header('Location: choice.php');
         exit();
     }    
+    $hotelId = $_GET['hotel_id'];
 
     // Delete user
     if(isset($_GET['action']) && $_GET['action']=="delete") {
-        if(isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+        if(isset($_GET['user_id']) && !empty($_GET['user_id']) && !User::isAdmin($_GET['user_id'])) {
             User::deleteUser($_GET['user_id']);
         }
     }
 
+    // Perms
     $hotels = Perms::getFilteredPermissionsByUser($userId);
-    $hotelName = $hotels[$hotelId][0][0];
-    $hotelClasse = $hotels[$hotelId][0][1];
+    if(!isset($hotels[$hotelId])) {
+        header('Location: choice.php');
+        exit();
+    }  
 
-    // List part
-    $search = $_GET['search'];
-    if(isset($search) && !empty($search))
-        $userSearch = User::searchUser($search);
+    // Search part
+    if(isset($_GET['search']) && !empty($_GET['search']))
+        $userSearch = User::searchUser($_GET['search']);
     
-    $tablePage = $_GET['page'];
-    if(!isset($tablePage) || empty($tablePage)) 
-        $tablePage = 1;
+    // Table part
+    $tablePage = $_GET['page'] ?? 1;
     $tableStep = USER_LIST_STEP;
 
     $users = User::getUsers(($tablePage == 1 ? 1 : $tablePage*$tableStep-$tableStep), $tablePage*$tableStep);

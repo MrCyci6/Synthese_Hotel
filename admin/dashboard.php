@@ -21,26 +21,25 @@
     $user = User::getUser($userId);
 
     // Hotel part
-    $hotelId = $_GET['hotel_id'];
-    if(!isset($hotelId) || empty($hotelId)) {
+    if(!isset($_GET['hotel_id'])) {
         header('Location: choice.php');
         exit();
     }
+    $hotelId = $_GET['hotel_id'];
     
+    // Perms
     $hotels = Perms::getFilteredPermissionsByUser($userId);
     if(!isset($hotels[$hotelId])) {
         header('Location: choice.php');
         exit();
     }
 
-    $hotelName = $hotels[$hotelId][0][0];
-    $hotelClasse = $hotels[$hotelId][0][1];
-
     // Stats
     $reservationsCount = Reservation::getReservationsCountByHotel($hotelId);
-    $roomsCount = Hotel::getHotelRoomsCount($hotelId);
+    $roomsCount = Hotel::getRoomsCount($hotelId);
+    $occupedRoomsCount = Hotel::getOccupedRoomsCount($hotelId);
     $consosCount = Conso::getConsosCount($hotelId);
-    $sales = Hotel::getHotelSales($hotelId);
+    $sales = Hotel::getSales($hotelId);
 
     // Bookings
     $reservations = Reservation::getReservationsByHotel($hotelId, "ORDER BY r.date_debut DESC LIMIT 3");
