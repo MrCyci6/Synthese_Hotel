@@ -6,7 +6,7 @@
 
         static function getConsos(int $hotelId = -1, string $filters = "") {
             $statement = Database::preparedQuery(
-                "SELECT cc.id_cc, cc.id_conso, c.denomination as conso, cc.id_sejour, r.id_user, u.nom as nom_user, u.prenom as prenom_user, ch.numero_chambre, h.id_hotel, h.nom as hotel, cl.denomination as classe, cc.date_conso, cc.nombre, pc.prix*cc.nombre as prix FROM conso_client cc
+                "SELECT distinct  cc.id_conso,cc.id_cc, c.denomination as conso, cc.id_sejour, r.id_user, u.nom as nom_user, u.prenom as prenom_user, ch.numero_chambre, h.id_hotel, h.nom as hotel, cl.denomination as classe, cc.date_conso, cc.nombre, pc.prix*cc.nombre as prix FROM conso_client cc
                 INNER JOIN conso c ON c.id_conso=cc.id_conso
                 INNER JOIN reservation r ON r.id_sejour=cc.id_sejour
                 INNER JOIN users u ON u.id_user=r.id_user
