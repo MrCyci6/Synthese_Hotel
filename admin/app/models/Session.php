@@ -5,8 +5,8 @@
         static function start() {
             session_set_cookie_params([
                 'secure' => isset($_SERVER['HTTPS']),
-                'httponly' => true,
-                'samesite' => 'Strict'
+                'httponly' => true, // Utilisation que par http donc pas de js
+                'samesite' => 'Strict' // Utilisation de session que sur le dashboard
             ]);
 
             session_start();
