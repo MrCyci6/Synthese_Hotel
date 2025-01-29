@@ -2,7 +2,7 @@
 
     // User part
     if(!Session::isUserLogged()) {
-        header('Location: login.php');
+        header('Location: login');
         exit();
     }
     $userId = $_SESSION['userId'];
@@ -10,7 +10,7 @@
 
     // Hotels part    
     if(!isset($_GET['hotel_id'])) {
-        header('Location: choice.php');
+        header('Location: choice');
         exit();
     }
     $hotelId = $_GET['hotel_id'];
@@ -18,7 +18,7 @@
     // Perms
     $hotels = Perms::getFilteredPermissionsByUser($userId);
     if(!isset($hotels[$hotelId])) {
-        header('Location: choice.php');
+        header('Location: choice');
         exit();
     }
 

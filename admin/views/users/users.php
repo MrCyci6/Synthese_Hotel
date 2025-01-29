@@ -8,7 +8,7 @@
                 </div>
                 <!-- Search -->
                 <div class="card p-4 border-0 shadow">
-                    <form method="GET" action="users.php">
+                    <form method="GET" action="users">
                         <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Chercher un utilisateur (cyriac.lenoir@isen-ouest.yncrea.fr)">
@@ -31,7 +31,7 @@
                                             "<span style=\"border-radius: 15px;\" class=\"p-1 bg-success-subtle text-success\">Non-Banni</span>"
                                             )."</div>
                                         <div class=\"col-3 p-2 bg-body-secondary\">
-                                            <a title=\"Gérer\" href=\"user.php?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
+                                            <a title=\"Gérer\" href=\"user?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
                                                 <svg class=\"text-primary\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-user-round-pen\"><path d=\"M2 21a8 8 0 0 1 10.821-7.487\"/><path d=\"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/><circle cx=\"10\" cy=\"8\" r=\"5\"/></svg>
                                             </a>
                                         </div>
@@ -67,7 +67,7 @@
                                             "<span style=\"border-radius: 15px;\" class=\"p-1 bg-success-subtle text-success\">Non-Banni</span>"
                                             )."</td>
                                         <td>
-                                            <a title=\"Gérer\" href=\"user.php?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
+                                            <a title=\"Gérer\" href=\"user?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
                                                 <svg class=\"text-primary\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-user-round-pen\"><path d=\"M2 21a8 8 0 0 1 10.821-7.487\"/><path d=\"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/><circle cx=\"10\" cy=\"8\" r=\"5\"/></svg>
                                             </a>
                                         </td>
@@ -78,21 +78,21 @@
                     </table>
                     <nav class="d-flex justify-content-center">
                         <ul class="pagination d-flex">
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=<?= $prevPage ?>">Précédent</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $prevPage ?>">Précédent</a></li>
                             <li class="page-item"><a class="page-link">..</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=1">1</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=2">2</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=3">3</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=4">4</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=5">5</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=6">6</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=7">7</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=8">8</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=9">9</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=10">10</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=10">11</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=3">3</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=4">4</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=5">5</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=6">6</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=7">7</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=8">8</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=9">9</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10">10</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10">11</a></li>
                             <li class="page-item"><a class="page-link">..</a></li>
-                            <li class="page-item"><a class="page-link" href="users.php?hotel_id=<?= $hotelId ?>&page=<?= $nextPage ?>">Suivant</a></li>
+                            <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $nextPage ?>">Suivant</a></li>
                         </ul>
                     </nav>
                 </div>

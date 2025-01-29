@@ -18,7 +18,7 @@
                 <h4 class="ms-2 mt-1 dt fw-bold">Au-Tel-2-Lux | Gestion</h4>
             </div>
             <div class="d-flex align-items-center">
-                <a href="logout.php" class="text-decoration-none d-flex align-items-center justify-content-around text-secondary">
+                <a href="logout" class="text-decoration-none d-flex align-items-center justify-content-around text-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out h-5 w-5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>
                     <h5 class="ms-1 mt-1">Déconnexion</h5>
                 </a>
@@ -31,7 +31,7 @@
             <?php
                 foreach($hotels as $hotelId => $hotelData) {
                     echo "<div class=\"col-md-4\">
-                        <a href=\"dashboard.php?hotel_id=".$hotelId."\" class=\"card-link\">
+                        <a href=\"dashboard?hotel_id=".$hotelId."\" class=\"card-link\">
                             <div class=\"card p-3 shadow\" style=\"border-radius: 12px; border: none;\">
                                 <div class=\"d-flex align-items-start\">
                                     <div class=\"bg-primary-subtle rounded p-2 me-3 d-flex align-items-center justify-content-center\" style=\"width: 50px; height: 50px;\">

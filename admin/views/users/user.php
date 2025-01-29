@@ -217,7 +217,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a href="user.php?action=ban&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-warning text-light">Bannir l'utilisateur</a>
+                    <a href="user?action=ban&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-warning text-light">Bannir l'utilisateur</a>
                 </div>
             </div>
         </div>
@@ -241,7 +241,7 @@
             </div>
             <div class="modal-footer border-0">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                <a href="user.php?action=unban&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-warning text-light">Débannir l'utilisateur</a>
+                <a href="user?action=unban&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-warning text-light">Débannir l'utilisateur</a>
             </div>
         </div>
     </div>
@@ -265,7 +265,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a href="users.php?action=delete&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-danger">Supprimer l'utilisateur</a>
+                    <a href="users?action=delete&hotel_id=<?= $hotelId ?>&user_id=<?= $targetId?>" class="btn btn-danger">Supprimer l'utilisateur</a>
                 </div>
             </div>
         </div>
@@ -283,7 +283,7 @@
                         <h1 class="fs-5">Modifier les informations de l'utilisateur</h1>
                     </div>
                 </div>
-                <form action="user.php">
+                <form action="user">
                     <div class="modal-body border-0">
                         <input type="hidden" name="action" value="edit">
                         <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
@@ -329,7 +329,7 @@
                         <h1 class="fs-5">Modifier les permissions de l'utilisateur</h1>
                     </div>
                 </div>
-                <form action="user.php">
+                <form action="user">
                     <input type="hidden" name="action" value="perms">
                     <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
                     <input type="hidden" name="user_id" value="<?= $targetId ?>">
