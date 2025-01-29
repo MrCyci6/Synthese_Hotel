@@ -2,14 +2,13 @@
     require_once 'models/Session.php';
     Session::start();
 
-    require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
-    require_once 'models/Chambre.php';
     require_once 'models/Hotel.php';
+    require_once 'models/User.php';
 
     $title = "Gestion | Utilisateurs";
 
-    // User part
+    // User
     if(!Session::isUserLogged()) {
         header('Location: login.php');
         exit();

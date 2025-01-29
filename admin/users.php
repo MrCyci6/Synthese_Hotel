@@ -8,26 +8,13 @@
 
     $title = "Gestion | Utilisateurs";
     $selected = "users";
-
-    // User part
-    if(!Session::isUserLogged()) {
-        header('Location: login.php');
-        exit();
-    } 
     
-    $userId = $_SESSION['userId'];
+    require_once 'controllers/base_init.php';
+
     if(!User::isAdmin($userId)) {
         header('Location: choice.php');
         exit();
     }
-    $user = User::getUser($userId);
-
-    // Hotel part
-    if(!isset($_GET['hotel_id'])) {
-        header('Location: choice.php');
-        exit();
-    }    
-    $hotelId = $_GET['hotel_id'];
 
     // Delete user
     if(isset($_GET['action']) && $_GET['action']=="delete") {

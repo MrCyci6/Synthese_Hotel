@@ -7,34 +7,15 @@
     require_once 'models/Logs.php';
 
     $title = "Gestion | Utilisateurs";
-    $selected = "users";
+    $selected = "users"; 
 
-    // User part
-    if(!Session::isUserLogged()) {
-        header('Location: login.php');
-        exit();
-    } 
+    require_once 'controllers/base_init.php';
 
-    $userId = $_SESSION['userId'];
+    // Perm
     if(!User::isAdmin($userId)) {
         header('Location: choice.php');
         exit();
     }
-    $user = User::getUser($userId);
-
-    // Hotel part
-    if(!isset($_GET['hotel_id'])) {
-        header('Location: choice.php');
-        exit();
-    }
-    $hotelId = $_GET['hotel_id'];
-    
-    // Perms
-    $hotels = Perms::getFilteredPermissionsByUser($userId);
-    if(!isset($hotels[$hotelId])) {
-        header('Location: choice.php');
-        exit();
-    }  
 
     // Target part
     if(!isset($_GET['user_id'])) {
