@@ -1,28 +1,29 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/config/config.php';
+    require_once __DIR__ . '/../config/config.php';
 
-    class DatabaseManager {
-        private string $dsn = ""; 
-        private string $username = ""; 
-        private string $password = "";
+    class Database {
+        static $db = "";
 
-        function __construct() {
-            $this->dsn = "pgsql:dbname=".DB_NAME.";host=".DB_HOST.";port=".DB_PORT;
-            $this->username = DB_USERNAME;
-            $this->password = DB_PASSWORD;
-        }
+        static function getConnection() {
+            if(Database::$db != null)
+                return Database::$db;
 
-        function getConnection() {
+            $dsn = "pgsql:dbname=".DB_NAME.";host=".DB_HOST.";port=".DB_PORT;
+            $username = DB_USERNAME;
+            $password = DB_PASSWORD;
             try {
-                $conn = new PDO($this->dsn, $this->username, $this->password);
-                return $conn;
+                $conn = new PDO($dsn, $username, $password);
             } catch (PDOException $e) {
+                error_log("Error while connection to database: ".$e->getMessage());
                 return false;
             }
+
+            Database::$db = $conn;
+            return $conn;
         }
 
-        function preparedQuery(string $request, array $params) {
-            $conn = $this->getConnection();
+        static function preparedQuery(string $request, array $params) {
+            $conn = Database::getConnection();
             if(!$conn) return false;
 
             $statement = $conn->prepare($request);
@@ -30,4 +31,5 @@
             return $statement;
         }
     }
+
 ?>

@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require_once '../models/Client.php';
+    require_once __DIR__ . '/../models/Client.php';
+
 
     if (isset($_SESSION['client_id'])) {
         header("Location: dashboard.php");
