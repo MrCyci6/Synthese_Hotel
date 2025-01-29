@@ -1,8 +1,8 @@
 <?php
 require_once('models/Conso.php');
 
-$consommations=Conso::getConsos(1);
-$nbConso=Conso::getConsosCount(1);
+$consommations=Conso::getConsoAndPrice(1);
+$nbConso=count($consommations);
 
 
 require('views/consums-price.php');

@@ -3,7 +3,15 @@
     require_once 'models/Database.php';
 
     class Conso {
+        static function getConsoAndPrice(int $hotelId = -1) {
+            $query = "SELECT  conso.denomination,prix_conso.id_conso as id,id_hotel,prix from prix_conso
+                        join conso on conso.id_conso=prix_conso.id_conso
+                        WHERE id_hotel = :id_hotel";
+            $statement = Database::preparedQuery($query, ($hotelId==-1 ? [] : [$hotelId]));
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+            return $results;
+        }
         static function getConsos(int $hotelId = -1, string $filters = "") {
             $statement = Database::preparedQuery(
                 "SELECT cc.id_conso,cc.id_cc, c.denomination as conso, cc.id_sejour, r.id_user, u.nom as nom_user, u.prenom as prenom_user, ch.numero_chambre, h.id_hotel, h.nom as hotel, cl.denomination as classe, cc.date_conso, cc.nombre, pc.prix*cc.nombre as prix FROM conso_client cc

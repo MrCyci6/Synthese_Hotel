@@ -24,8 +24,8 @@
     <tbody>
 
     <?php
-    for ($i = 1; $i <= $nbConso; $i++) {
-        echo "<tr><td>".$consommations[$i]['conso']."</td><td>".$consommations[$i]['prix']."</td></td></tr>";
+    for ($i = 0; $i <= $nbConso; $i++) {
+        echo "<tr><td>".$consommations[$i]['denomination']."</td><td>".$consommations[$i]['prix']."</td></td></tr>";
     }
     ?>
 
