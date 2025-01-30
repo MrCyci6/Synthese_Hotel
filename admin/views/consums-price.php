@@ -19,7 +19,8 @@
             <h1 class="py-3 fw-bold">Menu de nos consommations</h1>
         </div>
         <div class="col-6 col-md-4">
-            <button type="button" class="btn btn-primary">Éditer prix</button>
+            <button class="btn btn-primary">Éditer prix</button>
+
         </div>
     </div>
     <div class="row">

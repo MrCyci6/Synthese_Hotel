@@ -57,5 +57,4 @@
             return $statement->fetch()['count'];
         }
     }
-
 ?>
