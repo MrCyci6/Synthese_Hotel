@@ -8,7 +8,7 @@ class Client {
 
         $client = Database::preparedQuery($query, $params)->fetch(PDO::FETCH_ASSOC);
 
-        if ($client && password_verify($password, $client['hash_user'])) {
+        if ($client && password_verify($password, $client['hash'])) {
             return $client['id_user'];
         }
         return false;
