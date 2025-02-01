@@ -11,7 +11,8 @@
         "login" => "controllers/auth/LoginController.php",
         "logout" => "controllers/auth/LogoutController.php",
         "users" => "controllers/users/UsersController.php",
-        "user" => "controllers/users/UserController.php"
+        "user" => "controllers/users/UserController.php",
+        "rooms" => "controllers/rooms/RoomsController.php"
     ];
 
     if(isset($routes[$route]))

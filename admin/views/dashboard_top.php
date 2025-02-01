@@ -39,31 +39,31 @@
 
         <!-- Modules -->
         <div class="container">
-            <a href="dashboard?hotel_id=1" class="mb-2 mt-2 <?= $selected=="dashboard" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="dashboard?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="dashboard" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 h-5 w-5"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
                 <span>Tableau de bord</span>
             </a>
-            <a href="rooms" class="mb-2 mt-2 <?= $selected=="rooms" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="rooms?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="rooms" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar h-5 w-5"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>                
                 <span>Réservations</span>
             </a>
-            <a href="rooms-price" class="mb-2 mt-2 <?= $selected=="rooms-price" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="rooms-price?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="rooms-price" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag h-5 w-5"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>                
                 <span>Prix - chambres</span>
             </a>
-            <a href="consums" class="mb-2 mt-2 <?= $selected=="consums" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="consums?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="consums" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils h-5 w-5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>                
                 <span>Consommations</span>
             </a>
-            <a href="consums-price" class="mb-2 mt-2 <?= $selected=="consums-price" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="consums-price?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="consums-price" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag h-5 w-5"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>                
                 <span>Prix - conso</span>
             </a>
-            <a href="discounts" class="mb-2 mt-2 <?= $selected=="discount" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="discounts?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="discount" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
                 <span>Promotions</span>
             </a>
-            <a href="logs" class="mb-2 mt-2 <?= $selected=="logs" ? "selected" : "" ?>" style="border-radius: 15px;">
+            <a href="logs?hotel_id=<?= $hotelId ?>" class="mb-2 mt-2 <?= $selected=="logs" ? "selected" : "" ?>" style="border-radius: 15px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-clock"><path d="M16 22h2a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="8" cy="16" r="6"/><path d="M9.5 17.5 8 16.25V14"/></svg>
                 <span>Activité</span>
             </a>

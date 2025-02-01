@@ -1,5 +1,5 @@
         <!-- Content -->
-        <div class="p-4">
+        <div class="p-4 mt-3">
             <div class="container row g-4">
                 <!-- Header -->
                 <div class="d-flex align-items-center mb-2">
@@ -44,21 +44,21 @@
                 <!-- List -->
                 <div class="card p-4 border-0 bt-3 shadow">
                     <!-- Table -->
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
+                                <td class="text-secondary">#</td>
+                                <td class="text-secondary">NOM</td>
+                                <td class="text-secondary">E-MAIL</td>
+                                <td class="text-secondary">STATUT</td>
+                                <td class="text-secondary">ACTIONS</td>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 foreach($users as $_user) {
                                     echo "<tr>
-                                        <th scope=\"row\">".$_user['id_user']."</th>
+                                        <td scope=\"row\">".$_user['id_user']."</td>
                                         <td>".$_user['nom']." ".$_user['prenom']."</td>
                                         <td>".$_user['email']."</td>
                                         <td>".(
