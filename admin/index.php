@@ -5,6 +5,7 @@
 
     $routes = [
         "" => "controllers/auth/LoginController.php",
+        "404" => "controllers/404Controller.php",
         "dashboard" => "controllers/layout/DashboardController.php",
         "choice" => "controllers/ChoiceController.php",
         "login" => "controllers/auth/LoginController.php",
@@ -16,5 +17,5 @@
     if(isset($routes[$route]))
         require $routes[$route];
     else
-        require $routes[""]; 
+        require $routes["404"]; 
 ?>
