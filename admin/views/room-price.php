@@ -36,7 +36,7 @@
 
                 <?php
                 for ($i = 0; $i <= $nbChambre; $i++) {
-                    echo "<tr><td>".$infoChambre[$i]['denomination']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
+                    echo "<tr><td>".$infoChambre[$i]['chambre']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
                 }
                 ?>
 
