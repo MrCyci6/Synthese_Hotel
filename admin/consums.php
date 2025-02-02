@@ -6,11 +6,11 @@ require_once 'models/User.php';
 require_once 'models/Hotel.php';
 require_once 'models/Conso.php';
 
-$consommations=Conso::getConsoAndPrice($_GET['hotel_id']);
+$consommations=Conso::getConsos($_GET['hotel_id']);
 $nbConso=count($consommations);
 
-$title = "Prix Conso";
-$selected = "consums-price";
+$title = "Récapitulatif des Consommations";
+$selected = "consums";
 
 // User part
 $userId = 1;
@@ -38,4 +38,4 @@ $hotelClasse = $hotels[$hotelId][0][1];
 
 
 require('views/dashboard_top.php');
-require('views/consums-price.php');
+require('views/consums.php');
