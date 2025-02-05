@@ -6,11 +6,34 @@ require_once 'models/User.php';
 require_once 'models/Hotel.php';
 require_once 'models/Conso.php';
 
-$consommations=Conso::getConsoAndPrice($_GET['hotel_id']);
+$hotel_id=$_GET['hotel_id'];
+$consommations=Conso::getConsoAndPrice($hotel_id);
 $nbConso=count($consommations);
 
 $title = "Prix Conso";
 $selected = "consums-price";
+
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+if ( !empty($data['consommations'])) {
+
+    foreach ($data['consommations'] as $conso) {
+        $conso_id = intval($conso["consommation_id"]);
+        $prix = floatval($conso["prix"]);
+
+        // Mise à jour du prix dans la base de données
+        Conso::modifPrix($hotel_id,$conso_id);
+    }
+
+    echo "Prix mis à jour avec succès pour l'hôtel ID $hotel_id !";
+}
+
+
+
+
+
+
 
 // User part
 $userId = 1;

@@ -11,6 +11,62 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+
+    <script>
+        let enEdition = false;
+
+        function toggleEdition() {
+            let btn = document.getElementById("editBtn");
+            let cellules = document.querySelectorAll("td.editable");
+
+            if (!enEdition) {
+                // Rendre les cellules éditables
+                cellules.forEach(cell => {
+                    let valeurActuelle = cell.innerText;
+                    cell.innerHTML = `<input type='number' step='0.5' value='${valeurActuelle}'>`;
+                });
+                btn.innerText = "Enregistrer";
+            } else {
+                // Récupérer les valeurs et envoyer via AJAX
+                let valeurs = [];
+                let lignes = document.querySelectorAll("tr[data-id]");
+
+                lignes.forEach(ligne => {
+                    let consommation_id = ligne.getAttribute("data-id");
+                    let prix = ligne.querySelector(".prix input").value;
+                    valeurs.push({ consommation_id, prix });
+                });
+                console.log("Valeurs envoyées :", valeurs);
+
+                // Envoyer les nouvelles valeurs au serveur
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", "consums-prices.php", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    console.log("Réponse du serveur :", xhr.responseText);
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        alert(xhr.responseText);
+                    }
+                    else{
+                        alert("Erreur d'enregistrement !");
+                    }
+                };
+
+                xhr.send(JSON.stringify({ hotel_id: <?= $hotel_id ?>, consommations: valeurs }));
+
+                // Mettre à jour les cellules avec les nouvelles valeurs
+                lignes.forEach(ligne => {
+                    ligne.querySelector(".prix").innerText = ligne.querySelector(".prix input").value;
+                });
+
+                btn.innerText = "Modifier";
+            }
+            enEdition = !enEdition;
+        }
+    </script>
+
+
 </head>
 <body>
 <div class="container ">
@@ -19,7 +75,7 @@
             <h1 class="py-3 fw-bold">Menu de nos consommations</h1>
         </div>
         <div class="col-6 col-md-4">
-            <button class="btn btn-primary">Éditer prix</button>
+            <button class="btn btn-primary" id="editBtn" onclick="toggleEdition()">Éditer prix</button>
 
         </div>
     </div>
@@ -28,6 +84,7 @@
             <table class="table table-white table-striped">
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Dénomination</th>
                     <th>Prix</th>
                 </tr>
@@ -35,8 +92,8 @@
                 <tbody>
 
                 <?php
-                for ($i = 0; $i <= $nbConso; $i++) {
-                    echo "<tr><td>".$consommations[$i]['denomination']."</td><td>".$consommations[$i]['prix']."</td></td></tr>";
+                for ($i = 0; $i < $nbConso; $i++) {
+                    echo "<tr><td id='data-id'>".$consommations[$i]['id_conso']."</td><td>".$consommations[$i]['denomination']."</td><td class='editable prix'>".$consommations[$i]['prix']."</td></td></tr>";
                 }
                 ?>
 

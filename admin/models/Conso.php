@@ -4,7 +4,7 @@
 
     class Conso {
         static function getConsoAndPrice(int $hotelId = -1) {
-            $query = "SELECT  conso.denomination,prix_conso.id_conso as id,id_hotel,prix from prix_conso
+            $query = "SELECT  conso.denomination,prix_conso.id_conso as id,conso.id_conso,id_hotel,prix from prix_conso
                         join conso on conso.id_conso=prix_conso.id_conso
                         WHERE id_hotel = :id_hotel";
             $statement = Database::preparedQuery($query, ($hotelId==-1 ? [] : [$hotelId]));
