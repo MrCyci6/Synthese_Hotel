@@ -57,11 +57,11 @@
             return $statement->fetch()['count'];
         }
 
-        static function modifPrix(int $id_conso,int $hotelId = -1) {
+        static function modifPrix($n_prix,int $id_conso,int $hotelId = -1) {
             $query = "UPDATE Prix_conso
-                    SET prix = <nouveau_prix>
+                    SET prix = :n_prix
                     WHERE id_conso = :id_conso AND id_hotel = :id_hotel;";
-            $statement = Database::preparedQuery($query, array(':id_conso'=>$id_conso,':id_hotel'=> $hotelId));
+            $statement = Database::preparedQuery($query, array(':n_prix'=>$n_prix,':id_conso'=>$id_conso,':id_hotel'=> $hotelId));
 
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }

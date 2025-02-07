@@ -12,22 +12,14 @@ $nbConso=count($consommations);
 
 $title = "Prix Conso";
 $selected = "consums-price";
-
-
-$data = json_decode(file_get_contents("php://input"), true);
-
-if ( !empty($data['consommations'])) {
-
-    foreach ($data['consommations'] as $conso) {
-        $conso_id = intval($conso["consommation_id"]);
-        $prix = floatval($conso["prix"]);
-
-        // Mise à jour du prix dans la base de données
-        Conso::modifPrix($hotel_id,$conso_id);
+if(isset($_POST['btn-save'])){
+    for($i=0;$i<$nbConso;$i++){
+        $new_price=$_POST['prix_'.$consommations[$i]['id_conso']];
+        var_dump($new_price);
+        Conso::modifPrix($new_price,$consommations[$i]['id_conso'],$hotel_id);
     }
-
-    echo "Prix mis à jour avec succès pour l'hôtel ID $hotel_id !";
 }
+
 
 // User part
 $userId = 1;
