@@ -29,12 +29,6 @@ if ( !empty($data['consommations'])) {
     echo "Prix mis à jour avec succès pour l'hôtel ID $hotel_id !";
 }
 
-
-
-
-
-
-
 // User part
 $userId = 1;
 if(!isset($userId) || empty($userId)) {
