@@ -1,0 +1,33 @@
+.topbar {
+    width: 100%;
+    height: 5.625rem;
+    flex-shrink: 0;
+    background: #FFF;
+    padding: 0 1rem;
+}
+
+.home-link {
+    width: 7.5em;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.home-link-text {
+    color: #000;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.home-link-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
+.links {
+    padding: 0 0.625rem;
+    gap: 2.25rem;
+}
