@@ -1,5 +1,7 @@
 .body {
     background: #EFEFEF;
+    height: 100vh;
+    font-family: "Roboto Flex", sans-serif;
 }
 
 .topbar {
@@ -14,7 +16,6 @@
 
 .home-link-text {
     color: #000;
-    font-family: "Roboto Flex", sans-serif;
     font-size: 1rem;
     font-weight: 400;
 }
@@ -22,4 +23,30 @@
 .home-link-icon {
     width: 1.5rem;
     height: 1.5rem;
+}
+
+.main-section {
+    width: 90%;
+    height: 85%;
+    border-radius: 0.625rem;
+    background: #DBDFE6;
+    box-shadow: 8px 8px 40px 0 #6D6D6A;
+}
+
+.sidebar {
+    width: 5.5rem;
+    height: 36.875rem;
+    flex-shrink: 0;
+    border-radius: 3.125rem;
+    background: #31393C;
+}
+
+.items {
+    display: flex;
+    width: 2.75rem;
+    height: 28.125rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
 }
