@@ -33,18 +33,6 @@
     box-shadow: 8px 8px 40px 0 #6D6D6A;
 }
 
-.sidebar {
-    width: 5.5rem;
-    height: 50%;
-    border-radius: 3.125rem;
-    background: #31393C;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 2rem;
-}
-
 .items {
     display: flex;
     flex-direction: column;
@@ -52,3 +40,28 @@
     align-items: center;
     gap: 2rem;
 }
+.sidebar {
+    height: 50%;
+    transition: width 0.3s ease-in-out;
+    width: 5.5rem;
+    top: 50%;
+    left: -2.75rem !important;
+}
+
+
+.large-svg {
+    width: 100%; /* Utilisez tout l’espace fourni par le parent */
+    height: 100%; /* Utilisez tout l’espace fourni par le parent */
+}
+
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 3rem;
+        top: 50%;
+        left: -1.5rem !important;
+
+    }
+}
+
