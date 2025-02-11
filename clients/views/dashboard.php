@@ -38,8 +38,8 @@
 			<!-- Main Section -->
 			<div class="main-section d-flex position-relative">
 				<!-- SideBar -->
-				<div class="sidebar bg-dark rounded-pill d-flex flex-column justify-content-center align-items-center position-absolute start-0 translate-middle-y p-3">
-					<ul class="nav flex-column items gap-4">
+				<div class="sidebar bg-dark rounded-pill d-flex flex-column justify-content-center align-items-center position-absolute start-0 translate-middle-y">
+					<ul class="nav flex-column icon-container">
 						<li class="nav-item">
 							<a class="nav-link d-flex flex-column align-items-center text-white w-100" aria-current="page" href="#">
 								<svg xmlns="http://www.w3.org/2000/svg" class="img-fluid large-svg" viewBox="0 0 44 44" fill="none">
@@ -77,4 +77,5 @@
 			</div>
 		</div>
 	</body>
+
 </html>
