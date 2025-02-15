@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ec0d3218-b4db-45f4-b3b7-3ee27cc77e58" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/choice.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/choice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/js/panel-dropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/js/panel-dropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Chambre.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Chambre.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Conso.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Conso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Hotel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Hotel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Logs.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Logs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Perms.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Perms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/Reservation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/styles/choice.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/styles/choice.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/styles/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/styles/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/styles/users.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/styles/users.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/choice.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/choice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/dashboard_top.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/dashboard_top.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/resume.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/resume.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/clients/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/libs/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/clients/libs/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/libs/perms.php" beforeDir="false" afterPath="$PROJECT_DIR$/clients/libs/perms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/clients/signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/creation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/models/creation.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/delete.sql" beforeDir="false" afterPath="$PROJECT_DIR$/models/delete.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/insertion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/models/insertion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reset.sql" beforeDir="false" afterPath="$PROJECT_DIR$/models/reset.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2sH7Dd7pBBasYAFyHjklq0fo166" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "thierry",
+    "last_opened_file_path": "C:/PHP/TP_php/PDO",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PS-242.21829.154" />
+        <option value="bundled-php-predefined-a98d8de5180a-4d9f4c849d09-com.jetbrains.php.sharedIndexes-PS-242.21829.154" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec0d3218-b4db-45f4-b3b7-3ee27cc77e58" name="Changes" comment="" />
+      <created>1738100527571</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738100527571</updated>
+      <workItem from="1738100528643" duration="869000" />
+      <workItem from="1738265838931" duration="45000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
