@@ -13,3 +13,30 @@ body {
 .min-vh-70 {
     min-height: 70vh;
 }
+
+.bg-orange {
+    background: #FFBA49;
+}
+
+.bg-yellow {
+    background: #FFDF64;
+}
+
+.bg-red {
+    background: #DE6449;
+}
+
+.card {
+    border-radius: 3.4375rem !important;
+}
+
+.sidebar {
+    width: 3.75rem;
+    background-color: #3D464D;   /* Couleur de fond */
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
+}
+.sidebar a {
+    color: #fff;                 /* Couleur des icônes */
+    font-size: 1.4rem;           /* Taille des icônes */
+    margin: 1rem 0;             /* Espacement vertical entre icônes */
+}

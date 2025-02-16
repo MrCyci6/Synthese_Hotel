@@ -35,36 +35,69 @@
 		</div>
 	</div>
 </nav>
+<!-- Barre latérale -->
+<nav class="position-absolute d-flex flex-column justify-content-center align-items-center py-3 start-0 bi-align-top sidebar h-100">
+	<a href="#"><i class="bi bi-layout-text-sidebar-reverse"></i></a>
+	<a href="#"><i class="bi bi-heart"></i></a>
+	<a href="#"><i class="bi bi-bell"></i></a>
+	<a href="#"><i class="bi bi-cash-stack"></i></a>
+	<a href="#"><i class="bi bi-gear"></i></a>
+</nav>
 
 <!-- Section principale -->
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 position-relative p-5" >
-	<div class="main-section p-5 w-100 min-vh-70">
+	<div class="main-section p-5 min-vh-70" style="width: 95%;">
 		<div class="row g-3">
 			<div class="col-md-3">
-				<div class="card p-4 bg-white border rounded-3"></div>
+				<div class="card p-2 bg-white border rounded-3">
+					<div class="card-body">
+						<h5 class="card-title">Taux d'occupation</h5>
+						<p class="card-text">10%</p>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card p-4 bg-danger text-white rounded-3"></div>
+				<div class="card p-2 bg-red text-white rounded-3">
+					<div class="card-body">
+						<h5 class="card-title">Total des consommations</h5>
+						<p class="card-text">25€</p>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card p-4 bg-warning text-white rounded-3"></div>
+				<div class="card p-2 bg-yellow text-white rounded-3">
+					<div class="card-body">
+						<h5 class="card-title">Nombre de plaintes reçues</h5>
+						<p class="card-text">0</p>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card p-4 bg-warning text-white rounded-3"></div>
+				<div class="card p-2 bg-orange text-white rounded-3">
+					<div class="card-body">
+						<h5 class="card-title">Date de départ</h5>
+						<p class="card-text">25/12/25</p>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-6">
-				<div class="card p-5 bg-white border rounded-3"></div>
+				<div class="card p-5 bg-white border rounded-3">
+					<h5 class="card-title">Consos</h5>
+					<p class="card-text">
+						<canvas id="myChart" width="400" height="400">
+						</canvas>
+					</p>
+				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="card p-5 bg-white border rounded-3"></div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="card p-5 bg-white border rounded-3"></div>
-			</div>
-			<div class="col-md-6">
-				<div class="card p-5 bg-white border rounded-3"></div>
+				<div class="card p-5 bg-white border rounded-3">
+					<h5 class="card-title">Consos</h5>
+					<p class="card-text">
+						<canvas id="myChart" width="400" height="400">
+						</canvas>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
