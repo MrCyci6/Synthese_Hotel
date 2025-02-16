@@ -1,6 +1,6 @@
 body {
     background: #EFEFEF;
-    height: 100vh;
+    min-height: 100vh;
     font-family: "Roboto Flex", sans-serif;
 }
 
@@ -8,4 +8,8 @@ body {
     border-radius: 0.625rem;
     background: #DBDFE6;
     box-shadow: 8px 8px 40px 0 #6D6D6A;
+}
+
+.min-vh-70 {
+    min-height: 70vh;
 }
