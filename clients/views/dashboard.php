@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-		<title>Dashboard Client</title>
-		<link rel="stylesheet" href="../styles/dashboard.css">
-	</head>
-	<body class="body d-flex flex-column min-vh-100">
-		<!-- TopBar -->
-		<div class="topbar d-flex align-items-center">
-			<div class="container-fluid d-flex justify-content-between align-items-center">
-				<!-- Home Link -->
-				<a href="" class="text-decoration-none d-flex align-items-center home-link">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="home-link-icon">
-						<path d="M7 14C8.66 14 10 12.66 10 11C10 9.34 8.66 8 7 8C5.34 8 4 9.34 4 11C4 12.66 5.34 14 7 14ZM7 10C7.55 10 8 10.45 8 11C8 11.55 7.55 12 7 12C6.45 12 6 11.55 6 11C6 10.45 6.45 10 7 10ZM19 7H11V15H3V5H1V20H3V17H21V20H23V11C23 8.79 21.21 7 19 7ZM21 15H13V9H19C20.1 9 21 9.9 21 11V15Z" fill="black"/>
-					</svg>
-					<span class="home-link-text ms-2">Au-tel-2-Lux</span>
-				</a>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard Bootstrap</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="../styles/dashboard-global.css">
+</head>
+<body class="body">
 
-				<!-- Links -->
-				<div class="d-flex gap-3 links">
-					<a href="" class="text-decoration-none text-dark">Home</a>
-					<a href="" class="text-decoration-none text-dark">Support</a>
-					<a href="" class="text-decoration-none text-dark">My Account</a>
-					<a href="" class="text-decoration-none text-dark">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M5 21C4.45 21 3.97933 20.8043 3.588 20.413C3.19667 20.0217 3.00067 19.5507 3 19V5C3 4.45 3.196 3.97933 3.588 3.588C3.98 3.19667 4.45067 3.00067 5 3H12V5H5V19H12V21H5ZM16 17L14.625 15.55L17.175 13H9V11H17.175L14.625 8.45L16 7L21 12L16 17Z" fill="black"/>
-						</svg>
-					</a>
+<!-- Barre de navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Au Tel 2 Lux</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Support</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">My Account</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="bi bi-box-arrow-up-right"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Section principale avec Sidebar -->
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 position-relative">
+	<nav class="d-flex flex-column align-items-center bg-dark text-white position-absolute start-0 p-3 rounded shadow">
+		<a href="#" class="text-white my-2"><i class="bi bi-layout-sidebar fs-3"></i></a>
+		<a href="#" class="text-white my-2"><i class="bi bi-heart fs-3"></i></a>
+		<a href="#" class="text-white my-2"><i class="bi bi-bell fs-3"></i></a>
+		<a href="#" class="text-white my-2"><i class="bi bi-currency-dollar fs-3"></i></a>
+		<a href="#" class="text-white my-2"><i class="bi bi-gear fs-3"></i></a>
+	</nav>
+	<div class="row justify-content-center">
+		<div class="col-12 p-4 main-section">
+			<div class="row g-3">
+				<div class="col-md-3">
+					<div class="card p-4 bg-white border rounded-3"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="card p-4 bg-danger text-white rounded-3"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="card p-4 bg-warning text-white rounded-3"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="card p-4 bg-warning text-white rounded-3"></div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="card p-5 bg-white border rounded-3"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="card p-5 bg-white border rounded-3"></div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="card p-5 bg-white border rounded-3"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="card p-5 bg-white border rounded-3"></div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<!-- Main Section -->
-		<div class="container-fluid d-flex flex-grow-1 justify-content-center align-items-center position-relative">
-			<!-- Main Section -->
-			<div class="main-section d-flex position-relative">
-				<!-- SideBar -->
-				<div class="sidebar bg-dark rounded-pill d-flex flex-column justify-content-center align-items-center position-absolute start-0 translate-middle-y">
-					<ul class="nav flex-column icon-container">
-						<li class="nav-item">
-							<a class="nav-link d-flex flex-column align-items-center text-white w-100" aria-current="page" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" class="img-fluid large-svg" viewBox="0 0 44 44" fill="none">
-									<path d="M6.20583 33C5.3625 33 4.65789 32.7177 4.092 32.153C3.52611 31.5883 3.24317 30.8837 3.24317 30.0392V13.9608C3.24317 13.1175 3.52611 12.4135 4.092 11.8488C4.65789 11.2842 5.36189 11.0012 6.204 11H22.2823C23.1257 11 23.8303 11.2829 24.3962 11.8488C24.9621 12.4147 25.2444 13.1193 25.2432 13.9627V30.0392C25.2432 30.8825 24.9608 31.5871 24.3962 32.153C23.8315 32.7189 23.1269 33.0012 22.2823 33H6.20583ZM6.20583 31.1667H22.2823C22.5634 31.1667 22.8219 31.0493 23.0578 30.8147C23.2925 30.5788 23.4098 30.3197 23.4098 30.0373V13.9627C23.4098 13.6803 23.2925 13.4212 23.0578 13.1853C22.8232 12.9494 22.5647 12.8321 22.2823 12.8333H6.204C5.92289 12.8333 5.665 12.9507 5.43033 13.1853C5.19567 13.42 5.07772 13.6785 5.0765 13.9608V30.0392C5.0765 30.3203 5.19445 30.5788 5.43033 30.8147C5.66622 31.0506 5.92472 31.1679 6.20583 31.1667ZM31.1667 33V11H33V33H31.1667ZM38.9217 33V11H40.755V33H38.9217Z" fill="white"/>
-								</svg>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link d-flex flex-column align-items-center text-white w-100" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" class="img-fluid large-svg" viewBox="0 0 44 45" fill="none">
-									<path d="M22 36.4323L20.6103 35.1765C17.6183 32.4436 15.1433 30.1043 13.1853 28.1585C11.2286 26.2115 9.68367 24.4943 8.55067 23.0068C7.41767 21.5194 6.62567 20.175 6.17467 18.9735C5.72367 17.7721 5.49878 16.5615 5.5 15.3417C5.5 13.0097 6.292 11.0517 7.876 9.46767C9.46 7.88367 11.418 7.09167 13.75 7.09167C15.3633 7.09167 16.8758 7.50417 18.2875 8.32917C19.6992 9.15417 20.9367 10.3544 22 11.9298C23.0633 10.3544 24.3008 9.15417 25.7125 8.32917C27.1242 7.50417 28.6367 7.09167 30.25 7.09167C32.582 7.09167 34.54 7.88367 36.124 9.46767C37.708 11.0517 38.5 13.0097 38.5 15.3417C38.5 16.559 38.2751 17.769 37.8253 18.9717C37.3743 20.1768 36.5823 21.5225 35.4493 23.0087C34.3163 24.4949 32.7769 26.2115 30.8312 28.1585C28.8854 30.1043 26.4043 32.4436 23.3878 35.1765L22 36.4323ZM22 33.95C24.9333 31.2978 27.3472 29.0269 29.2417 27.1373C31.1361 25.2478 32.6333 23.607 33.7333 22.2148C34.8333 20.8227 35.5972 19.5913 36.025 18.5207C36.4528 17.4476 36.6667 16.3879 36.6667 15.3417C36.6667 13.5083 36.0556 11.9806 34.8333 10.7583C33.6111 9.53612 32.0833 8.92501 30.25 8.92501C28.7907 8.92501 27.4438 9.34179 26.2093 10.1753C24.9749 11.0089 23.8712 12.2635 22.8983 13.9392H21.1053C20.1068 12.2403 18.9964 10.9796 17.7742 10.157C16.5519 9.33567 15.2112 8.92501 13.7518 8.92501C11.9429 8.92501 10.4213 9.53612 9.18683 10.7583C7.95239 11.9806 7.33456 13.5083 7.33333 15.3417C7.33333 16.3879 7.54722 17.4476 7.975 18.5207C8.40278 19.5938 9.16667 20.8252 10.2667 22.2148C11.3667 23.6045 12.8639 25.2392 14.7583 27.119C16.6528 28.9988 19.0667 31.2758 22 33.95Z" fill="white"/>
-								</svg>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link d-flex flex-column align-items-center text-white w-100" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" class="img-fluid large-svg" viewBox="0 0 44 45" fill="none">
-									<path d="M8.39667 16.5795L3.66667 16.299C7.0565 7.59064 16.7897 2.63331 26.2772 5.0973C36.3843 7.72447 42.3885 17.7803 39.6862 27.5556C37.4513 35.6425 29.9622 41.0068 21.7195 41.1333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-									<path d="M22 41.1333C11.9167 41.1333 3.66667 31.9666 3.66667 20.9666M24.9407 18.6236C24.2953 17.9453 22.7168 16.3558 20.2198 17.487C17.7247 18.6145 17.3287 22.2463 21.1035 22.6331C22.8085 22.8073 23.9213 22.4315 24.9407 23.4948C25.96 24.5618 26.1488 27.5245 23.5455 28.3238C20.9422 29.1231 19.2537 27.8031 18.8008 27.3906M21.8313 15.5033V16.9516M21.8313 28.5695V30.17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link d-flex flex-column align-items-center text-white w-100" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" class="img-fluid large-svg" viewBox="0 0 44 44" fill="none">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M23.0322 5.86669H20.9678L19.7853 10.593L18.5992 10.9597C17.908 11.1727 17.2383 11.4501 16.599 11.7884L15.5008 12.3695L11.3208 9.86152L9.8615 11.3227L12.3695 15.5027L11.7883 16.599C11.4495 17.2383 11.1714 17.9079 10.9578 18.5992L10.593 19.7854L5.86667 20.9679V23.0322L10.593 24.2147L10.9597 25.4009C11.1711 26.0951 11.4473 26.7618 11.7883 27.401L12.3695 28.4992L9.8615 32.6792L11.3227 34.1385L15.5027 31.6305L16.599 32.2117C17.2382 32.5515 17.9049 32.8283 18.5992 33.0422L19.7853 33.407L20.9678 38.1334H23.0322L24.2147 33.407L25.4008 33.0404C26.092 32.8274 26.7617 32.5499 27.401 32.2117L28.4992 31.6305L32.6792 34.1385L34.1385 32.6774L31.6305 28.4974L32.2117 27.401C32.5514 26.7618 32.8283 26.0951 33.0422 25.4009L33.407 24.2147L38.1333 23.0322V20.9679L33.407 19.7854L33.0403 18.5992C32.8273 17.908 32.5499 17.2383 32.2117 16.599L31.6305 15.5009L34.1385 11.3209L32.6773 9.86152L28.4973 12.3695L27.401 11.7884C26.7618 11.4495 26.0921 11.1714 25.4008 10.9579L24.2147 10.593L23.0322 5.86669ZM28.4313 9.84502L31.7918 7.82835C32.1422 7.61818 32.5528 7.5311 32.9584 7.58092C33.3639 7.63074 33.7412 7.81462 34.0303 8.10335L35.8967 9.96969C36.1854 10.2588 36.3693 10.6361 36.4191 11.0416C36.4689 11.4472 36.3818 11.8578 36.1717 12.2082L34.155 15.5687C34.5583 16.3265 34.8883 17.1209 35.145 17.952L38.9455 18.9035C39.342 19.0028 39.6939 19.2318 39.9453 19.554C40.1968 19.8762 40.3333 20.2732 40.3333 20.6819V23.3182C40.3333 23.7269 40.1968 24.1239 39.9453 24.4461C39.6939 24.7683 39.342 24.9972 38.9455 25.0965L35.145 26.048C34.8883 26.8791 34.5583 27.6736 34.155 28.4314L36.1717 31.7919C36.3818 32.1423 36.4689 32.5528 36.4191 32.9584C36.3693 33.364 36.1854 33.7412 35.8967 34.0304L34.0303 35.8967C33.7412 36.1854 33.3639 36.3693 32.9584 36.4191C32.5528 36.4689 32.1422 36.3819 31.7918 36.1717L28.4313 34.155C27.6736 34.5584 26.8791 34.8884 26.048 35.145L25.0965 38.9455C24.9972 39.342 24.7682 39.6939 24.446 39.9453C24.1238 40.1968 23.7269 40.3333 23.3182 40.3334H20.6818C20.2731 40.3333 19.8762 40.1968 19.554 39.9453C19.2318 39.6939 19.0028 39.342 18.9035 38.9455L17.952 35.145C17.1283 34.8905 16.3303 34.559 15.5687 34.155L12.2082 36.1717C11.8578 36.3819 11.4472 36.4689 11.0416 36.4191C10.6361 36.3693 10.2588 36.1854 9.96967 35.8967L8.10333 34.0304C7.8146 33.7412 7.63072 33.364 7.5809 32.9584C7.53108 32.5528 7.61816 32.1423 7.82833 31.7919L9.845 28.4314C9.44101 27.6697 9.10955 26.8717 8.855 26.048L5.0545 25.0965C4.65835 24.9973 4.30668 24.7686 4.05527 24.4468C3.80385 24.125 3.66709 23.7284 3.66667 23.32V20.6837C3.66668 20.275 3.80326 19.878 4.0547 19.5558C4.30615 19.2336 4.65805 19.0047 5.0545 18.9054L8.855 17.9539C9.11167 17.1227 9.44167 16.3283 9.845 15.5705L7.82833 12.21C7.61816 11.8596 7.53108 11.449 7.5809 11.0435C7.63072 10.6379 7.8146 10.2606 8.10333 9.97152L9.96967 8.10335C10.2588 7.81462 10.6361 7.63074 11.0416 7.58092C11.4472 7.5311 11.8578 7.61818 12.2082 7.82835L15.5687 9.84502C16.3264 9.44169 17.1209 9.11169 17.952 8.85502L18.9035 5.05452C19.0027 4.65837 19.2314 4.3067 19.5532 4.05529C19.8751 3.80387 20.2716 3.66711 20.68 3.66669H23.3163C23.725 3.6667 24.122 3.80327 24.4442 4.05472C24.7664 4.30617 24.9954 4.65807 25.0947 5.05452L26.0462 8.85502C26.8773 9.11169 27.6717 9.44169 28.4295 9.84502H28.4313ZM22 27.1334C23.3614 27.1334 24.6671 26.5925 25.6298 25.6298C26.5925 24.6672 27.1333 23.3615 27.1333 22C27.1333 20.6386 26.5925 19.3329 25.6298 18.3702C24.6671 17.4075 23.3614 16.8667 22 16.8667C20.6386 16.8667 19.3329 17.4075 18.3702 18.3702C17.4075 19.3329 16.8667 20.6386 16.8667 22C16.8667 23.3615 17.4075 24.6672 18.3702 25.6298C19.3329 26.5925 20.6386 27.1334 22 27.1334ZM22 29.3334C20.0551 29.3334 18.1898 28.5607 16.8146 27.1855C15.4393 25.8102 14.6667 23.9449 14.6667 22C14.6667 20.0551 15.4393 18.1898 16.8146 16.8146C18.1898 15.4393 20.0551 14.6667 22 14.6667C23.9449 14.6667 25.8102 15.4393 27.1855 16.8146C28.5607 18.1898 29.3333 20.0551 29.3333 22C29.3333 23.9449 28.5607 25.8102 27.1855 27.1855C25.8102 28.5607 23.9449 29.3334 22 29.3334Z" fill="white"/>
-								</svg>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="content flex-grow-1">
-					<!-- Votre contenu principal ici -->
-				</div>
-			</div>
-		</div>
-	</body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
