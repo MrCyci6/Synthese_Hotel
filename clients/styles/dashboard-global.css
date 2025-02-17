@@ -31,6 +31,19 @@
     background: #DE6449;
 }
 
+.offcanvas {
+    background-color: #3D464D !important;
+    color: white;
+}
+
+.custom-close-btn {
+    background-color: white;
+}
+
+.offcanvas-body .nav .nav-item .nav-link {
+    color: white;
+}
+
 .card {
     border-radius: 3.4375rem !important;
 }
