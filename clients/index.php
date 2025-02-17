@@ -6,7 +6,7 @@
         exit();
     }
 
-    header('Location: views/login.php');
+    header('Location: controllers/login.php');
     exit();
 ?>
 <?php

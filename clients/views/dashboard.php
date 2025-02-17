@@ -68,30 +68,30 @@
 									</h5>
 									<button type="button" class="btn-close text-reset custom-close-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 								</div>
-								<div class="offcanvas-body d-flex flex-column align-items-center justify-content-center p-0">
-									<ul class="nav flex-column p-0 m-0">
+								<div class="offcanvas-body d-flex flex-column p-0 align-items-center justify-content-center">
+									<ul class="nav flex-column p-0 m-0 my-auto w-100 justify-content-center align-items-center">
 										<li class="nav-item">
-											<a class="nav-link" href="#"><i class="bi bi-house m-2"></i>Home</a>
+											<a class="nav-link" href="#"><i class="bi bi-house m-2"></i> Home</a>
 										</li>
 										<li class="nav-item">
-											<a href="#" class="nav-link"><i class="bi bi-heart m-2"></i>Réservations Favorites</a>
+											<a class="nav-link" href="#"><i class="bi bi-heart m-2"></i> Réservations Favorites</a>
 										</li>
 										<li class="nav-item">
-											<a href="#" class="nav-link"><i class="bi bi-bell m-2"></i>Notifications</a>
+											<a class="nav-link" href="#"><i class="bi bi-bell m-2"></i> Notifications</a>
 										</li>
 										<li class="nav-item">
-											<a href="#" class="nav-link"><i class="bi bi-cash-stack m-2"></i>Moyen de Réglements</a>
+											<a class="nav-link" href="#"><i class="bi bi-cash-stack m-2"></i> Moyen de Réglements</a>
 										</li>
 										<li class="nav-item">
-											<a href="#" class="nav-link"><i class="bi bi-gear m-2"></i>Paramètres</a>
+											<a class="nav-link" href="#"><i class="bi bi-gear m-2"></i> Paramètres</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#"><i class="bi bi-headset m-2"></i>Support</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#"><i class="bi bi-box-arrow-up-right m-2"></i> Déconnexion</a>
+											<a class="nav-link" href="#"><i class="bi bi-headset m-2"></i> Support</a>
 										</li>
 									</ul>
+									<div class="d-flex flex-row justify-content-center w-100">
+										<a class="nav-link" href="#"><i class="bi bi-box-arrow-up-right p-2"></i> Déconnexion</a>
+									</div>
 								</div>
 							</div>
 						</div>
