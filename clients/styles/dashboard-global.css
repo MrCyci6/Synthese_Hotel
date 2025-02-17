@@ -1,4 +1,9 @@
-body {
+* {
+    box-sizing: border-box;
+}
+
+
+.body {
     background: #EFEFEF;
     min-height: 100vh;
     font-family: "Roboto Flex", sans-serif;
@@ -32,11 +37,20 @@ body {
 
 .sidebar {
     width: 3.75rem;
-    background-color: #3D464D;   /* Couleur de fond */
+    background-color: #3D464D !important;
     box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
 }
 .sidebar a {
-    color: #fff;                 /* Couleur des icônes */
-    font-size: 1.4rem;           /* Taille des icônes */
-    margin: 1rem 0;             /* Espacement vertical entre icônes */
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+}
+.sidebar .nav-link:hover {
+    color: #DE6449;
+}
+
+.sidebar .nav-link:active,
+.sidebar .nav-link.active,
+.sidebar .nav-link:focus {
+    color: #DE6449;
 }
