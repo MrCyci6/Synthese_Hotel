@@ -3,13 +3,15 @@ require_once __DIR__ . '/Database.php';
 
 class Client {
     public static function loginClient($email, $password) {
-        $query = "SELECT id_user, hash FROM users WHERE email = :email";
+        $query = "SELECT id_user, nom, prenom, email, hash 
+              FROM users 
+              WHERE email = :email";
         $params = [':email' => $email];
 
         $client = Database::preparedQuery($query, $params)->fetch(PDO::FETCH_ASSOC);
 
         if ($client && password_verify($password, $client['hash'])) {
-            return $client['id_user'];
+            return $client;
         }
         return false;
     }

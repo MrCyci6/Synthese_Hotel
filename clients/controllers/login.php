@@ -8,19 +8,24 @@
         exit();
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$email = $_POST['email'] ?? '';
+		$password = $_POST['password'] ?? '';
 
-        $clientId = Client::loginClient($email, $password);
+		$clientData = Client::loginClient($email, $password);
 
-        if ($clientId !== false) {
-            $_SESSION['client_id'] = $clientId;
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $error = "TODO : Identifiants incorrects.";
-        }
-    }
+		if ($clientData !== false) {
+			$_SESSION['client_id'] = [
+				'id'     => $clientData['id_user'],
+				'nom'    => $clientData['nom'],
+				'prenom' => $clientData['prenom'],
+				'email'  => $clientData['email'],
+			];
+			header("Location: dashboard.php");
+			exit();
+		} else {
+			$error = "TODO : Identifiants incorrects.";
+		}
+	}
 
     require '../views/login/login.php';
