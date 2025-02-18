@@ -6,4 +6,4 @@ include 'partials/header.php';
 include 'partials/sidebar.php';
 include 'partials/navbar.php';
 
-	include 'dashboard.php';
+include __DIR__ . '/../views/dashboard/home.php';

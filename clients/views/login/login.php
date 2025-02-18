@@ -8,7 +8,7 @@
 <body>
     <h2>Connexion</h2>
     <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form action="../controllers/login.php" method="POST">
+    <form action="../../controllers/login.php" method="POST">
         <label>Email :</label>
         <input type="email" name="email" required>
         <br>
