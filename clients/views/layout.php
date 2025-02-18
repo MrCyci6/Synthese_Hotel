@@ -1,9 +1,19 @@
 <?php
 
-$pageTitle = $pageTitle ?? 'Erreur Titre';
+$pageTitle = $pageTitle ?? 'Tableau de bord';
 
 include 'partials/header.php';
 include 'partials/sidebar.php';
 include 'partials/navbar.php';
 
-include __DIR__ . '/../views/dashboard/home.php';
+if (isset($view)) {
+	include __DIR__ . '/../views/dashboard/' . $view;
+} else {
+	try {
+		include __DIR__ . '/../views/dashboard/home.php';
+	} catch (Exception $e) {
+		include __DIR__ . '/../views/error.php';
+		echo $e->getMessage();
+		exit();
+	}
+}
