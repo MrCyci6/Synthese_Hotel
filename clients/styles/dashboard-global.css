@@ -50,6 +50,11 @@
 
 .card {
     border-radius: 3.4375rem !important;
+    overflow: hidden;
+}
+
+.lg-card {
+    border-radius: 2.5rem !important;
 }
 
 .sidebar {
