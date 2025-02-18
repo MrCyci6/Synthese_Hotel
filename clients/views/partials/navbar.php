@@ -17,7 +17,7 @@
 						<a class="nav-link" href="#">Support</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"> Déconnexion <i class="bi bi-box-arrow-up-right m-2"></i></a>
+						<a class="nav-link" href="dashboard.php?page=logout"> Déconnexion <i class="bi bi-box-arrow-up-right m-2"></i></a>
 					</li>
 				</ul>
 			</div>
@@ -56,7 +56,7 @@
 						</li>
 					</ul>
 					<div class="d-flex flex-row justify-content-center w-100">
-						<a class="nav-link" href="#"><i class="bi bi-box-arrow-up-right p-2"></i> Déconnexion</a>
+						<a class="nav-link" href="dashboard.php?page=logout"><i class="bi bi-box-arrow-up-right p-2"></i> Déconnexion</a>
 					</div>
 				</div>
 			</div>

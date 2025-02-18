@@ -1,33 +1,48 @@
 <?php
 session_start();
 
+// Test si user connecté
+if (!isset($_SESSION['client_id']) || empty($_SESSION['client_id'])) {
+	header('Location: login.php');
+	exit();
+}
+
 require_once __DIR__ . '/../models/Client.php';
 
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'dashboard';
 $view = $_GET['view'] ?? null;
+
+// Si déconnexion demandée
+if ($page === 'logout') {
+	session_unset();
+	session_destroy();
+	header('Location: login.php');
+	exit();
+}
 
 if ($page === 'dashboard') {
 	switch ($view) {
 		case 'wishlist':
 			$pageTitle = "Ma Wishlist";
-			$view = 'wishlist.php';
+			$viewFile = 'wishlist.php';
 			break;
 		case 'notifications':
 			$pageTitle = "Mes Notifications";
-			$view = 'notifications.php';
+			$viewFile = 'notifications.php';
 			break;
 		case 'payment':
 			$pageTitle = "Mes Paiements";
-			$view = 'payment.php';
+			$viewFile = 'payment.php';
 			break;
 		case 'settings':
 			$pageTitle = "Paramètres";
-			$view = 'settings.php';
+			$viewFile = 'settings.php';
 			break;
 		case 'home':
 		default:
 			$pageTitle = "Tableau de bord";
-			$view = 'home.php';
+			$viewFile = 'home.php';
+			$view = 'home';
 			break;
 	}
 }

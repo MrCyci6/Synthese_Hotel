@@ -7,7 +7,7 @@ include 'partials/sidebar.php';
 include 'partials/navbar.php';
 
 if (isset($view)) {
-	include __DIR__ . '/../views/dashboard/' . $view;
+	include __DIR__ . '/../views/dashboard/' . $viewFile;
 } else {
 	try {
 		include __DIR__ . '/../views/dashboard/home.php';
