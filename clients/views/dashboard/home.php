@@ -4,7 +4,9 @@
 			<div class="card p-2 p-md-3 bg-white border rounded-3 flex-fill">
 				<div class="card-body">
 					<h5 class="card-title">Taux d'occupation</h5>
-					<p class="card-text">10%</p>
+					<p class="card-text fw-bold">
+						<?= isset($occupancyRate) ? $occupancyRate . '%' : "Aucun séjour en cours" ?>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -12,16 +14,18 @@
 			<div class="card p-2 p-md-3 bg-red text-white rounded-3 flex-fill">
 				<div class="card-body">
 					<h5 class="card-title">Total des consommations</h5>
-					<p class="card-text">25€</p>
+					<p class="card-text fw-bold">
+						<?= number_format($totalConsosAmount, 2, ',', ' ') ?> €
+					</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-3 d-flex">
 			<div class="card p-2 p-md-3 bg-yellow text-white rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Nombre de réservations en cours/à venir</h5>
-					<p class="card-text">
-						<?= count($reservations) ?>
+					<h5 class="card-title">Jours restants avant la date de départ</h5>
+					<p class="card-text fw-bold">
+						<?= $daysLeft ?: "Aucune réservation en cours" ?>
 					</p>
 				</div>
 			</div>
@@ -30,7 +34,9 @@
 			<div class="card p-2 p-md-3 bg-orange text-white rounded-3 flex-fill">
 				<div class="card-body">
 					<h5 class="card-title">Date de départ</h5>
-					<p class="card-text">25/12/25</p>
+					<p class="card-text fw-bold">
+						<?= $nextDeparture ?: "Aucune réservation en cours" ?>
+					</p>
 				</div>
 			</div>
 		</div>

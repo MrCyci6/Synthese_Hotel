@@ -18,6 +18,82 @@ class Reservation {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public static function getDaysLeftInCurrentStay(int $userId): ?int {
+		$query = "
+            SELECT (date_fin - CURRENT_DATE) AS days_left
+            FROM reservation
+            WHERE id_user = :id_user
+              AND date_debut <= CURRENT_DATE
+              AND date_fin >= CURRENT_DATE
+            ORDER BY date_fin
+            LIMIT 1
+        ";
+		$params = [':id_user' => $userId];
+		$stmt = Database::preparedQuery($query, $params);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if (!$result) {
+			return null;
+		}
+		return (int)$result['days_left'];
+	}
+
+	public static function getNextDepartureDate(int $userId): ?string {
+		$query = "
+            SELECT date_fin
+            FROM reservation
+            WHERE id_user = :id_user
+              AND date_debut <= CURRENT_DATE
+              AND date_fin >= CURRENT_DATE
+            ORDER BY date_fin
+            LIMIT 1
+        ";
+		$params = [':id_user' => $userId];
+		$stmt = Database::preparedQuery($query, $params);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		return $result ? $result['date_fin'] : null;
+	}
+
+	public static function getOngoingReservationsByClient(int $userId): array {
+		$query = "SELECT id_sejour, date_debut, date_fin 
+                  FROM reservation 
+                  WHERE id_user = :id_user
+                    AND date_debut <= CURRENT_DATE
+                    AND date_fin >= CURRENT_DATE";
+		$params = [':id_user' => $userId];
+		$stmt = Database::preparedQuery($query, $params);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public static function getOccupancyRate(int $userId): ?float {
+		$ongoingReservations = Reservation::getOngoingReservationsByClient($userId);
+		if (empty($ongoingReservations)) {
+			return null;
+		}
+		$reservation = $ongoingReservations[0];
+
+		$dateDebut = new DateTime($reservation['date_debut']);
+		$dateFin = new DateTime($reservation['date_fin']);
+		$today = new DateTime();
+
+		if ($today < $dateDebut) {
+			return 0.0;
+		}
+		if ($today > $dateFin) {
+			return 100.0;
+		}
+
+		$totalDays = $dateFin->diff($dateDebut)->days;
+		if ($totalDays == 0) {
+			return 100.0;
+		}
+		$elapsedDays = $dateDebut->diff($today)->days;
+
+		$occupancyRate = ($elapsedDays / $totalDays) * 100;
+		return round($occupancyRate, 2);
+	}
+
 	/**
 	 * Récupère une réservation par son identifiant.
 	 *

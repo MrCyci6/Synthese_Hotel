@@ -33,6 +33,24 @@ class Conso {
 		return isset($result['total']) ? (int)$result['total'] : 0;
 	}
 
+	public static function getTotalConsommationsAmount(int $sejourId): float {
+		$query = "
+        SELECT COALESCE(SUM(pc.prix * cc.nombre), 0) AS total_amount
+        FROM conso_client cc
+        JOIN reservation r ON cc.id_sejour = r.id_sejour
+        JOIN chambre ch ON r.id_chambre = ch.id_chambre
+        JOIN prix_conso pc 
+            ON cc.id_conso = pc.id_conso
+            AND ch.id_hotel = pc.id_hotel
+        WHERE cc.id_sejour = :id_sejour
+    ";
+
+		$params = [':id_sejour' => $sejourId];
+		$stmt = Database::preparedQuery($query, $params);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		return (float)$result['total_amount'];
+	}
+
 	/**
 	 * Ajoute une consommation pour un séjour donné.
 	 *
