@@ -25,7 +25,7 @@
             return $results;
         }
 
-        static function getHotelSales(int $hotelId) {
+        static function getSales(int $hotelId) {
             $statement = Database::preparedQuery(
                 "SELECT COALESCE(SUM((r.date_fin - r.date_debut) * pc.prix), 0) + COALESCE(SUM(cc.nombre * pc2.prix), 0) AS ca FROM Hotel h
                 LEFT JOIN Chambre c ON h.id_hotel = c.id_hotel
@@ -41,20 +41,22 @@
             return $statement->fetch()['ca'];
         }
 
-        static function getHotelRoomsCount(int $hotelId) {
+        static function getOccupedRoomsCount(int $hotelId) {
             $statement = Database::preparedQuery(
-                "SELECT (
-                    SELECT COUNT(id_chambre) FROM chambre
-                    WHERE id_hotel = ?
-                ) AS total, (
-                    SELECT COUNT(r.id_chambre)
-                    FROM reservation r
-                    INNER JOIN chambre ch ON ch.id_chambre = r.id_chambre
-                    WHERE NOW() BETWEEN r.date_debut AND r.date_fin AND ch.id_hotel = ?
-                ) AS occupees;",
-                [$hotelId, $hotelId]
+                "SELECT COUNT(r.id_chambre) as count FROM reservation r
+                INNER JOIN chambre ch ON ch.id_chambre = r.id_chambre
+                WHERE NOW() BETWEEN r.date_debut AND r.date_fin AND ch.id_hotel = ?;",
+                [$hotelId]
             );
-            return $statement->fetch();
+            return $statement->fetch()['count'];
+        }
+
+        static function getRoomsCount(int $hotelId) {
+            $statement = Database::preparedQuery(
+                "SELECT COUNT(id_chambre) FROM chambre WHERE id_hotel=?;",
+                [$hotelId]
+            );
+            return $statement->fetch()['count'];
         }
     }
 

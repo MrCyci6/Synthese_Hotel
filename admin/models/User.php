@@ -4,13 +4,17 @@
 
     class User {
 
+        static function isAdmin(int $userId) {
+            return $userId == ADMIN_ID;
+        }
+
         static function updateUser(int $userId, string $nom, string $prenom, string $email, string $addresse, string $password = "") {
             Database::preparedQuery(
                 "UPDATE users SET 
                 nom=?, prenom=?, addresse=?, email=?".
                 ($password == "" ? " " : ", hash=crypt(?, gen_salt('bf')) ").
                 "WHERE id_user=?",
-                ($pasword == "" ? [$nom, $prenom, $addresse, $email, $userId] : [$nom, $prenom, $addresse, $email, $password, $userId])
+                ($password == "" ? [$nom, $prenom, $addresse, $email, $userId] : [$nom, $prenom, $addresse, $email, $password, $userId])
             );
         }
 
@@ -20,7 +24,7 @@
                 [$email, $password]
             );
             $result = $statement->fetch();
-            return $result['id_user'] ? $result['id_user'] : false;
+            return $result['id_user'] ?? false;
         }
 
         static function deleteUser(int $userId) {
@@ -29,6 +33,10 @@
 
         static function banUser(int $userId) {
             Database::preparedQuery("UPDATE users SET banned=1 WHERE id_user=?", [$userId]);
+        }
+
+        static function unbanUser(int $userId) {
+            Database::preparedQuery("UPDATE users SET banned=0 WHERE id_user=?", [$userId]);
         }
 
         static function getUsers(int $start = -1, int $end = -1) {

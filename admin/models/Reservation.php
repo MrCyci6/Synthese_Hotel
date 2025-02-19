@@ -4,16 +4,17 @@
 
     class Reservation {
 
-        static function getReservations(int $start = -1, int $end = -1) {
+        static function getReservations(int $hotelId, int $start = -1, int $end = -1) {
             $statement = Database::preparedQuery(
-                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, NOW() now FROM reservation r
-                INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
-                INNER JOIN categorie ca ON ca.id_categorie=ch.id_categorie
+                "SELECT r.id_sejour, ca.denomination as categorie, u.nom as nom_user, u.prenom as prenom_user, h.id_classe, pc.prix, r.date_debut, r.date_fin, (r.date_fin-r.date_debut)*pc.prix as total, NOW() as now FROM reservation r
+                INNER JOIN chambre c ON c.id_chambre=r.id_chambre
+                INNER JOIN hotel h ON h.id_hotel=c.id_hotel
+                INNER JOIN prix_chambre pc ON pc.id_classe=h.id_classe AND pc.id_categorie=c.id_categorie
                 INNER JOIN users u ON u.id_user=r.id_user
-                INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
-                INNER JOIN classe cl ON cl.id_classe=h.id_classe ".
-                (($start == -1 || $end == -1) ? "" : " WHERE r.id_sejour BETWEEN ? AND ?"),
-                ($start == -1 || $end == -1) ? [] : [$start, $end]
+                INNER JOIN categorie ca ON ca.id_categorie=c.id_categorie
+                WHERE h.id_hotel=? ".
+                (($start == -1 || $end == -1) ? "" : "AND r.id_sejour BETWEEN ? AND ?"),
+                ($start == -1 || $end == -1) ? [$hotelId] : [$hotelId, $start, $end]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
