@@ -50,4 +50,3 @@
 
     require 'views/dashboard_top.php';
     require 'views/resume.php';
-?>

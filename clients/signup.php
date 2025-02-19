@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/database.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/libs/perms.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/models/Database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/Projet/admin/models/Perms.php';
     
     $databaseManager = new DatabaseManager();
 
