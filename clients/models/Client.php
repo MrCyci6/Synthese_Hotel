@@ -1,8 +1,17 @@
 <?php
 require_once __DIR__ . '/Database.php';
 
-class Client {
-    public static function loginClient($email, $password) {
+class Client
+{
+    /**
+     * Authentifie le client et retourne ses données si le login est réussi.
+     *
+     * @param string $email
+     * @param string $password
+     * @return array|false
+     */
+    public static function loginClient($email, $password)
+    {
         $query = "SELECT id_user, nom, prenom, email, hash 
               FROM users 
               WHERE email = :email";
@@ -16,23 +25,47 @@ class Client {
         return false;
     }
 
-    public static function getReservations($userId) {
-        $query = "SELECT id_sejour, date_debut, date_fin 
-                  FROM RESERVATION 
-                  WHERE id_user = :id_user";
-        $params = [':id_user' => $userId];
-
-        return Database::preparedQuery($query, $params)->fetchAll(PDO::FETCH_ASSOC);
+    /**
+     * Met à jour le profil du client.
+     *
+     * @param int $id
+     * @param string $nom
+     * @param string $prenom
+     * @param string $email
+     * @param string $address
+     * @return bool
+     */
+    public static function updateProfile($id, $nom, $prenom, $email, $address)
+    {
+        $query = "UPDATE users 
+                  SET nom = :nom, prenom = :prenom, email = :email, addresse = :address 
+                  WHERE id_user = :id";
+        $params = [
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':email' => $email,
+            ':address' => $address,
+            ':id' => $id
+        ];
+        return Database::preparedQuery($query, $params);
     }
 
-    public static function getConsommations($sejourId) {
-        $query = "SELECT id_cc, date_conso, nombre, pc.prix*nombre as prix_total
-                  FROM conso_client
-                  JOIN public.prix_conso pc on conso_client.id_conso = pc.id_conso
-                  WHERE id_sejour = :id_sejour";
-        $params = [':id_sejour' => $sejourId];
-
-        return Database::preparedQuery($query, $params)->fetchAll(PDO::FETCH_ASSOC);
+    /**
+     * Change le mot de passe du client.
+     *
+     * @param int $id
+     * @param string $newPassword
+     * @return bool
+     */
+    public static function changePassword($id, $newPassword)
+    {
+        $newHash = password_hash($newPassword, PASSWORD_DEFAULT);
+        $query = "UPDATE users SET hash = :hash WHERE id_user = :id";
+        $params = [
+            ':hash' => $newHash,
+            ':id' => $id
+        ];
+        return Database::preparedQuery($query, $params);
     }
+
 }
-?>
