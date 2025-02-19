@@ -19,8 +19,10 @@
 		<div class="col-6 col-md-3 d-flex">
 			<div class="card p-2 p-md-3 bg-yellow text-white rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Nombre de plaintes reçues</h5>
-					<p class="card-text">0</p>
+					<h5 class="card-title">Nombre de réservations en cours/à venir</h5>
+					<p class="card-text">
+						<?= count($reservations) ?>
+					</p>
 				</div>
 			</div>
 		</div>

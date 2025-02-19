@@ -8,6 +8,7 @@ if (!isset($_SESSION['client_id']) || empty($_SESSION['client_id'])) {
 }
 
 require_once __DIR__ . '/../models/Client.php';
+require_once __DIR__ . '/../models/Reservation.php';
 
 $page = $_GET['page'] ?? 'dashboard';
 $view = $_GET['view'] ?? null;
@@ -43,6 +44,8 @@ if ($page === 'dashboard') {
 			$pageTitle = "Tableau de bord";
 			$viewFile = 'home.php';
 			$view = 'home';
+			$clientId = $_SESSION['client_id']['id'];
+			$reservations = Reservation::getReservationsByClient($clientId);
 			break;
 	}
 }

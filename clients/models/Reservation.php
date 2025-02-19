@@ -44,14 +44,7 @@ class Reservation {
 	 * @param bool|int|null $paiement   (optionnel) État ou type de paiement (selon votre structure).
 	 * @return bool True si l'insertion réussit, false sinon.
 	 */
-	public static function createReservation(
-		int $chambreId,
-		int $userId,
-		string $dateDebut,
-		string $dateFin,
-		?string $dateArrivee = null,
-		$paiement = null
-	): bool {
+	public static function createReservation(int $chambreId, int $userId, string $dateDebut, string $dateFin, ?string $dateArrivee = null, $paiement = null): bool {
 		$query = "INSERT INTO reservation 
                   (id_chambre, id_user, date_debut, date_fin, date_arrivee, paiement)
                   VALUES (:id_chambre, :id_user, :date_debut, :date_fin, :date_arrivee, :paiement)";
@@ -65,7 +58,12 @@ class Reservation {
 			':paiement'    => $paiement
 		];
 
-		return Database::preparedQuery($query, $params) !== false;
+
+		$stmt = Database::preparedQuery($query, $params);
+		if ($stmt !== false) {
+			return Database::getConnection()->lastInsertId();
+		}
+		return false;
 	}
 
 	/**
@@ -74,9 +72,15 @@ class Reservation {
 	 * @param int $reservationId L'identifiant de la réservation.
 	 * @return bool True si la suppression a réussi, false sinon.
 	 */
-	public static function deleteReservation(int $reservationId): bool {
-		$query = "DELETE FROM reservation WHERE id_sejour = :id_sejour";
+	public static function deleteReservation($reservationId) {
+		// Supprime d'abord les consommations associées
+		$query1 = "DELETE FROM conso_client WHERE id_sejour = :id_sejour";
 		$params = [':id_sejour' => $reservationId];
-		return Database::preparedQuery($query, $params) !== false;
+		Database::preparedQuery($query1, $params);
+
+		// Puis supprime la réservation
+		$query2 = "DELETE FROM reservation WHERE id_sejour = :id_sejour";
+		return Database::preparedQuery($query2, $params) !== false;
 	}
+
 }
