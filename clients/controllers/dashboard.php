@@ -11,6 +11,15 @@ require_once __DIR__ . '/../models/Client.php';
 require_once __DIR__ . '/../models/Reservation.php';
 require_once __DIR__ . '/../models/Conso.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservationSelect'], $_POST['consoName'], $_POST['consoQty'])) {
+	$sejourId = (int)$_POST['reservationSelect'];
+	$consoId = (int)$_POST['consoName'];
+	$consoQty = (int)$_POST['consoQty'];
+	Conso::addConsommation($sejourId, $consoId, $consoQty);
+	header("Location: dashboard.php?page=dashboard&view=home");
+	exit();
+}
+
 $page = $_GET['page'] ?? 'dashboard';
 $view = $_GET['view'] ?? null;
 
@@ -54,10 +63,14 @@ if ($page === 'dashboard') {
 				$currentReservation = $ongoingReservations[0];
 				$sejourId = $currentReservation['id_sejour'];
 				$totalConsosAmount = Conso::getTotalConsommationsAmount($sejourId);
+				$currentConsos = Conso::getConsommationsForSejour($currentReservation['id_sejour']);
 			} else {
 				$totalConsosAmount = 0;
+				$currentConsos = [];
 			}
-			break;
+			$historicalConsos = Conso::getHistoricalConsumptionsByClient($clientId);
+			$availableConsos = Conso::getAllAvailableConsos();
+		break;
 	}
 }
 

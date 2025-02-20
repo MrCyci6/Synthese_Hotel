@@ -20,14 +20,23 @@ class Reservation {
 
 	public static function getDaysLeftInCurrentStay(int $userId): ?int {
 		$query = "
-            SELECT (date_fin - CURRENT_DATE) AS days_left
-            FROM reservation
-            WHERE id_user = :id_user
-              AND date_debut <= CURRENT_DATE
-              AND date_fin >= CURRENT_DATE
-            ORDER BY date_fin
-            LIMIT 1
-        ";
+		    SELECT (COALESCE((
+		                    SELECT r2.date_fin
+		                    FROM reservation r2
+		                    WHERE r2.id_user = :id_user
+		                      AND r2.date_debut = r1.date_fin
+		                    ORDER BY r2.date_fin DESC
+		                    LIMIT 1
+		                ),r1.date_fin) - CURRENT_DATE) AS days_left
+		    FROM (
+		        SELECT date_fin
+		        FROM reservation
+		        WHERE id_user = :id_user
+		          AND date_debut <= CURRENT_DATE
+		          AND date_fin >= CURRENT_DATE
+		        ORDER BY date_fin
+		        LIMIT 1
+		    ) AS r1";
 		$params = [':id_user' => $userId];
 		$stmt = Database::preparedQuery($query, $params);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
