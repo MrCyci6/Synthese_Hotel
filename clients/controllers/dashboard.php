@@ -11,14 +11,20 @@ require_once __DIR__ . '/../models/Client.php';
 require_once __DIR__ . '/../models/Reservation.php';
 require_once __DIR__ . '/../models/Conso.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservationSelect'], $_POST['consoName'], $_POST['consoQty'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if (empty($_POST['reservationSelect']) || empty($_POST['consoName']) || empty($_POST['consoQty'])) { // ça évite les erreurs du type on clique sur le bouton alors qu'on a rien séléctionné
+		header("Location: dashboard.php?page=dashboard&view=home&error=missing_fields");
+		exit();
+	}
+
 	$sejourId = (int)$_POST['reservationSelect'];
 	$consoId = (int)$_POST['consoName'];
 	$consoQty = (int)$_POST['consoQty'];
 	Conso::addConsommation($sejourId, $consoId, $consoQty);
-	header("Location: dashboard.php?page=dashboard&view=home");
+	header("Location: dashboard.php?page=dashboard&view=home"); // PRG
 	exit();
 }
+
 
 $page = $_GET['page'] ?? 'dashboard';
 $view = $_GET['view'] ?? null;
