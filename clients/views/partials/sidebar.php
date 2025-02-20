@@ -7,13 +7,13 @@
 					<a href="dashboard.php?page=dashboard&view=home" class="nav-link <?php echo ($view === 'home') ? 'active' : ''; ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></a>
 				</li>
 				<li class="nav-item">
+					<a href="dashboard.php?page=dashboard&view=search" class="nav-link <?php echo ($view === 'search') ? 'active' : ''; ?>" "><i class="bi bi-search"></i></a>
+				</li>
+				<li class="nav-item">
 					<a href="dashboard.php?page=dashboard&view=wishlist" class="nav-link <?php echo ($view === 'wishlist') ? 'active' : ''; ?>"><i class="bi bi-heart"></i></a>
 				</li>
 				<li class="nav-item">
 					<a href="dashboard.php?page=dashboard&view=notifications" class="nav-link <?php echo ($view === 'notifications') ? 'active' : ''; ?>"><i class="bi bi-bell"></i></a>
-				</li>
-				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=payment" class="nav-link <?php echo ($view === 'payment') ? 'active' : ''; ?>" "><i class="bi bi-cash-stack"></i></a>
 				</li>
 				<li class="nav-item">
 					<a href="dashboard.php?page=dashboard&view=settings" class="nav-link <?php echo ($view === 'settings') ? 'active' : ''; ?>"><i class="bi bi-gear"></i></a>

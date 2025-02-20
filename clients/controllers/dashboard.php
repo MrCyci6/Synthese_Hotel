@@ -47,9 +47,9 @@ if ($page === 'dashboard') {
 			$pageTitle = "Mes Notifications";
 			$viewFile = 'notifications.php';
 			break;
-		case 'payment':
-			$pageTitle = "Mes Paiements";
-			$viewFile = 'payment.php';
+		case 'search':
+			$pageTitle = "Rechercher";
+			$viewFile = 'search.php';
 			break;
 		case 'settings':
 			$pageTitle = "Paramètres";
