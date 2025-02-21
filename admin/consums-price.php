@@ -12,12 +12,10 @@ $nbConso=count($consommations);
 
 $title = "Prix Conso";
 $selected = "consums-price";
-if(isset($_POST['btn-save'])){
-    for($i=0;$i<$nbConso;$i++){
-        $new_price=$_POST['prix_'.$consommations[$i]['id_conso']];
-        var_dump($new_price);
-        Conso::modifPrix($new_price,$consommations[$i]['id_conso'],$hotel_id);
-    }
+
+if(isset($_GET['new_conso']) && isset($_GET['new_price'])){
+    Conso::ajoutConso($_GET['new_conso'],$_GET['new_price'],$hotel_id);
+
 }
 
 

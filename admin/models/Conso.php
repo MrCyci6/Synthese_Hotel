@@ -57,13 +57,13 @@
             return $statement->fetch()['count'];
         }
 
-        static function modifPrix($n_prix,int $id_conso,int $hotelId = -1) {
-            $query = "UPDATE Prix_conso
-                    SET prix = :n_prix
-                    WHERE id_conso = :id_conso AND id_hotel = :id_hotel;";
-            $statement = Database::preparedQuery($query, array(':n_prix'=>$n_prix,':id_conso'=>$id_conso,':id_hotel'=> $hotelId));
+        static function ajoutConso($nom,$prix,int $hotelId = -1) {
+            $query = "INSERT INTO Conso (denomination) VALUES (:nom) RETURNING id_conso";
+            $statement = Database::preparedQuery($query, array(':nom'=>$nom));
+            $id_conso = $statement->fetchColumn();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $query2="INSERT INTO Prix_conso (id_hotel, id_conso, prix) VALUES (:id_hotel, :id_conso, :prix)";
+            $statement2 = Database::preparedQuery($query2, array(':id_hotel'=>$hotelId, ':id_conso'=>$id_conso, ':prix'=>$prix));
         }
     }
 ?>
