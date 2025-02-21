@@ -1,4 +1,4 @@
-<div class="col mx-auto p-0 d-flex flex-column">
+<div class="col mx-auto p-0 d-flex flex-column overflow-auto">
 	<!-- Barre de navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white px-3">
 		<div class="container-fluid">
@@ -9,15 +9,21 @@
 				Au Tel 2 Lux
 			</a>
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Support</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="dashboard.php?page=logout"> Déconnexion <i class="bi bi-box-arrow-up-right m-2"></i></a>
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-person-circle fs-5"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+							<li><a class="dropdown-item" href="#">Home</a></li>
+							<li><a class="dropdown-item" href="#">Support</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<a class="dropdown-item" href="dashboard.php?page=logout">
+									Déconnexion <i class="bi bi-box-arrow-up-right ms-2"></i>
+								</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>

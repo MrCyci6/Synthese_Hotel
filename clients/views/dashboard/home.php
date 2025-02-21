@@ -116,7 +116,7 @@
 								<p>Aucune consommation en cours.</p>
 							<?php endif; ?>
 						</div>
-						<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="historique-tab">
+						<div class="tab-pane fade overflow-auto" id="historique" role="tabpanel" aria-labelledby="historique-tab" style="max-height: 500px;">
 							<?php if (!empty($historicalConsos)): ?>
 
 								<?php

@@ -1,5 +1,5 @@
-<div class="container-fluid" style="overflow-x: hidden" >
-	<div class="row flex-nowrap justify-content-center">
+<div class="container-fluid vh-100 overflow-hidden" style="overflow-x: hidden">
+	<div class="row h-100 flex-nowrap">
 		<!-- Barre latérale -->
 		<nav class="col-auto sidebar d-none d-lg-flex flex-column align-items-center justify-content-center min-vh-100">
 			<ul class="nav flex-column p-0 m-0">
