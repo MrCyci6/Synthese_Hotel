@@ -10,11 +10,16 @@ $hotel_id=$_GET['hotel_id'];
 $consommations=Conso::getConsoAndPrice($hotel_id);
 $nbConso=count($consommations);
 
+$denom=array();
+foreach ($consommations as $consommation) {
+    array_push($denom,$consommation['denomination']);
+}
+
 $title = "Prix Conso";
 $selected = "consums-price";
 
-if(isset($_GET['new_conso']) && isset($_GET['new_price'])){
-    Conso::ajoutConso($_GET['new_conso'],$_GET['new_price'],$hotel_id);
+if(isset($_POST['new_conso']) && isset($_POST['new_price']) && !in_array($_POST['new_conso'], $denom)) {
+    Conso::ajoutConso($_POST['new_conso'],$_POST['new_price'],$hotel_id);
 
 }
 
