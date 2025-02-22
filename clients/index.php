@@ -6,6 +6,6 @@
         exit();
     }
 */
-    header('Location: controllers/login.php');
+    header('Location: login');
     exit();
 

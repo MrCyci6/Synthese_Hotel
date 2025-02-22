@@ -1,9 +1,10 @@
 <?php
+ini_set('session.cookie_path', '/');
 session_start();
 
 // Test si user connecté
 if (!isset($_SESSION['client_id']) || empty($_SESSION['client_id'])) {
-	header('Location: login.php');
+	header('Location: /login');
 	exit();
 }
 
@@ -13,7 +14,7 @@ require_once __DIR__ . '/../models/Conso.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($_POST['reservationSelect']) || empty($_POST['consoName']) || empty($_POST['consoQty'])) { // ça évite les erreurs du type on clique sur le bouton alors qu'on a rien séléctionné
-		header("Location: dashboard.php?page=dashboard&view=home&error=missing_fields");
+		header("Location: /dashboard/home");
 		exit();
 	}
 
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$consoId = (int)$_POST['consoName'];
 	$consoQty = (int)$_POST['consoQty'];
 	Conso::addConsommation($sejourId, $consoId, $consoQty);
-	header("Location: dashboard.php?page=dashboard&view=home"); // PRG
+	header("Location: /dashboard/home"); // PRG
 	exit();
 }
 
@@ -33,7 +34,7 @@ $view = $_GET['view'] ?? null;
 if ($page === 'logout') {
 	session_unset();
 	session_destroy();
-	header('Location: login.php');
+	header('Location: /login');
 	exit();
 }
 

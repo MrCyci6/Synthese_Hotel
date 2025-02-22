@@ -4,19 +4,19 @@
 		<nav class="col-auto sidebar d-none d-lg-flex flex-column align-items-center justify-content-center min-vh-100">
 			<ul class="nav flex-column p-0 m-0">
 				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=home" class="nav-link <?php echo ($view === 'home') ? 'active' : ''; ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></a>
+					<a href="/dashboard/home" class="nav-link <?php echo ($view === 'home') ? 'active' : ''; ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=search" class="nav-link <?php echo ($view === 'search') ? 'active' : ''; ?>" "><i class="bi bi-search"></i></a>
+					<a href="/dashboard/search" class="nav-link <?php echo ($view === 'search') ? 'active' : ''; ?>" "><i class="bi bi-search"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=wishlist" class="nav-link <?php echo ($view === 'wishlist') ? 'active' : ''; ?>"><i class="bi bi-heart"></i></a>
+					<a href="/dashboard/wishlist" class="nav-link <?php echo ($view === 'wishlist') ? 'active' : ''; ?>"><i class="bi bi-heart"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=notifications" class="nav-link <?php echo ($view === 'notifications') ? 'active' : ''; ?>"><i class="bi bi-bell"></i></a>
+					<a href="/dashboard/notifications" class="nav-link <?php echo ($view === 'notifications') ? 'active' : ''; ?>"><i class="bi bi-bell"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="dashboard.php?page=dashboard&view=settings" class="nav-link <?php echo ($view === 'settings') ? 'active' : ''; ?>"><i class="bi bi-gear"></i></a>
+					<a href="/dashboard/settings" class="nav-link <?php echo ($view === 'settings') ? 'active' : ''; ?>"><i class="bi bi-gear"></i></a>
 				</li>
 			</ul>
 		</nav>
