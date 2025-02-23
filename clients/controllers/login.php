@@ -1,6 +1,6 @@
 <?php
-ini_set('session.cookie_path', '/');
-session_start();
+require_once __DIR__ . '/../models/Session.php';
+Session::start();
 require_once __DIR__ . '/../models/Client.php';
 
 if (isset($_SESSION['client_id'])) {
