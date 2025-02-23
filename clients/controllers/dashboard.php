@@ -32,8 +32,7 @@ $view = $_GET['view'] ?? null;
 
 // Si déconnexion demandée
 if ($page === 'logout') {
-	session_unset();
-	session_destroy();
+	Session::destroy();
 	header('Location: /login');
 	exit();
 }
