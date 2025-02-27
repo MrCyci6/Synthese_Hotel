@@ -3,9 +3,20 @@
             <div class="container-fluid">
                 <div class="row g-4">
                     <!-- Header -->
-                    <div class="d-flex align-items-center mb-2">
-                        <svg style="color: rgb(37 99 235);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <h5 class="card-title ms-2 mt-1">Gestion des utilisateurs</h5>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg style="color: rgb(37 99 235);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <h5 class="card-title ms-2 mt-1">Gestion des utilisateurs</h5>
+                        </div>
+
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">
+                                <div class="d-flex align-items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                    <span>Nouvel utilisateur</span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                     <!-- Search -->
                     <div class="card p-3 border-0 shadow">
@@ -98,6 +109,49 @@
                         </nav>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-2">
+                <div class="modal-header border-0">
+                    <div class="modal-title d-flex align-items-center gap-2">
+                        <div class="bg-primary-subtle p-2 rounded-circle d-flex align-items-center">    
+                            <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                        </div>
+                        <h1 class="fs-5">Créer un utilisateur</h1>
+                    </div>
+                </div>
+                <form action="users">
+                    <div class="modal-body border-0">
+                        <input type="hidden" name="action" value="create">
+                        <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
+
+                        <label for="nom" class="form-label">Nom</label> 
+                        <input type="text" class="form-control" id="nom" name="nom" value="" required>
+                        
+                        <label for="prenom" class="form-label">Prénom</label> 
+                        <input type="text" class="form-control" id="prenom" name="prenom" value="" required>
+                        
+                        <label for="email" class="form-label">Adresse E-mail</label> 
+                        <input type="text" class="form-control" id="email" name="email" value="" required>
+                        
+                        <label for="addresse" class="form-label">Adresse Postale</label> 
+                        <input type="text" class="form-control" id="addresse" name="addresse" value="" required>
+
+                        <div class="form-text">
+                            Une fois le formulaire validé, un mot de passe auto-généré sera envoyé
+                            sur l'adresse e-mail de l'utilisateur pour qu'il puisse se connecter
+                            à son compte
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 mt-2">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Créer un utilisateur</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

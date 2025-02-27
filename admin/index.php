@@ -4,7 +4,6 @@
     $route = explode("?", $splitedUri[sizeof($splitedUri)-1])[0];
 
     $routes = [
-        "" => "controllers/auth/LoginController.php",
         "404" => "controllers/404Controller.php",
         "dashboard" => "controllers/layout/DashboardController.php",
         "choice" => "controllers/ChoiceController.php",
