@@ -167,7 +167,7 @@
                         <div class="d-flex flex-column">
                             <label for="start_price" class="form-label">Prix minimum</label>
                             <div class="input-group">
-                                <input class="form-control form-control-sm" name="start_price" type="text">
+                                <input class="form-control form-control-sm" name="start_price" type="number" value="0">
                                 <span class="input-group-text">€</span>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                         <div class="d-flex flex-column">
                             <label for="end_price" class="form-label">Prix maximum</label>
                             <div class="input-group">
-                                <input class="form-control form-control-sm" name="end_price" type="text">
+                                <input class="form-control form-control-sm" name="end_price" type="number" value="63720">
                                 <span class="input-group-text">€</span>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="modal-footer border-0 mt-2">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                    <button type="submit" class="btn btn-success">Filtrer</button>
                 </div>
             </form>
         </div>
@@ -196,20 +196,48 @@
         <div class="modal-content p-2">
             <div class="modal-header border-0">
                 <div class="modal-title d-flex align-items-center gap-2">
-                    <div class="bg-danger-subtle p-2 rounded-circle d-flex align-items-center">    
-                        <svg class="text-danger" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    <div class="bg-primary-subtle p-2 rounded-circle d-flex align-items-center">    
+                        <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-plus"><path d="M12 7v6"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M9 10h6"/></svg>
                     </div>
-                    <h1 class="fs-5">Supprimer l'utilisateur</h1>
+                    <h1 class="fs-5">Créer une réservation</h1>
                 </div>
             </div>
-            <div class="modal-body border-0">
-                <span>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</span><br>
-                <span>Cette action est irréversible.</span>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                <a href="" class="btn btn-danger">Supprimer l'utilisateur</a>
-            </div>
+            <form action="rooms">
+                <input type="hidden" name="action" value="book">
+                <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail Client</label>
+                    <input type="email" class="form-control" id="email" value="cyriac@hotel.fr" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categorie" class="form-label">Catégorie</label>
+                    <select class="form-select" id="categorie" aria-label="catégories">
+                        <option selected>Sélectionner une catégorie</option>
+                        <option value="1">Double</option>
+                        <option value="2">Double avec sale de bain</option>
+                        <option value="3">Simple</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-around">
+                    <div>
+                        <label for="date_start" class="form-label">Date début</label><br>
+                        <input type="date" name="date_start" id="date_start" required>
+                    </div>
+
+                    <div>
+                        <label for="date_end" class="form-label">Date   fin</label><br>
+                        <input type="date" name="date_end" id="date_end" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 mt-2">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Créer une réservation</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -220,20 +248,48 @@
         <div class="modal-content p-2">
             <div class="modal-header border-0">
                 <div class="modal-title d-flex align-items-center gap-2">
-                    <div class="bg-danger-subtle p-2 rounded-circle d-flex align-items-center">    
-                        <svg class="text-danger" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    <div class="bg-warning-subtle p-2 rounded-circle d-flex align-items-center">    
+                        <svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>
                     </div>
-                    <h1 class="fs-5">Supprimer l'utilisateur</h1>
+                    <h1 class="fs-5">Modifier une réservation</h1>
                 </div>
             </div>
-            <div class="modal-body border-0">
-                <span>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</span><br>
-                <span>Cette action est irréversible.</span>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                <a href="" class="btn btn-danger">Supprimer l'utilisateur</a>
-            </div>
+            <form action="rooms">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail Client</label>
+                    <input type="email" class="form-control" id="email" value="cyriac@hotel.fr" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categorie" class="form-label">Catégorie</label>
+                    <select class="form-select" id="categorie" aria-label="catégories">
+                        <option selected>Sélectionner une catégorie</option>
+                        <option value="1">Double</option>
+                        <option value="2">Double avec sale de bain</option>
+                        <option value="3">Simple</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-around">
+                    <div>
+                        <label for="date_start" class="form-label">Date début</label><br>
+                        <input type="date" name="date_start" id="date_start" required>
+                    </div>
+
+                    <div>
+                        <label for="date_end" class="form-label">Date fin</label><br>
+                        <input type="date" name="date_end" id="date_end" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 mt-2">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-warning">Modifier la réservation</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
