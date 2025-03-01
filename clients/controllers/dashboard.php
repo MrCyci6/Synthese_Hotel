@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		exit();
 	}
 
-	$sejourId = (int)$_POST['reservationSelect'];
+	$sejourId = (int)$_POST['reservationSelect']; // évite les erreur de conversions avec la Db avec (int)
 	$consoId = (int)$_POST['consoName'];
 	$consoQty = (int)$_POST['consoQty'];
 	Conso::addConsommation($sejourId, $consoId, $consoQty);
@@ -50,6 +50,12 @@ if ($page === 'dashboard') {
 		case 'search':
 			$pageTitle = "Rechercher";
 			$viewFile = 'search.php';
+
+			require_once __DIR__ . '/../models/Search.php';
+			// Récupération des catégories pour le dropdown
+			$hotelCategories = Search::getHotelCategories();
+			// Récupération de la liste des hôtels pour le dropdown de suggestions
+			$hotelList = Search::getHotelList();
 			break;
 		case 'settings':
 			$pageTitle = "Paramètres";
