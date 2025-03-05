@@ -19,7 +19,31 @@
             <h1 class="py-3 fw-bold">Prix de nos chambres</h1>
         </div>
         <div class="col-6 col-md-4">
-            <button class="btn btn-primary">Éditer prix</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Changer Prix
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="">
+                            <div class="modal-body">
+                                ID chambre : <input type="text" name="id_chambre"><br><br>
+                                Nouveau prix : <input type="number" step="1" name="new_price">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -28,6 +52,7 @@
             <table class="table table-white table-striped">
                 <thead>
                 <tr>
+                    <th>ID chambre</th>
                     <th>Dénomination</th>
                     <th>Prix</th>
                 </tr>
@@ -35,8 +60,9 @@
                 <tbody>
 
                 <?php
-                for ($i = 0; $i <= $nbChambre; $i++) {
-                    echo "<tr><td>".$infoChambre[$i]['chambre']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
+                for ($i = 0; $i < $nbChambre; $i++) {
+                    $id=$i+1;
+                    echo "<tr><td>".$id."</td><td>".$infoChambre[$i]['chambre']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
                 }
                 ?>
 

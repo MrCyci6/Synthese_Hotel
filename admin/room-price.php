@@ -12,6 +12,12 @@ $nbChambre=count($infoChambre);
 $title = "Prix Chambres";
 $selected = "room-price";
 
+if(isset($_POST['id_chambre']) && isset($_POST['new_price'])){
+    Chambre::modifyPrice($infoChambre[$_POST['id_chambre']-1]['id_classe'],$infoChambre[$_POST['id_chambre']-1]['cate'], $_POST['new_price']);
+}
+
+
+
 // User part
 $userId = 1;
 if(!isset($userId) || empty($userId)) {
