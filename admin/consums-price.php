@@ -20,7 +20,7 @@ $selected = "consums-price";
 
 if(isset($_POST['new_conso']) && isset($_POST['new_price']) && !in_array($_POST['new_conso'], $denom)) {
     Conso::ajoutConso($_POST['new_conso'],$_POST['new_price'],$hotel_id);
-
+    $consommations=Conso::getConsoAndPrice($hotel_id);
 }
 
 
