@@ -1,17 +1,17 @@
 RewriteEngine On
 RewriteBase /
 
-# Pour l'URL /login qui renvoie à controllers/login.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Pour l'URL /login qui renvoie à controllers/login.php
 RewriteRule ^login/?$ controllers/login.php [QSA,L]
 
 # Pour l'URL /dashboard ou /dashboard/home, etc.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^dashboard/([^/]+)/?$ controllers/dashboard.php?page=dashboard&view=$1 [QSA,L]
 
 # Pour /dashboard sans view, redirige vers home par défaut
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^dashboard/?$ controllers/dashboard.php?page=dashboard&view=home [QSA,L]
+
+# Pour /search/hotel/{id}/dates/{dates}
+RewriteRule ^search/hotel/([^/]+)/dates/([^/]+)/?$ controllers/search.php?page=search&hotel=$1&dates=$2 [QSA,L]

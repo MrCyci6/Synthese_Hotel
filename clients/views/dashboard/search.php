@@ -5,22 +5,22 @@
 			<h1 class="display-4 fw-bold">Trouvez votre meilleur séjour</h1>
 			<p class="lead">Gérez vos préférences de réservation en quelques clics</p>
 			<form action="search.php" method="get" class="bg-dark p-3 rounded my-4">
-				<div class="row g-2 align-items-stretch">
+				<div class="row g-2 align-items-center">
 					<div class="col-12 col-md">
-						<div class="input-group" id="hotelInputGroup">
-							<select name="location" id="hotelSelect" class="form-control form-control-sm" required>
+						<div class="input-group input-group-sm" id="hotelInputGroup">
+							<select name="location" id="hotelSelect" class="form-select form-select-sm" required>
 								<option selected>Choisissez un hôtel</option>
 								<?php foreach($hotelList as $hotel): ?>
-									<option value="<?= htmlspecialchars($hotel['id_hotel']) ?>" data-category="<?= htmlspecialchars($hotel['categorie']) ?>">
-										<?= htmlspecialchars($hotel['nom']) ?>
+									<option value="<?= $hotel['id_hotel'] ?>" data-category="<?= $hotel['categorie']?>">
+										<?= $hotel['nom'] ?>
 									</option>
 								<?php endforeach; ?>
 							</select>
 							<span class="input-group-text d-none" id="hotelCategoryDisplay"></span>
 						</div>
 					</div>
-					<div class="col-12 col-md">
-						<input type="text" class="form-control form-control-sm" name="dates" id="datepicker" placeholder="Sélectionnez les dates" required/>
+					<div class="col-12 col-md flex-grow-1">
+						<input type="text" class="form-select form-select-sm" name="dates" id="datepicker" placeholder="Sélectionnez les dates" required/>
 					</div>
 					<div class="col-12 col-md-auto">
 						<button type="submit" class="btn btn-warning btn-sm w-100">Search</button>
@@ -52,7 +52,7 @@
             hotelCategoryDisplay.classList.add('d-none');
         } else {
             const category = selectedOption.getAttribute('data-category') || '';
-            hotelCategoryDisplay.textContent = 'Classe: ' + category;
+            hotelCategoryDisplay.textContent = 'Classe : ' + category;
             hotelCategoryDisplay.classList.remove('d-none');
         }
     });
