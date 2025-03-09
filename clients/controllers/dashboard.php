@@ -11,6 +11,7 @@ if (!isset($_SESSION['client_id']) || empty($_SESSION['client_id'])) {
 require_once __DIR__ . '/../models/Client.php';
 require_once __DIR__ . '/../models/Reservation.php';
 require_once __DIR__ . '/../models/Conso.php';
+require_once __DIR__ . '/../models/Search.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($_POST['reservationSelect']) || empty($_POST['consoName']) || empty($_POST['consoQty'])) { // ça évite les erreurs du type on clique sur le bouton alors qu'on a rien séléctionné
@@ -50,11 +51,7 @@ if ($page === 'dashboard') {
 		case 'search':
 			$pageTitle = "Rechercher";
 			$viewFile = 'search.php';
-
-			require_once __DIR__ . '/../models/Search.php';
-			// Récupération des catégories pour le dropdown
-			$hotelCategories = Search::getHotelCategories();
-			// Récupération de la liste des hôtels pour le dropdown de suggestions
+			$hotelCategories = Search::getHotelCategories(); // Si besoin d'afficher un dropdown des catégories
 			$hotelList = Search::getHotelList();
 			break;
 		case 'settings':

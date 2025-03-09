@@ -1,5 +1,5 @@
 <div class="main-section flex-fill p-3 m-3 shadow-lg bg-white d-flex flex-column h-100">
-	<section class="search-section d-flex flex-fill align-items-center justify-content-center text-center position-relative" style="min-height: 80vh; border-radius: 0.625rem; background: white url('../../styles/image.webp') no-repeat center;">
+	<section class="d-flex flex-fill align-items-center justify-content-center text-center position-relative" style="border-radius: 0.625rem; background: white url('../../styles/image.webp') no-repeat center;">
 		<div class="position-absolute top-0 start-0 w-100 h-100 opacity-50"></div>
 		<div class="position-relative text-white m-2">
 			<h1 class="display-4 fw-bold">Trouvez votre meilleur séjour</h1>
@@ -7,25 +7,20 @@
 			<form action="search.php" method="get" class="bg-dark p-3 rounded my-4">
 				<div class="row g-2 align-items-stretch">
 					<div class="col-12 col-md">
-						<select name="location" list="hotelList" class="form-control form-control-sm" required>
-							<option value="">Choissisez un hôtel</option>
-							<?php foreach($hotelList as $hotel): ?>
-								<option value="<?= htmlspecialchars($hotel['nom']) ?>"><?= htmlspecialchars($hotel['nom']) ?></option>
-							<?php endforeach; ?>
-						</select>
+						<div class="input-group" id="hotelInputGroup">
+							<select name="location" id="hotelSelect" class="form-control form-control-sm" required>
+								<option selected>Choisissez un hôtel</option>
+								<?php foreach($hotelList as $hotel): ?>
+									<option value="<?= htmlspecialchars($hotel['id_hotel']) ?>" data-category="<?= htmlspecialchars($hotel['categorie']) ?>">
+										<?= htmlspecialchars($hotel['nom']) ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+							<span class="input-group-text d-none" id="hotelCategoryDisplay"></span>
+						</div>
 					</div>
 					<div class="col-12 col-md">
 						<input type="text" class="form-control form-control-sm" name="dates" id="datepicker" placeholder="Sélectionnez les dates" required/>
-					</div>
-					<div class="col-12 col-md">
-						<select name="category" class="form-control form-control-sm" required>
-							<option value="">Sélectionnez la catégorie</option>
-							<?php foreach($hotelCategories as $cat): ?>
-								<option value="<?= htmlspecialchars($cat['categorie']) ?>">
-									<?= htmlspecialchars($cat['categorie']) ?>
-								</option>
-							<?php endforeach; ?>
-						</select>
 					</div>
 					<div class="col-12 col-md-auto">
 						<button type="submit" class="btn btn-warning btn-sm w-100">Search</button>
@@ -35,13 +30,31 @@
 		</div>
 	</section>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
 <script>
+    // Voir doc Flatpicker https://flatpickr.js.org/examples/
     flatpickr("#datepicker", {
         mode: "range",
+        minDate: "today",
         dateFormat: "Y-m-d",
         locale: "fr"
+    });
+
+    const hotelSelect = document.getElementById('hotelSelect');
+    const hotelCategoryDisplay = document.getElementById('hotelCategoryDisplay');
+    const hotelInputGroup = document.getElementById('hotelInputGroup');
+
+    hotelSelect.addEventListener('change', function() {
+        const selectedOption = hotelSelect.options[hotelSelect.selectedIndex];
+        if (!selectedOption.value || selectedOption.text.includes("Choisissez")) {
+            hotelCategoryDisplay.classList.add('d-none');
+        } else {
+            const category = selectedOption.getAttribute('data-category') || '';
+            hotelCategoryDisplay.textContent = 'Classe: ' + category;
+            hotelCategoryDisplay.classList.remove('d-none');
+        }
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
