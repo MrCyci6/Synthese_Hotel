@@ -4,6 +4,7 @@
     $route = explode("?", $splitedUri[sizeof($splitedUri)-1])[0];
 
     $routes = [
+        "" => "controllers/layout/DashboardController.php",
         "404" => "controllers/404Controller.php",
         "dashboard" => "controllers/layout/DashboardController.php",
         "choice" => "controllers/ChoiceController.php",
@@ -11,7 +12,11 @@
         "logout" => "controllers/auth/LogoutController.php",
         "users" => "controllers/users/UsersController.php",
         "user" => "controllers/users/UserController.php",
-        "rooms" => "controllers/rooms/RoomsController.php"
+        "rooms" => "controllers/rooms/RoomsController.php",
+        "room" => "controllers/rooms/RoomController.php",
+        "rooms-price" => "controllers/rooms/RoomsPriceController.php",
+        "consums-price" => "controllers/consums/ConsumsPriceController.php",
+        "consums" => "controllers/consums/ConsumsController.php"
     ];
 
     if(isset($routes[$route]))

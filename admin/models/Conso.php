@@ -3,10 +3,18 @@
     require_once 'models/Database.php';
 
     class Conso {
+        static function getConsoAndPrice(int $hotelId = -1) {
+            $query = "SELECT  conso.denomination,prix_conso.id_conso as id,conso.id_conso,id_hotel,prix from prix_conso
+                        join conso on conso.id_conso=prix_conso.id_conso
+                        WHERE id_hotel = :id_hotel";
+            $statement = Database::preparedQuery($query, ($hotelId==-1 ? [] : [$hotelId]));
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+            return $results;
+        }
         static function getConsos(int $hotelId = -1, string $filters = "") {
             $statement = Database::preparedQuery(
-                "SELECT cc.id_cc, cc.id_conso, c.denomination as conso, cc.id_sejour, r.id_user, u.nom as nom_user, u.prenom as prenom_user, ch.numero_chambre, h.id_hotel, h.nom as hotel, cl.denomination as classe, cc.date_conso, cc.nombre, pc.prix*cc.nombre as prix FROM conso_client cc
+                "SELECT  cc.id_cc,cc.id_conso, c.denomination as conso, cc.id_sejour, r.id_user, u.nom as nom_user, u.prenom as prenom_user, ch.numero_chambre, h.id_hotel, h.nom as hotel, cl.denomination as classe, cc.date_conso, cc.nombre, pc.prix as prix_unit,pc.prix*cc.nombre as prix FROM conso_client cc
                 INNER JOIN conso c ON c.id_conso=cc.id_conso
                 INNER JOIN reservation r ON r.id_sejour=cc.id_sejour
                 INNER JOIN users u ON u.id_user=r.id_user
@@ -48,6 +56,14 @@
             );
             return $statement->fetch()['count'];
         }
-    }
 
+        static function ajoutConso($nom,$prix,int $hotelId = -1) {
+            $query = "INSERT INTO Conso (denomination) VALUES (:nom) RETURNING id_conso";
+            $statement = Database::preparedQuery($query, array(':nom'=>$nom));
+            $id_conso = $statement->fetchColumn();
+
+            $query2="INSERT INTO Prix_conso (id_hotel, id_conso, prix) VALUES (:id_hotel, :id_conso, :prix)";
+            $statement2 = Database::preparedQuery($query2, array(':id_hotel'=>$hotelId, ':id_conso'=>$id_conso, ':prix'=>$prix));
+        }
+    }
 ?>
