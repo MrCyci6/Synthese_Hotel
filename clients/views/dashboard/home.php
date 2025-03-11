@@ -1,9 +1,9 @@
 <div class="main-section flex-fill p-3 m-3 shadow-lg d-flex flex-column">
 	<div class="row g-3 mb-3 d-flex align-items-stretch flex-wrap">
 		<div class="col-6 col-md-3 d-flex ">
-			<div class="card p-2 p-md-3 bg-white border rounded-3 flex-fill">
+			<div class="card p-2 p-md-3 bg-card border rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Taux d'occupation</h5>
+					<h5 class="card-title fw-light">Taux d'occupation</h5>
 					<p class="card-text fw-bold">
 						<?= isset($occupancyRate) ? $occupancyRate . '%' : "Aucun séjour en cours" ?>
 					</p>
@@ -11,9 +11,9 @@
 			</div>
 		</div>
 		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-red text-white rounded-3 flex-fill">
+			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Total des consommations</h5>
+					<h5 class="card-title fw-light">Total des consommations</h5>
 					<p class="card-text fw-bold">
 						<?= number_format($totalConsosAmount, 2, ',', ' ') ?> €
 					</p>
@@ -21,9 +21,9 @@
 			</div>
 		</div>
 		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-yellow text-white rounded-3 flex-fill">
+			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Jours restants avant la date de départ</h5>
+					<h5 class="card-title fw-light">Jours restants avant la date de départ</h5>
 					<p class="card-text fw-bold">
 						<?= is_null($daysLeft) ? "Aucune réservation en cours" : ($daysLeft == 0 ? "Réservation terminée" : $daysLeft) ?>
 					</p>
@@ -31,9 +31,9 @@
 			</div>
 		</div>
 		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-orange text-white rounded-3 flex-fill">
+			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
 				<div class="card-body">
-					<h5 class="card-title">Date de départ</h5>
+					<h5 class="card-title fw-light">Date de départ</h5>
 					<p class="card-text fw-bold">
 						<?= $nextDeparture ?: "Aucune réservation en cours" ?>
 					</p>
@@ -45,8 +45,8 @@
 	<div class="row g-3 flex-fill d-flex align-items-stretch">
 		<div class="col-12 col-md-6 d-flex">
 			<div class="card flex-fill">
-				<div class="card-header text-center">
-					Ajouter / Choisir des consommations
+				<div class="card-header text-center fw-bold">
+					Commander des consommations
 				</div>
 				<div class="card-body">
 					<form action="dashboard.php?page=dashboard&view=home" method="post">
@@ -82,8 +82,8 @@
 		</div>
 		<div class="col-12 col-md-6 d-flex">
 			<div class="card flex-fill">
-				<div class="card-header text-center">
-					Gérer mes consommations
+				<div class="card-header text-center fw-bold">
+					Historique des consommations
 				</div>
 				<div class="card-body">
 					<ul class="nav nav-tabs" id="consommationTabs" role="tablist">

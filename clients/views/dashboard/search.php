@@ -23,7 +23,7 @@
 						<input type="text" class="form-select form-select-sm" name="dates" id="datepicker" placeholder="Sélectionnez les dates" required/>
 					</div>
 					<div class="col-12 col-md-auto">
-						<button type="submit" class="btn btn-warning btn-sm w-100">Search</button>
+						<button type="submit" class="btn btn-primary btn-sm w-100">Search</button>
 					</div>
 				</div>
 			</form>

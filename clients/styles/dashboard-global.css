@@ -1,17 +1,33 @@
+.btn-primary {
+    --bs-btn-color: black;
+    --bs-btn-bg: #fdf447;
+    --bs-btn-border-color: #fdf447;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #e6dc3f;
+    --bs-btn-hover-border-color: #d1c939;
+    --bs-btn-focus-shadow-rgb: 253, 244, 71;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #d1c939;
+    --bs-btn-active-border-color: #c1ba34;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #fdf447;
+    --bs-btn-disabled-border-color: #fdf447;
+}
+
 * {
     box-sizing: border-box;
 }
 
 
 .body {
-    background: #EFEFEF;
+    background: #757780;
     min-height: 100vh;
-    font-family: "Roboto Flex", sans-serif;
-}
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
 
 .main-section {
     border-radius: 0.625rem;
-    background: #DBDFE6;
+    background: #F7F7FF;
     box-shadow: 8px 8px 40px 0 #6D6D6A;
 }
 
@@ -19,17 +35,11 @@
     min-height: 70vh;
 }
 
-.bg-orange {
-    background: #FFBA49;
+.bg-card {
+    background: whitesmoke;
 }
 
-.bg-yellow {
-    background: #FFDF64;
-}
 
-.bg-red {
-    background: #DE6449;
-}
 
 .offcanvas {
     background-color: #3D464D !important;
@@ -51,6 +61,16 @@
 .card {
     border-radius: 3.4375rem !important;
     overflow: hidden;
+    transition: transform .3s ease-out;
+}
+
+.card:hover {
+    transform: scale(101%);
+}
+
+.card-header {
+    background-color: #101419 !important;
+    color: white;
 }
 
 .lg-card {
@@ -59,8 +79,7 @@
 
 .sidebar {
     width: 3.75rem;
-    background-color: #3D464D !important;
-    box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
+    background-color: #101419 !important;
 }
 .sidebar a {
     color: #fff;
@@ -68,11 +87,11 @@
     margin: 1rem 0;
 }
 .sidebar .nav-link:hover {
-    color: #DE6449;
+    color: #fdf447;
 }
 
 .sidebar .nav-link:active,
 .sidebar .nav-link.active,
 .sidebar .nav-link:focus {
-    color: #DE6449;
+    color: #fdf447;
 }

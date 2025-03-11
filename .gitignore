@@ -405,3 +405,6 @@ FodyWeavers.xsd
 
 # .idea
 .idea
+
+# config
+clients/config
