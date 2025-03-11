@@ -24,10 +24,12 @@ $selected = "consums-price";
 if($_POST['menu']=='option1' && !empty($_POST['new_conso']) && isset($_POST['new_price']) && $_POST['new_price']>0 && !in_array($_POST['new_conso'], $denom)) {
     Conso::ajoutConso($_POST['new_conso'],$_POST['new_price'],$hotel_id);
     $consommations=Conso::getConsoAndPrice($hotel_id);
+    $nbConso=count($consommations);
 }
 elseif (isset($_POST['new_price']) && $_POST['new_price']>0 && !in_array($_POST['menu'], $denom)){
     Conso::ajoutConsoExistante($_POST['menu'],$_POST['new_price'],$hotel_id);
     $consommations=Conso::getConsoAndPrice($hotel_id);
+    $nbConso=count($consommations);
 }
 
 
