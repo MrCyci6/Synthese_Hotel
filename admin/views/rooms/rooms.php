@@ -29,14 +29,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                                            <span>Nouvelle réservation</span>
-                                        </div>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -75,14 +67,9 @@
 
                                         echo "<td>".$reservation['total']." €</td>
                                             <td>
-                                                <div class=\"d-flex align-items-center gap-3\">
-                                                    <a data-bs-toggle=\"modal\" data-bs-target=\"#editModal\" href=\"#\" class=\"text-primary text-decoration-none\">
-                                                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pencil\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"/><path d=\"m15 5 4 4\"/></svg>
-                                                    </a>
-                                                    <a data-bs-toggle=\"modal\" data-bs-target=\"#deleteModal\" href=\"#\" class=\"text-danger text-decoration-none\">
-                                                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-trash-2\"><path d=\"M3 6h18\"/><path d=\"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6\"/><path d=\"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2\"/><line x1=\"10\" x2=\"10\" y1=\"11\" y2=\"17\"/><line x1=\"14\" x2=\"14\" y1=\"11\" y2=\"17\"/></svg>
-                                                    </a>
-                                                </div>
+                                                <a href=\"room?hotel_id=$hotelId&book_id=".$reservation['id_sejour']."\" class=\"text-primary text-decoration-none\">
+                                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pencil\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"/><path d=\"m15 5 4 4\"/></svg>
+                                                </a>
                                             </td>
                                         </tr>";
                                     }
@@ -189,135 +176,6 @@
         </div>
     </div>
 </div>
-
-<!-- Booking modal -->
-<div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-2">
-            <div class="modal-header border-0">
-                <div class="modal-title d-flex align-items-center gap-2">
-                    <div class="bg-primary-subtle p-2 rounded-circle d-flex align-items-center">    
-                        <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-plus"><path d="M12 7v6"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M9 10h6"/></svg>
-                    </div>
-                    <h1 class="fs-5">Créer une réservation</h1>
-                </div>
-            </div>
-            <form action="rooms">
-                <input type="hidden" name="action" value="book">
-                <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail Client</label>
-                    <input type="email" class="form-control" id="email" value="cyriac@hotel.fr" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="categorie" class="form-label">Catégorie</label>
-                    <select class="form-select" id="categorie" aria-label="catégories">
-                        <option selected>Sélectionner une catégorie</option>
-                        <option value="1">Double</option>
-                        <option value="2">Double avec sale de bain</option>
-                        <option value="3">Simple</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 d-flex justify-content-around">
-                    <div>
-                        <label for="date_start" class="form-label">Date début</label><br>
-                        <input type="date" name="date_start" id="date_start" required>
-                    </div>
-
-                    <div>
-                        <label for="date_end" class="form-label">Date   fin</label><br>
-                        <input type="date" name="date_end" id="date_end" required>
-                    </div>
-                </div>
-
-                <div class="modal-footer border-0 mt-2">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Créer une réservation</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Edit modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-2">
-            <div class="modal-header border-0">
-                <div class="modal-title d-flex align-items-center gap-2">
-                    <div class="bg-warning-subtle p-2 rounded-circle d-flex align-items-center">    
-                        <svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>
-                    </div>
-                    <h1 class="fs-5">Modifier une réservation</h1>
-                </div>
-            </div>
-            <form action="rooms">
-                <input type="hidden" name="action" value="edit">
-                <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail Client</label>
-                    <input type="email" class="form-control" id="email" value="cyriac@hotel.fr" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="categorie" class="form-label">Catégorie</label>
-                    <select class="form-select" id="categorie" aria-label="catégories">
-                        <option selected>Sélectionner une catégorie</option>
-                        <option value="1">Double</option>
-                        <option value="2">Double avec sale de bain</option>
-                        <option value="3">Simple</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 d-flex justify-content-around">
-                    <div>
-                        <label for="date_start" class="form-label">Date début</label><br>
-                        <input type="date" name="date_start" id="date_start" required>
-                    </div>
-
-                    <div>
-                        <label for="date_end" class="form-label">Date fin</label><br>
-                        <input type="date" name="date_end" id="date_end" required>
-                    </div>
-                </div>
-
-                <div class="modal-footer border-0 mt-2">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-warning">Modifier la réservation</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Delete modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-2">
-            <div class="modal-header border-0">
-                <div class="modal-title d-flex align-items-center gap-2">
-                    <div class="bg-danger-subtle p-2 rounded-circle d-flex align-items-center">    
-                        <svg class="text-danger" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                    </div>
-                    <h1 class="fs-5">Supprimer la réservation</h1>
-                </div>
-            </div>
-            <div class="modal-body border-0">
-                <span>Êtes-vous sûr de vouloir supprimer cet réservation ?</span><br>
-                <span>Cette action est irréversible.</span>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                <a href="rooms?action=delete&hotel_id=<?= $hotelId ?>&room_id=<?= $roomId?>" class="btn btn-danger">Supprimer la réservation</a>
-            </div>
-        </div>
-    </div>
-</div>
-
     <script src="./js/panel-dropdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
