@@ -6,7 +6,7 @@ require_once 'models/User.php';
 require_once 'models/Hotel.php';
 require_once 'models/Conso.php';
 
-$consommations=Conso::getConsos($_GET['hotel_id']);
+$consommations=Conso::getConsos($_GET['hotel_id'],"Order by cc.date_conso desc");
 $nbConso=count($consommations);
 
 $title = "Récapitulatif des Consommations";
