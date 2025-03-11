@@ -65,5 +65,19 @@
             $query2="INSERT INTO Prix_conso (id_hotel, id_conso, prix) VALUES (:id_hotel, :id_conso, :prix)";
             $statement2 = Database::preparedQuery($query2, array(':id_hotel'=>$hotelId, ':id_conso'=>$id_conso, ':prix'=>$prix));
         }
+        static function ajoutConsoExistante($id_conso,$prix,int $hotelId = -1) {
+            $query2="INSERT INTO Prix_conso (id_hotel, id_conso, prix) VALUES (:id_hotel, :id_conso, :prix)";
+            $statement2 = Database::preparedQuery($query2, array(':id_hotel'=>$hotelId, ':id_conso'=>$id_conso, ':prix'=>$prix));
+        }
+        static function ConsoNonPresente(int $hotelId = -1) {
+            $statement = Database::preparedQuery(
+                "SELECT c.id_conso, c.denomination
+                        FROM Conso c
+                        LEFT JOIN prix_conso pc ON c.id_conso = pc.id_conso AND pc.id_hotel = :id_hotel
+                        WHERE pc.id_conso IS NULL;",array(':id_hotel'=>$hotelId));
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
+
     }
 ?>

@@ -10,7 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleInput() {
+            var menu = document.getElementById("menu");
+            var textInput = document.getElementById("new_conso");
 
+            if (menu.value === "option1") {
+                textInput.style.display = "block";
+            } else {
+                textInput.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -34,7 +45,19 @@
                         </div>
                         <form method="post" action="">
                             <div class="modal-body">
-                                Dénomination : <input type="text" name="new_conso"><br><br>
+                                <div class="container">
+                                    Dénomination :
+                                    <select id="menu" name="menu" onchange="toggleInput()">
+                                        <option value="option1" selected>Autre (Saisissez du texte)</option>
+                                        <?php
+                                            for ($i = 0; $i < $nbNoConso; $i++){
+                                                echo "<option value='".$noConso[$i]["id_conso"]."'>".$noConso[$i]["denomination"]."</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                    <input type="text" id="new_conso" name="new_conso" placeholder="Saisissez du texte...">
+                                </div>
+                                <br><br>
                                 Prix : <input type="number" step="0.5" name="new_price">
                             </div>
                             <div class="modal-footer">

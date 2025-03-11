@@ -10,6 +10,9 @@ $hotel_id=$_GET['hotel_id'];
 $consommations=Conso::getConsoAndPrice($hotel_id);
 $nbConso=count($consommations);
 
+$noConso=Conso::ConsoNonPresente($hotel_id);
+$nbNoConso=count($noConso);
+
 $denom=array();
 foreach ($consommations as $consommation) {
     array_push($denom,$consommation['denomination']);
@@ -18,10 +21,15 @@ foreach ($consommations as $consommation) {
 $title = "Prix Conso";
 $selected = "consums-price";
 
-if(isset($_POST['new_conso']) && isset($_POST['new_price']) && !in_array($_POST['new_conso'], $denom)) {
+if($_POST['menu']=='option1' && !empty($_POST['new_conso']) && isset($_POST['new_price']) && $_POST['new_price']>0 && !in_array($_POST['new_conso'], $denom)) {
     Conso::ajoutConso($_POST['new_conso'],$_POST['new_price'],$hotel_id);
     $consommations=Conso::getConsoAndPrice($hotel_id);
 }
+elseif (isset($_POST['new_price']) && $_POST['new_price']>0 && !in_array($_POST['menu'], $denom)){
+    Conso::ajoutConsoExistante($_POST['menu'],$_POST['new_price'],$hotel_id);
+    $consommations=Conso::getConsoAndPrice($hotel_id);
+}
+
 
 
 // User part
