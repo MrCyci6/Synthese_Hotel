@@ -15,6 +15,7 @@ $selected = "room-price";
 if(isset($_POST['id_chambre']) && isset($_POST['new_price'])){
     Chambre::modifyPrice($infoChambre[$_POST['id_chambre']-1]['id_classe'],$infoChambre[$_POST['id_chambre']-1]['cate'], $_POST['new_price']);
     $infoChambre=Chambre::getRoomsInfo($_GET['hotel_id']);
+    $nbChambre=count($infoChambre);
 }
 
 
