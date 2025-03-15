@@ -1,45 +1,23 @@
 <div class="main-section flex-fill p-3 m-3 shadow-lg d-flex flex-column">
 	<div class="row g-3 mb-3 d-flex align-items-stretch flex-wrap">
-		<div class="col-6 col-md-3 d-flex ">
-			<div class="card p-2 p-md-3 bg-card border rounded-3 flex-fill">
-				<div class="card-body">
-					<h5 class="card-title fw-light">Taux d'occupation</h5>
-					<p class="card-text fw-bold">
-						<?= isset($occupancyRate) ? $occupancyRate . '%' : "Aucun séjour en cours" ?>
-					</p>
+		<?php
+		$cards = [
+			["label" => "Taux d'occupation", "value" => isset($occupancyRate) ? $occupancyRate . '%' : "Aucun séjour en cours"],
+			["label" => "Total des consommations", "value" => number_format($totalConsosAmount, 2, ',', ' ') . " €"],
+			["label" => "Jours restants avant la date de départ", "value" => is_null($daysLeft) ? "Aucune réservation en cours" : ($daysLeft == 0 ? "Réservation terminée" : $daysLeft)],
+			["label" => "Date de départ", "value" => $nextDeparture ?: "Aucune réservation en cours"]
+		];
+		foreach ($cards as $card):
+			?>
+			<div class="col-6 col-md-3 d-flex">
+				<div class="card p-2 p-md-3 bg-card border rounded-3 flex-fill small-card">
+					<div class="card-body">
+						<h5 class="card-title fw-light"><?= $card["label"] ?></h5>
+						<p class="card-text fw-bold"><?= $card["value"] ?></p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
-				<div class="card-body">
-					<h5 class="card-title fw-light">Total des consommations</h5>
-					<p class="card-text fw-bold">
-						<?= number_format($totalConsosAmount, 2, ',', ' ') ?> €
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
-				<div class="card-body">
-					<h5 class="card-title fw-light">Jours restants avant la date de départ</h5>
-					<p class="card-text fw-bold">
-						<?= is_null($daysLeft) ? "Aucune réservation en cours" : ($daysLeft == 0 ? "Réservation terminée" : $daysLeft) ?>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-6 col-md-3 d-flex">
-			<div class="card p-2 p-md-3 bg-card rounded-3 flex-fill">
-				<div class="card-body">
-					<h5 class="card-title fw-light">Date de départ</h5>
-					<p class="card-text fw-bold">
-						<?= $nextDeparture ?: "Aucune réservation en cours" ?>
-					</p>
-				</div>
-			</div>
-		</div>
+		<?php endforeach; ?>
 	</div>
 
 	<div class="row g-3 flex-fill d-flex align-items-stretch">
