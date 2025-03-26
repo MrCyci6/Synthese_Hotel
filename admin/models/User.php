@@ -39,14 +39,49 @@
             Database::preparedQuery("UPDATE users SET banned=0 WHERE id_user=?", [$userId]);
         }
 
-        static function getUsers(int $start = -1, int $end = -1) {
+        static function getUsers(int $limit, int $page) {
             $statement = Database::preparedQuery(
-                "SELECT id_user, nom, prenom, addresse, email, banned FROM users ".
-                (($start == -1 || $end == -1) ? "" : " WHERE id_user BETWEEN ? AND ?;"),
-                ($start == -1 || $end == -1) ? [] : [$start, $end]
+                "SELECT id_user, nom, prenom, addresse, email, banned FROM users
+                ORDER BY id_user ASC
+                LIMIT ? OFFSET ?;",
+                [$limit, ($page-1)*$limit]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
+        }
+
+        static function searchUser(string $data, int $limit, int $page) {
+            $statement = Database::preparedQuery(
+                "SELECT id_user, nom, prenom, addresse, email, banned FROM users 
+                WHERE LOWER(nom) LIKE LOWER('%' || ? || '%') 
+                OR LOWER(prenom) LIKE LOWER('%' || ? || '%') 
+                OR LOWER(email) LIKE LOWER('%' || ? || '%')
+                ORDER BY id_user ASC
+                LIMIT ? OFFSET ?;",
+                [$data, $data, $data, $limit, ($page-1)*$limit]
+            );
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
+
+        static function searchUserByEmail(string $email) {
+            $statement = Database::preparedQuery(
+                "SELECT id_user, nom, prenom, addresse, email, banned FROM users
+                WHERE email=?",
+                [$email]
+            );
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        static function addUser(string $nom, string $prenom, string $adresse, string $email) {
+            $password = uniqid();
+            
+            Database::preparedQuery(
+                "INSERT INTO users(nom, prenom, addresse, email, hash, banned) VALUES (?, ?, ?, ?, ?, 0);",
+                [$nom, $prenom, $adresse, $email, $password]
+            );
+
+            return $password;
         }
 
         static function getUser(int $id) {
@@ -57,16 +92,6 @@
             );
             $user = $statement->fetch();
             return $user;
-        }
-
-        static function searchUser($data) {
-            $statement = Database::preparedQuery(
-                "SELECT id_user, nom, prenom, addresse, email, banned FROM users 
-                WHERE nom=? OR prenom=? OR email=?;",
-                [$data, $data, $data]
-            );
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $results;
         }
     }
 

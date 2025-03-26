@@ -31,15 +31,32 @@
         exit();
     }  
 
-    // Search part
-    if(isset($_GET['search']) && !empty($_GET['search']))
-        $userSearch = User::searchUser($_GET['search']);
-    
+    // Create
+    if(isset($_GET['action']) && $_GET['action'] == "create") {
+        if(isset($_GET['email']) && !empty($_GET['email'])) {
+            $nom = $_GET['nom'] ?? "";
+            $prenom = $_GET['prenom'] ?? "";
+            $adresse = $_GET['adresse'] ?? "";
+            $email = $_GET['email'];
+
+            if(sizeof(User::searchUserByEmail($email)) == 0) {
+                $password = User::addUser($nom, $prenom, $adresse, $email);
+            } else {
+                $error = "Cette adresse e-mail est déjà liée à un compte utilisateur";
+            }
+        }
+    }
+
     // Table part
     $tablePage = $_GET['page'] ?? 1;
     $tableStep = USER_LIST_STEP;
 
-    $users = User::getUsers(($tablePage == 1 ? 1 : $tablePage*$tableStep-$tableStep), $tablePage*$tableStep);
+    if(isset($_GET['search'])) {
+        $users = User::searchUser($_GET['search'], $tableStep, $tablePage);
+    } else {
+        $users = User::getUsers($tableStep, $tablePage);
+    }
+
     $prevPage = $tablePage==1 ? 1 : $tablePage-1;
     $nextPage = $tablePage+1;
     

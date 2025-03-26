@@ -1,3 +1,20 @@
+<?php
+    if(isset($password) && !empty($password)) {
+        echo "<div class=\"d-flex justify-content-end mt-2\">
+            <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                Mot de passe de l'utilisateur créé : $password
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+            </div>
+        </div>";
+    } else if(isset($error) && !empty($error)) {
+        echo "<div class=\"d-flex justify-content-end mt-2\">
+            <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                $error
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+            </div>
+        </div>";
+    }
+?>
         <!-- Content -->
         <div class="p-4 mt-3">
             <div class="container-fluid">
@@ -20,38 +37,13 @@
                     </div>
                     <!-- Search -->
                     <div class="card p-3 border-0 shadow">
-                        <form method="GET" action="users">
+                        <form method="GET">
                             <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control" placeholder="Chercher un utilisateur (cyriac.lenoir@isen-ouest.yncrea.fr)">
                                 <button type="submit" id="search" class="btn btn-outline-primary">Chercher</button>
                             </div>
                         </form>
-                        <?php
-                            if(isset($userSearch)) {
-                                if(!$userSearch) {
-                                    echo "<span class=\"mt-3 text-danger\">Utilisateur introuvable : $search</span>";
-                                } else {
-                                    foreach($userSearch as $_user) {
-                                        echo "<div class=\"row g-4 ms-1 mt-1\">
-                                            <div class=\"col-1 p-2 bg-body-secondary fw-bold\">".$_user['id_user']."</div>
-                                            <div class=\"col-3 p-2 bg-body-secondary\">".$_user['nom']." ".$_user['prenom']."</div>
-                                            <div class=\"col-3 p-2 bg-body-secondary\">".$_user['email']."</div>
-                                            <div class=\"col-2 p-2 bg-body-secondary\">".(
-                                                $_user['banned'] ? 
-                                                "<span class=\"badge rounded-pill bg-danger-subtle text-danger\">Banni</span>" : 
-                                                "<span class=\"badge rounded-pill bg-success-subtle text-success\">Non-Banni</span>"
-                                                )."</div>
-                                            <div class=\"col-3 p-2 bg-body-secondary\">
-                                                <a title=\"Gérer\" href=\"user?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">
-                                                    <svg class=\"text-primary\" xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-user-round-pen\"><path d=\"M2 21a8 8 0 0 1 10.821-7.487\"/><path d=\"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/><circle cx=\"10\" cy=\"8\" r=\"5\"/></svg>
-                                                </a>
-                                            </div>
-                                        </div>";
-                                    }
-                                }
-                            }
-                        ?>
                     </div>
                     <!-- List -->
                     <div class="card p-4 border-0 bt-3 shadow">
@@ -113,6 +105,7 @@
         </div>
     </div>
 
+    <!-- Create user -->
     <div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-2">
@@ -139,7 +132,7 @@
                         <input type="text" class="form-control" id="email" name="email" value="" required>
                         
                         <label for="addresse" class="form-label">Adresse Postale</label> 
-                        <input type="text" class="form-control" id="addresse" name="addresse" value="" required>
+                        <input type="text" class="form-control" id="addresse" name="adresse" value="" required>
 
                         <div class="form-text">
                             Une fois le formulaire validé, un mot de passe auto-généré sera envoyé
