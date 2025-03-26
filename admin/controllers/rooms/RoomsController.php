@@ -11,10 +11,15 @@
 
     require_once 'controllers/base_init.php';
 
-    $tablePage = $_GET['page'] ?? 1;
     $tableStep = ROOMS_LIST_STEP;
+    $tablePage = $_GET['page'] ?? 1;
 
-    $reservations = Reservation::getReservations($hotelId, ($tablePage == 1 ? 1 : $tablePage*$tableStep-$tableStep), $tablePage*$tableStep);
+    if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['search'])) {
+        $reservations = Reservation::searchReservation($_GET['search'], $hotelId, $tableStep, $tablePage);
+    } else {   
+        $reservations = Reservation::getReservations($hotelId, $tableStep, $tablePage);
+    }
+    
     $prevPage = $tablePage==1 ? 1 : $tablePage-1;
     $nextPage = $tablePage+1;
 
