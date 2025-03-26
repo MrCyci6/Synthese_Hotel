@@ -5,6 +5,7 @@
     require_once 'models/User.php';
     require_once 'models/Perms.php';
     require_once 'models/Reservation.php';
+    require_once 'models/Logs.php';
 
     $title = "Gestion | Réservation";
     $selected = "rooms"; 
@@ -29,6 +30,7 @@
         $dateEnd = $_GET['date_end'];
         $paiement = $_GET['paiement'];
         
+        Logs::addLog($userId, $hotelId, "A modifier la réservation $bookId");
     }
 
     $categories = Reservation::getCategories();

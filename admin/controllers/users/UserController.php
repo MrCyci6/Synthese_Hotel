@@ -31,13 +31,13 @@
             case "ban":
                 if(!User::isAdmin($targetId)) {
                     User::banUser($targetId);
-                    //Logs::addLog($userId, $hotelId, "Bannissement de $targetId");
+                    Logs::addLog($userId, $hotelId, "A banni $targetId");
                 }
                 break;
             case "unban":
                 if(!User::isAdmin($targetId)) {
                     User::unbanUser($targetId);
-                    //Logs::addLog($userId, $hotelId, "Dé-Bannissement de $targetId");
+                    Logs::addLog($userId, $hotelId, "A débanni $targetId");
                 }
                 break;
             case "edit":
@@ -49,7 +49,7 @@
 
                 if(!empty($nom) && !empty($prenom) && !empty($email) && !empty($addresse)) {
                     User::updateUser($targetId, $nom, $prenom, $email, $addresse, $password);
-                    //Logs::addLog($userId, $hotelId, "Mise à jour les informations de $targetId");
+                    Logs::addLog($userId, $hotelId, "A mise à jour les informations de $targetId");
                 }
                 break;
             case "perms":
@@ -58,7 +58,7 @@
                 
                 if(!User::isAdmin($targetId)) {
                     Perms::updatePermissions($targetId, $hotelId, $oldPerms, $newPerms);
-                    //Logs::addLog($userId, $hotelId, "Mise à jour les permissions de $targetId");
+                    Logs::addLog($userId, $hotelId, "A mise à jour les permissions de $targetId");
                 }
                 break;
         }

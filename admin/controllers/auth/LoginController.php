@@ -6,6 +6,7 @@
     require_once 'models/User.php';
     require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
+    require_once 'models/Logs.php';
 
     if(Session::isUserLogged()) {
         header('Location: choice');
@@ -23,6 +24,7 @@
             // TODO: $stayLogged = $_POST['staylogged'] ?? false;
             Session::loginUser($id);
             
+            Logs::addLog($id, 1, "Connexion: ".$_SERVER['REMOTE_ADDR']);
             header('Location: choice');
             exit();
         }

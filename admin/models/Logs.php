@@ -18,7 +18,7 @@
                 INNER JOIN hotel h ON h.id_hotel=l.id_hotel
                 INNER JOIN classe cl ON cl.id_classe=h.id_classe 
                 WHERE h.id_hotel=?
-                ORDER BY l.id_log ASC
+                ORDER BY l.id_log DESC
                 LIMIT ? OFFSET ?;",
                 [$hotelId, $limit, ($page-1)*$limit]
             );
@@ -39,7 +39,7 @@
                         OR LOWER(l.content) LIKE LOWER('%' || ? || '%')
                         OR CAST(l.date as varchar) LIKE '%' || ? || '%'
                     )
-                ORDER BY l.id_log ASC
+                ORDER BY l.id_log DESC
                 LIMIT ? OFFSET ?;",
                 [$hotelId, $data, $data, $data, $data, $limit, ($page-1)*$limit]
             );

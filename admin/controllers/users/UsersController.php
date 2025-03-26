@@ -6,6 +6,7 @@
     require_once 'models/User.php';
     require_once 'models/Hotel.php';
     require_once 'models/Perms.php';
+    require_once 'models/Logs.php';
 
     $title = "Gestion | Utilisateurs";
     $selected = "users";
@@ -21,6 +22,7 @@
     if(isset($_GET['action']) && $_GET['action']=="delete") {
         if(isset($_GET['user_id']) && !empty($_GET['user_id']) && !User::isAdmin($_GET['user_id'])) {
             User::deleteUser($_GET['user_id']);
+            Logs::addLog($userId, $hotelId, "A supprimer l'utilisateur ".$_GET['user_id']);
         }
     }
 
@@ -41,6 +43,7 @@
 
             if(sizeof(User::searchUserByEmail($email)) == 0) {
                 $password = User::addUser($nom, $prenom, $adresse, $email);
+                Logs::addLog($userId, $hotelId, "A créer l'utilisateur $email");
             } else {
                 $error = "Cette adresse e-mail est déjà liée à un compte utilisateur";
             }
