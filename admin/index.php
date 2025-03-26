@@ -1,4 +1,5 @@
 <?php
+
     $uri = $_SERVER['REQUEST_URI'] ?? "";
     $splitedUri = explode('/', $uri);
     $route = explode("?", $splitedUri[sizeof($splitedUri)-1])[0];
@@ -16,7 +17,8 @@
         "room" => "controllers/rooms/RoomController.php",
         "rooms-price" => "controllers/rooms/RoomsPriceController.php",
         "consums-price" => "controllers/consums/ConsumsPriceController.php",
-        "consums" => "controllers/consums/ConsumsController.php"
+        "consums" => "controllers/consums/ConsumsController.php",
+        "logs" => "controllers/layout/LogsController.php"
     ];
 
     if(isset($routes[$route]))

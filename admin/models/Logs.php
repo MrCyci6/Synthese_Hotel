@@ -11,14 +11,37 @@
             );
         }
 
-        static function getLogs(int $start = -1, int $end = -1) {
+        static function getLogs(int $hotelId, int $limit, int $page) {
             $statement = Database::preparedQuery(
                 "SELECT l.id_log, l.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, l.id_hotel, h.nom as nom_hotel, cl.denomination as classe, l.content, l.date FROM logs l
                 INNER JOIN users u ON u.id_user=l.id_user
                 INNER JOIN hotel h ON h.id_hotel=l.id_hotel
-                INNER JOIN classe cl ON cl.id_classe=h.id_classe ".
-                (($start == -1 || $end == -1) ? "" : " WHERE l.id_log BETWEEN ? AND ?"),
-                ($start == -1 || $end == -1) ? [] : [$start, $end]
+                INNER JOIN classe cl ON cl.id_classe=h.id_classe 
+                WHERE h.id_hotel=?
+                ORDER BY l.id_log ASC
+                LIMIT ? OFFSET ?;",
+                [$hotelId, $limit, ($page-1)*$limit]
+            );
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
+
+        static function searchLogs(string $data, int $hotelId, int $limit, int $page) {
+            $statement = Database::preparedQuery(
+                "SELECT l.id_log, l.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, l.id_hotel, h.nom as nom_hotel, cl.denomination as classe, l.content, l.date FROM logs l
+                INNER JOIN users u ON u.id_user=l.id_user
+                INNER JOIN hotel h ON h.id_hotel=l.id_hotel
+                INNER JOIN classe cl ON cl.id_classe=h.id_classe 
+                WHERE h.id_hotel=? AND
+                    (
+                        LOWER(u.nom) LIKE LOWER('%' || ? || '%')
+                        OR LOWER(u.prenom) LIKE LOWER('%' || ? || '%')
+                        OR LOWER(l.content) LIKE LOWER('%' || ? || '%')
+                        OR CAST(l.date as varchar) LIKE '%' || ? || '%'
+                    )
+                ORDER BY l.id_log ASC
+                LIMIT ? OFFSET ?;",
+                [$hotelId, $data, $data, $data, $data, $limit, ($page-1)*$limit]
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
