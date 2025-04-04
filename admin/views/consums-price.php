@@ -22,15 +22,6 @@
                 textInput.style.display = "none";
             }
         }
-
-        function editPrice(icon) {
-            let td = icon.parentElement.previousElementSibling;
-            let currentPrice = td.innerText;
-            let newPrice = prompt("Entrez le nouveau prix :", currentPrice);
-            if (newPrice !== null && !isNaN(newPrice) && newPrice.trim() !== "") {
-                td.innerText = parseFloat(newPrice).toFixed(2);
-            }
-        }
     </script>
 </head>
 <body>
@@ -79,24 +70,59 @@
                 </div>
             </div>
 
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                Modifier prix
+            </button>
+
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="">
+                            <div class="modal-body">
+                                <div class="container">
+                                    Dénomination :
+                                    <select id="menu2" name="menu2">
+                                        <option value="option1" selected></option>
+                                        <?php
+                                        for ($i = 0; $i < $nbConso; $i++){
+                                            echo "<option value='".$consommations[$i]["id_conso"]."'>".$consommations[$i]["denomination"]."</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <br><br>
+                                Prix : <input type="number" step="0.5" name="new_price2">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="row">
         <div class="table-responsive">
-            <table class="table table-white table-striped">
+            <table id="consommations-table" class="table table-white table-striped">
                 <thead>
                 <tr>
                     <th>Bénéfice</th>
                     <th>Dénomination</th>
                     <th>Prix</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php
                 for ($i = 0; $i < $nbConso; $i++) {
-                    echo "<tr><td>";
+                    echo "<tr data-id='".$consommations[$i]['id_conso']."'><td>";
                     if($consommations[$i]['prix']<3){
                         echo "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-coin' viewBox='0 0 16 16'>
                                <path d='M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z'/>
@@ -120,12 +146,7 @@
                                    </svg>";
                         }
                     }
-                    echo "</td><td>".$consommations[$i]['denomination']."</td><td>".$consommations[$i]['prix']."</td></td>";
-                    echo "<td><i class='fas fa-pen edit-icon' onclick='editPrice(this)'>
-                            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-fill' viewBox='0 0 16 16'>
-                            <path d='M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z'/>
-                            </svg>
-                          </i></td>";
+                    echo "</td><td>".$consommations[$i]['denomination']."</td><td class='price'>".$consommations[$i]['prix']."</td></td>";
                     echo "</tr>";
                 }
                 ?>

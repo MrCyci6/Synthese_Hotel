@@ -79,5 +79,10 @@
             return $results;
         }
 
+        static function ModifPrice($new_price,$id_conso,$hotel_id){
+            $stmt = Database::preparedQuery(
+                "UPDATE prix_conso SET prix = :new_price WHERE id_conso = :id_conso and id_hotel=:id_hotel;",
+                        array(":id_conso"=>$id_conso,':new_price'=>$new_price,":id_hotel"=>$hotel_id));
+        }
     }
 ?>
