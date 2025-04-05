@@ -10,7 +10,7 @@
 </head>
 <body>
     <section>
-        <form action="login.php" method="POST">
+        <form action="login" method="POST">
             <p>Connexion</p>
             
             <input type="text" name="email" id="email"><br>

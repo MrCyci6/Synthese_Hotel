@@ -22,7 +22,7 @@
                         <div class="d-flex flex-row align-items-center justify-content-around">
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="fs-6 text-secondary">Occupation</span>
-                                <p class="fs-4 fw-semibold"><?= round(($roomsCount['occupees']*100)/$roomsCount['total'], 2) ?> %</p>
+                                <p class="fs-4 fw-semibold"><?= round(($occupedRoomsCount*100)/$roomsCount, 2) ?> %</p>
                             </div>
                             <div class=" rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(147, 51, 234, 0.2)">
                                 <svg style="color: rgb(147, 51, 234);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-6 w-6 text-purple-600"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -81,12 +81,12 @@
                                         </div>
                                         <div>";
 
-                                    if($reservation['now'] < $reservation['debut'])
-                                        echo "<span style=\"border-radius: 15px;\" class=\"p-1 bg-success-subtle text-success\">Confirmée</span>";
-                                    else if($reservation['now'] > $reservation['debut'] && $reservation['now'] < $reservation['date_fin'])
-                                        echo "<span style=\"border-radius: 15px;\" class=\"p-1 bg-warning-subtle text-warning\">En cours</span>";
+                                    if($reservation['now'] < $reservation['date_debut'])
+                                        echo "<span class=\"badge rounded-pill bg-success-subtle text-success\">Confirmée</span>";
+                                    else if($reservation['now'] > $reservation['date_debut'] && $reservation['now'] < $reservation['date_fin'])
+                                        echo "<span class=\"badge rounded-pill bg-warning-subtle text-warning\">En cours</span>";
                                     else if($reservation['now'] > $reservation['date_fin'])
-                                        echo "<span style=\"border-radius: 15px;\" class=\"p-1 bg-danger-subtle text-danger\">Terminée</span>";
+                                        echo "<span class=\"badge rounded-pill bg-danger-subtle text-danger\">Terminée</span>";
 
                                     echo "</div>
                                     </div>";

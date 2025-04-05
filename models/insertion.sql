@@ -157,6 +157,4 @@ INSERT INTO perms(nom) VALUES ('Admin'), ('Module chambre'), ('Module conso'), (
 INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 3), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4);
 
 INSERT INTO logs(id_user, id_hotel, content, date) VALUES 
-(1, 1, 'Consommation(MODIFICATION): caffé gourmand - 10.99€ -> 5.99€', NOW()),
-(1, 1, 'Permission(AJOUT): [+] LENOIR Cyriac - Module chambre', NOW()),
 (2, 1, 'Connexion: 127.0.0.1', NOW());
