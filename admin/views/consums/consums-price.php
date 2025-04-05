@@ -1,53 +1,103 @@
 <div class="p-4 mt-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1 class="py-3 fw-bold">Menu de nos consommations</h1>
-            </div>
-            <div class="col-6 col-md-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Ajouter Consommation
-                </button>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="py-3 fw-bold">Menu de nos consommations</h1>
+        </div>
+        <div class="col-6 col-md-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Ajouter Consommation
+            </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form method="post" action="">
-                                <div class="modal-body">
-                                    Dénomination : <input type="text" name="new_conso"><br><br>
-                                    Prix : <input type="number" step="0.5" name="new_price">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                    <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
-                                </div>
-                            </form>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form method="post" action="">
+                            <div class="modal-body">
+                                <div class="container">
+                                    Dénomination :
+                                    <select id="menu" name="menu" onchange="toggleInput()">
+                                        <option value="option1" selected>Autre (Saisissez du texte)</option>
+                                        <?php
+                                            for ($i = 0; $i < $nbNoConso; $i++){
+                                                echo "<option value='".$noConso[$i]["id_conso"]."'>".$noConso[$i]["denomination"]."</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                    <input type="text" id="new_conso" name="new_conso" placeholder="Saisissez du texte...">
+                                </div>
+                                <br><br>
+                                Prix : <input type="number" step="0.5" name="new_price">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
+
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                Modifier prix
+            </button>
+
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="">
+                            <div class="modal-body">
+                                <div class="container">
+                                    Dénomination :
+                                    <select id="menu2" name="menu2">
+                                        <option value="option1" selected></option>
+                                        <?php
+                                        for ($i = 0; $i < $nbConso; $i++){
+                                            echo "<option value='".$consommations[$i]["id_conso"]."'>".$consommations[$i]["denomination"]."</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <br><br>
+                                Prix : <input type="number" step="0.5" name="new_price2">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
+        
+        <div class="card p-4 border-0 bt-3 shadow">
             <div class="table-responsive">
-                <table class="table table-white table-striped">
+                <table id="consommations-table" class="table table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Bénéfice</th>
-                        <th>Dénomination</th>
-                        <th>Prix</th>
+                        <td class="text-secondary">BÉNÉFICE</td>
+                        <td class="text-secondary">DÉNOMINATION</td>
+                        <td class="text-secondary">PRIX</td>
                     </tr>
                     </thead>
                     <tbody>
 
                     <?php
                     for ($i = 0; $i < $nbConso; $i++) {
-                        echo "<tr><td>";
+                        echo "<tr data-id='".$consommations[$i]['id_conso']."'><td>";
                         if($consommations[$i]['prix']<3){
                             echo "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-coin' viewBox='0 0 16 16'>
                                 <path d='M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z'/>
@@ -71,7 +121,8 @@
                                     </svg>";
                             }
                         }
-                        echo "</td><td>".$consommations[$i]['denomination']."</td><td>".$consommations[$i]['prix']."</td></td></tr>";
+                        echo "</td><td>".$consommations[$i]['denomination']."</td><td class='price'>".$consommations[$i]['prix']."</td></td>";
+                        echo "</tr>";
                     }
                     ?>
 
@@ -83,6 +134,7 @@
 </div>
 
 <script src="./js/panel-dropdown.js"></script>
+<script src="./js/menu.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

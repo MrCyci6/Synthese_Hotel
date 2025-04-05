@@ -1,5 +1,5 @@
     <div class="p-4 mt-3">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                     <div class="col-md-8">
                         <h1 class="py-3 fw-bold">Prix de nos chambres</h1>
@@ -34,26 +34,29 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="table-responsive">
-                        <table class="table table-white table-striped">
-                            <thead>
-                            <tr>
-                                <th>ID chambre</th>
-                                <th>Dénomination</th>
-                                <th>Prix</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    
+                    <div class="card p-4 border-0 bt-3 shadow">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <td class="text-secondary">#</td>
+                                        <td class="text-secondary">DÉNOMINATION</td>
+                                        <td class="text-secondary">PRIX</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <?php
-                            for ($i = 0; $i < $nbChambre; $i++) {
-                                $id=$i+1;
-                                echo "<tr><td>".$id."</td><td>".$infoChambre[$i]['chambre']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
-                            }
-                            ?>
+                                <?php
+                                for ($i = 0; $i < $nbChambre; $i++) {
+                                    $id=$i+1;
+                                    echo "<tr><td>".$id."</td><td>".$infoChambre[$i]['chambre']."</td><td>".$infoChambre[$i]['prix']."</td></td></tr>";
+                                }
+                                ?>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

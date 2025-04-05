@@ -82,23 +82,23 @@
                         </table>
                         <nav class="d-flex justify-content-center">
                             <ul class="pagination d-flex">
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $prevPage ?>">Précédent</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $prevPage ?><?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">Précédent</a></li>
                                 <li class="page-item"><a class="page-link">..</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=1">1</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=2">2</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=3">3</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=4">4</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=5">5</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=6">6</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=7">7</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=8">8</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=9">9</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10">10</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10">11</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=1<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">1</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=2<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">2</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=3<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">3</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=4<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">4</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=5<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">5</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=6<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">6</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=7<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">7</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=8<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">8</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=9<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">9</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">10</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=10<?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">11</a></li>
                                 <li class="page-item"><a class="page-link">..</a></li>
-                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $nextPage ?>">Suivant</a></li>
+                                <li class="page-item"><a class="page-link" href="users?hotel_id=<?= $hotelId ?>&page=<?= $nextPage ?><?= isset($_GET['search']) ? "&search=".$_GET['search'] : "" ?>">Suivant</a></li>
                             </ul>
-                        </nav>
+                        </nav>  
                     </div>
                 </div>
             </div>

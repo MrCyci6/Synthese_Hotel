@@ -23,8 +23,8 @@
     $sales = Hotel::getSales($hotelId);
 
     // Bookings
-    $reservations = Reservation::getReservationsByHotel($hotelId, "ORDER BY r.date_debut DESC LIMIT 3");
-    $consos = Conso::getConsos($hotelId, "ORDER BY cc.date_conso DESC LIMIT 3");
+    $reservations = Reservation::getReservations($hotelId, 3, 1);
+    $consos = Conso::getConsos($hotelId, 3, 1);
     
     // Logs
     $logs = Logs::getLogsByHotel($hotelId, "ORDER BY l.date DESC LIMIT 5");

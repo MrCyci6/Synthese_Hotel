@@ -24,8 +24,11 @@
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        static function modifyPrice($categorie,$classe,$prix) {
-            $statement = Database::preparedQuery("UPDATE prix_chambre SET prix=? where id_classe=? and id_categorie=?;", [$prix,$categorie, $classe]);
+        static function modifyPrice($categorie, $classe, $prix) {
+            $statement = Database::preparedQuery(
+                "UPDATE prix_chambre SET prix=? where id_classe=? and id_categorie=?;", 
+                [$prix, $categorie, $classe]
+            );
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }

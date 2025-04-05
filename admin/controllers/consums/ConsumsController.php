@@ -10,13 +10,23 @@
     require_once 'models/Hotel.php';
     require_once 'models/Conso.php';
 
-    $title = "Prix conso";
+    $title = "Gestion | Consommations";
     $selected = "consums";
 
     require_once 'controllers/base_init.php';
+    
+    // Table part
+    $tablePage = $_GET['page'] ?? 1;
+    $tableStep = CONSOS_LIST_STEP;
 
-    $consommations=Conso::getConsos($_GET['hotel_id'],"Order by cc.date_conso desc");
-    $nbConso=count($consommations);
+    if(isset($_GET['search'])) {
+        $consommations = Conso::searchConsos($_GET['search'], $hotelId, $tableStep, $tablePage);
+    } else {
+        $consommations = Conso::getConsos($hotelId, $tableStep, $tablePage);
+    }
+
+    $prevPage = $tablePage==1 ? 1 : $tablePage-1;
+    $nextPage = $tablePage+1;
 
     require 'views/dashboard_top.php';
     require 'views/consums/consums.php';

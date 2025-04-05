@@ -14,13 +14,18 @@
 
     require_once 'controllers/base_init.php';
 
-    $infoChambre=Chambre::getRoomsInfo($_GET['hotel_id']);
+    $infoChambre=Chambre::getRoomsInfo($hotelId);
     $nbChambre=count($infoChambre);
 
-    // Modify
     if(isset($_POST['id_chambre']) && isset($_POST['new_price'])){
-        Chambre::modifyPrice($infoChambre[$_POST['id_chambre']-1]['id_classe'],$infoChambre[$_POST['id_chambre']-1]['cate'], $_POST['new_price']);
-        $infoChambre=Chambre::getRoomsInfo($_GET['hotel_id']);
+        Chambre::modifyPrice(
+            $infoChambre[$_POST['id_chambre']-1]['id_classe'],
+            $infoChambre[$_POST['id_chambre']-1]['cate'], 
+            $_POST['new_price']
+        );
+
+        $infoChambre = Chambre::getRoomsInfo($hotelId);
+        $nbChambre = count($infoChambre);
     }
 
     require 'views/dashboard_top.php';
