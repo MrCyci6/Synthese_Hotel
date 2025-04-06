@@ -9,7 +9,7 @@
     $title = "Gestion | Activité";
     $selected = "logs"; 
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
     $tableStep = LOGS_LIST_STEP;
     $tablePage = $_GET['page'] ?? 1;

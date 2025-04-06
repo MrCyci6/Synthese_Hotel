@@ -11,9 +11,9 @@
     $title = "Gestion | Utilisateurs";
     $selected = "users";
     
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
-    if(!User::isAdmin($userId)) {
+    if(!User::isAdmin($userId) && !isset($hotels[$hotelId]["perms"][1])) {
         header('Location: choice');
         exit();
     }

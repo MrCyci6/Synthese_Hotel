@@ -83,7 +83,8 @@ create table Reservation
 	date_debut date not null,
 	date_fin date not null,
 	date_arrivee date,
-	paiement numeric(8,2),
+	due numeric(8,2) not null,
+	paiement numeric(8,2) not null,
 PRIMARY KEY(id_sejour),
 FOREIGN KEY (id_chambre) REFERENCES Chambre (id_chambre),
 FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE
@@ -129,14 +130,4 @@ CREATE TABLE Logs
 PRIMARY KEY (id_log),
 FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel),
 FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE
-);
-
-CREATE TABLE Discount
-(
-	id_discount SERIAL NOT NULL,
-	percent NUMERIC(5,2) NOT NULL,
-	max_utilisations INTEGER NOT NULL,
-	utilisations INTEGER NOT NULL,
-	expiration DATE NOT NULL,
-PRIMARY KEY (id_discount)
 );

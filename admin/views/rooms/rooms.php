@@ -47,6 +47,7 @@
                                     <td class="text-secondary">DÉBUT</td>
                                     <td class="text-secondary">FIN</td>
                                     <td class="text-secondary">STATUT</td>
+                                    <td class="text-secondary">PAIEMENT</td>
                                     <td class="text-secondary">MONTANT</td>
                                     <td class="text-secondary">ACTIONS</td>
                                 </tr>
@@ -68,7 +69,12 @@
                                         else if($reservation['now'] > $reservation['date_fin'])
                                             echo "<td><span class=\"badge bg-danger-subtle text-danger rounded-pill fw-medium\">Terminée</span></td>";
 
-                                        echo "<td>".$reservation['total']." €</td>
+                                        if($reservation['due'] <= $reservation['paiement'])
+                                            echo "<td><span class=\"badge bg-success-subtle text-success rounded-pill fw-medium\">Payé</span></td>";
+                                        else
+                                            echo "<td><span class=\"badge bg-danger-subtle text-danger rounded-pill fw-medium\">Impayé</span></td>";
+
+                                        echo "<td>".$reservation['due']." €</td>
                                             <td>
                                                 <a href=\"room?hotel_id=$hotelId&book_id=".$reservation['id_sejour']."\" class=\"text-primary text-decoration-none\">
                                                     <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pencil\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"/><path d=\"m15 5 4 4\"/></svg>

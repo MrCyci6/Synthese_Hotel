@@ -13,7 +13,7 @@
     $title = "Tableau de bord";
     $selected = "dashboard";
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
     // Stats
     $reservationsCount = Reservation::getReservationsCountByHotel($hotelId);
