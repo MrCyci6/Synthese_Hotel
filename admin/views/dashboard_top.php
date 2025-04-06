@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-bs-theme="<?= $userMode ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <script src="./js/darkmode.js"></script>
+
     <div class="sidebar d-flex flex-column border-end">
         <!-- Header -->
         <div class="container border-bottom d-flex justify-content-center align-items-center">
@@ -87,11 +89,16 @@
 
     <div class="content bg-body-tertiary">
         <!-- Header -->
-        <div class="topbar d-flex align-items-center justify-content-between px-4" style="background-color: white;">
+        <div class="topbar d-flex align-items-center justify-content-between px-4">
             <div class="container d-flex flex-column">    
                 <h5 class="mb-0"><?= $hotels[$hotelId]['name'] ?></h5>
                 <span class="text-secondary"><?= $hotels[$hotelId]['class'] ?></span>
-            </div>    
+            </div>
+            <div>
+                <span id="mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-star-icon lucide-moon-star"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+                </span>
+            </div>
             <div class="container d-flex justify-content-end">    
                 <span class="me-2"><?= $user['nom']." ".$user['prenom'];?></span>
                 <a href="logout"><svg style="color: rgb(75, 85, 99);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out h-5 w-5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg></a>
