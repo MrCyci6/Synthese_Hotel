@@ -67,8 +67,8 @@
                                             <td>".$_user['email']."</td>
                                             <td>".(
                                                 $_user['banned'] ? 
-                                                "<span class=\"badge rounded-pill bg-danger-subtle text-danger\">Banni</span>" : 
-                                                "<span class=\"badge rounded-pill bg-success-subtle text-success\">Non-Banni</span>"
+                                                "<span class=\"badge rounded-pill bg-danger-subtle text-danger fw-medium\">Banni</span>" : 
+                                                "<span class=\"badge rounded-pill bg-success-subtle text-success fw-medium\">Non-Banni</span>"
                                                 )."</td>
                                             <td>
                                                 <a title=\"Gérer\" href=\"user?hotel_id=".$hotelId."&user_id=".$_user['id_user']."\" class=\"text-decoration-none\">

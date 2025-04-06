@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container-fluid mt-4">
         <h2 class="mb-4">Modifier la Réservation</h2>
         <div class="card p-3 border-0 shadow">
             <form action="room">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Catégorie</label>
-                        <select name="categorie" class="form-select">
+                        <select class="form-select" disabled>
                             <?php
                                 foreach($categories as $categorie) {
                                     echo "<option value=\"".$categorie['id_categorie']."\" ".($categorie['id_categorie'] == $reservation['id_categorie'] ? "selected" : "").">".$categorie['categorie']."</option>";
@@ -55,7 +55,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Montant à payer</label>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" value="<?= $reservation['total'] ?>" disabled>
+                            <input type="number" class="form-control" value="<?= $reservation['due'] ?>" disabled>
                             <span class="input-group-text">€</span>
                         </div>
 
@@ -63,19 +63,13 @@
                     <div class="col-md-4">
                         <label class="form-label">Montant payé</label>
                         <div class="input-group mb-3">
-                            <input type="number" name="paiement" class="form-control" value="<?= $reservation['paiement'] ?? 0 ?>">
+                            <input type="number" step="0.01" name="paiement" class="form-control" value="<?= $reservation['paiement'] ?? 0 ?>">
                             <span class="input-group-text">€</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                        <div class="d-flex align-items-center gap-2">    
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-5 w-5"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
-                            <span>Supprimer</span>
-                        </div>
-                    </button>
+                <div class="d-flex justify-content-end">
                     <div>
                         <a href="rooms?hotel_id=<?= $hotelId ?>" class="btn btn-outline-secondary">Annuler</a>
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -83,33 +77,7 @@
                 </div>
             </form>
         </div>
-    </div>
-
-                    
-    <!-- Delete modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
-                <div class="modal-header border-0">
-                    <div class="modal-title d-flex align-items-center gap-2">
-                        <div class="bg-danger-subtle p-2 rounded-circle d-flex align-items-center">    
-                            <svg class="text-danger" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                        </div>
-                        <h1 class="fs-5">Supprimer la réservation</h1>
-                    </div>
-                </div>
-                <div class="modal-body border-0">
-                    <span>Êtes-vous sûr de vouloir supprimer cette réservation ?</span><br>
-                    <span>Cette action est irréversible.</span>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a href="rooms?action=delete&hotel_id=<?= $hotelId ?>&book_id=<?= $bookId?>" class="btn btn-danger">Supprimer la réservation</a>
-                </div>
-            </div>
-        </div>
-    </div>
-                    
+    </div>                  
 
 
     <script src="./js/panel-dropdown.js"></script>

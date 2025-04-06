@@ -82,11 +82,11 @@
                                         <div>";
 
                                     if($reservation['now'] < $reservation['date_debut'])
-                                        echo "<span class=\"badge rounded-pill bg-success-subtle text-success\">Confirmée</span>";
+                                        echo "<span class=\"badge fw-medium rounded-pill bg-success-subtle text-success\">Confirmée</span>";
                                     else if($reservation['now'] > $reservation['date_debut'] && $reservation['now'] < $reservation['date_fin'])
-                                        echo "<span class=\"badge rounded-pill bg-warning-subtle text-warning\">En cours</span>";
+                                        echo "<span class=\"badge fw-medium rounded-pill bg-warning-subtle text-warning\">En cours</span>";
                                     else if($reservation['now'] > $reservation['date_fin'])
-                                        echo "<span class=\"badge rounded-pill bg-danger-subtle text-danger\">Terminée</span>";
+                                        echo "<span class=\"badge fw-medium rounded-pill bg-danger-subtle text-danger\">Terminée</span>";
 
                                     echo "</div>
                                     </div>";

@@ -12,7 +12,7 @@
     $title = "Gestion | Prix Chambres";
     $selected = "rooms-price"; 
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
     $infoChambre=Chambre::getRoomsInfo($hotelId);
     $nbChambre=count($infoChambre);

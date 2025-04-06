@@ -9,7 +9,7 @@
     $title = "Gestion | Réservations";
     $selected = "rooms"; 
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
     $tableStep = ROOMS_LIST_STEP;
     $tablePage = $_GET['page'] ?? 1;

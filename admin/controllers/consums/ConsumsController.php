@@ -13,7 +13,7 @@
     $title = "Gestion | Consommations";
     $selected = "consums";
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
     
     // Table part
     $tablePage = $_GET['page'] ?? 1;

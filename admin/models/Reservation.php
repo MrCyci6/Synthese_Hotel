@@ -6,7 +6,7 @@
 
         static function getReservations(int $hotelId, int $limit, int $page) {
             $statement = Database::preparedQuery(
-                "SELECT r.id_sejour, ca.denomination as categorie, u.nom as nom_user, u.prenom as prenom_user, h.id_classe, pc.prix, r.date_debut, r.date_fin, (r.date_fin-r.date_debut)*pc.prix as total, NOW() as now FROM reservation r
+                "SELECT r.id_sejour, ca.denomination as categorie, u.nom as nom_user, u.prenom as prenom_user, h.id_classe, pc.prix, r.date_debut, r.date_fin, (r.date_fin-r.date_debut)*pc.prix as total, r.due, r.paiement, NOW() as now FROM reservation r
                 INNER JOIN chambre c ON c.id_chambre=r.id_chambre
                 INNER JOIN hotel h ON h.id_hotel=c.id_hotel
                 INNER JOIN prix_chambre pc ON pc.id_classe=h.id_classe AND pc.id_categorie=c.id_categorie
@@ -23,7 +23,7 @@
 
         static function getReservation(int $reservationId) {
             $statement = Database::preparedQuery(
-                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.id_categorie, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, (r.date_fin-r.date_debut)*pc.prix as total, paiement, NOW() now FROM reservation r
+                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.id_categorie, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, (r.date_fin-r.date_debut)*pc.prix as total, r.due, paiement, NOW() now FROM reservation r
                 INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
                 INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
                 INNER JOIN categorie ca ON ca.id_categorie=ch.id_categorie
@@ -39,7 +39,7 @@
 
         static function searchReservation(string $data, int $hotelId, int $limit, $page) {
             $statement = Database::preparedQuery(
-                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, pc.prix, (r.date_fin-r.date_debut)*pc.prix as total, NOW() now FROM reservation r
+                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, pc.prix, (r.date_fin-r.date_debut)*pc.prix as total, r.due, r.paiement, NOW() now FROM reservation r
                 INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
                 INNER JOIN categorie ca ON ca.id_categorie=ch.id_categorie
                 INNER JOIN users u ON u.id_user=r.id_user
@@ -102,10 +102,6 @@
             return $results;
         }
 
-        static function deleteReservation(int $bookId) {
-            Database::preparedQuery("DELETE FROM reservation WHERE id_sejour=?", [$bookId]);
-        }
-
         static function getCategories() {
             $statement = Database::preparedQuery(
                 "SELECT id_categorie, denomination as categorie FROM categorie;",
@@ -113,6 +109,27 @@
             );
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $result;
+        }
+
+        static function getPrice(int $bookId, $end, $start) {
+            $statement = Database::preparedQuery(
+                "SELECT (CAST(? as DATE)-CAST(? as DATE))*pc.prix as due FROM reservation r
+                INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
+                INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
+                INNER JOIN categorie ca ON ca.id_categorie=ch.id_categorie
+                INNER JOIN prix_chambre pc ON pc.id_classe=h.id_classe AND pc.id_categorie=ca.id_categorie
+                WHERE r.id_sejour=?;",
+                [$end, $start, $bookId]
+            );
+
+            return $statement->fetch()['due'];
+        }
+
+        static function modifyBook(int $bookId, $start, $end, $paiement) {
+            Database::preparedQuery(
+                "UPDATE reservation SET date_debut=?, date_fin=?, due=?, paiement=? WHERE id_sejour=?;",
+                [$start, $end, Reservation::getPrice($bookId, $end, $start), $paiement, $bookId]
+            );
         }
     }
 

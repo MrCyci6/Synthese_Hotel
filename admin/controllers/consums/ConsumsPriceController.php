@@ -13,7 +13,7 @@
     $title = "Gestion | Prix consommations";
     $selected = "consums-price";
 
-    require_once 'controllers/base_init.php';
+    require_once 'controllers/permsMiddleware.php';
 
     $consommations = Conso::getConsoAndPrice($hotelId);
     $nbConso = count($consommations);
