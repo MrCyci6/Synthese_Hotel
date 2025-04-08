@@ -13,6 +13,10 @@ ssh_host_*
 config.php
 livrables/*
 *.pdf
+.idea
+cmake-build-debug
+REQUESTS.md
+rapidjson
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

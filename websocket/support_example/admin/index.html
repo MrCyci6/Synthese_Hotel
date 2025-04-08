@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>TP n°4 - WebSockets</title>
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+          integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous">
+
+    <!-- JS Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
+            integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
+            integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Header -->
+<header class="container">
+    <h1>TP n°4 <small>WebSockets</small></h1>
+    <hr>
+</header>
+
+<!-- Chat -->
+<section id="chat" class="card p-5 mx-5">
+    <form id="chat-send" action="">
+        <textarea class="form-control" id="chat-room" readonly></textarea>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Message ></span>
+            <input name="input" id="input-com-add" type="text" class="form-control" placeholder="Entrez votre message">
+        </div>                          
+        <button id="button-com-add" class="btn btn-success" type="submit">Envoyer</button>
+    
+    </form>
+</section>
+
+<div id="rooms" class="card p-5 mx-5 mt-5 shadow d-flex justify-content-center align-item-center flex-column">
+</div>
+
+<script src="./js/support.js"></script>
+</body>
+</html>
