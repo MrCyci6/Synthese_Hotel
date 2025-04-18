@@ -89,6 +89,14 @@
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
         }
+
+        static function getReservEnCours(){
+            $statement = Database::preparedQuery("SELECT id_sejour 
+                                                    FROM Reservation 
+                                                    WHERE NOW() BETWEEN date_debut AND date_fin;",array());
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
     }
 
 ?>

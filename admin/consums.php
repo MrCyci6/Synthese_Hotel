@@ -9,6 +9,18 @@ require_once 'models/Conso.php';
 $consommations=Conso::getConsos($_GET['hotel_id'],"Order by cc.date_conso desc");
 $nbConso=count($consommations);
 
+$consommationsArray=Conso::getListConsos();
+$nbList=count($consommationsArray);
+
+$sejour=Reservation::getReservEnCours();
+$nbSejour=count($sejour);
+
+if (isset($_POST["menu"]) && isset($_POST["quantite"]) && isset($_POST["sejour"])){
+    Conso::AjoutConsoClient($_POST["sejour"],$_POST["menu"],$_POST["quantite"]);
+    $consommations=Conso::getConsos($_GET['hotel_id'],"Order by cc.date_conso desc");
+    $nbConso=count($consommations);
+}
+
 $title = "Récapitulatif des Consommations";
 $selected = "consums";
 

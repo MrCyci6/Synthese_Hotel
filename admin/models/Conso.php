@@ -3,6 +3,11 @@
     require_once 'models/Database.php';
 
     class Conso {
+        static function getListConsos(){
+            $statement = Database::preparedQuery("SELECT * FROM conso;",array());
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
         static function getConsoAndPrice(int $hotelId = -1) {
             $query = "SELECT  conso.denomination,prix_conso.id_conso as id,conso.id_conso,id_hotel,prix from prix_conso
                         join conso on conso.id_conso=prix_conso.id_conso
@@ -83,6 +88,12 @@
             $stmt = Database::preparedQuery(
                 "UPDATE prix_conso SET prix = :new_price WHERE id_conso = :id_conso and id_hotel=:id_hotel;",
                         array(":id_conso"=>$id_conso,':new_price'=>$new_price,":id_hotel"=>$hotel_id));
+        }
+
+        static function AjoutConsoClient($sejour,$id_conso,$quantite){
+            $stmt=Database::preparedQuery("INSERT INTO conso_client (id_conso, id_sejour, nombre, date_conso) 
+                                            VALUES (:id_conso, :id_sejour, :nombre, :date_conso)",
+                                            array(":id_conso"=>$id_conso,':id_sejour'=>$sejour,":nombre"=>$quantite,":date_conso"=>date("Y-m-d")));
         }
     }
 ?>
