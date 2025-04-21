@@ -5,18 +5,25 @@
                 <h1 class="py-3 fw-bold">Récapitulatif consommations</h1>
             </div>
         </div>
-        
+
         <div class="row g-4">
-   
+
             <!-- Search -->
-            <div class="card p-3 border-0 shadow">
-                <form method="GET">
-                    <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Chercher une consommation">
-                        <button type="submit" id="search" class="btn btn-outline-primary">Chercher</button>
-                    </div>
-                </form>
+            <div class="card p-3 border-0 shadow d-flex flex-row align-items-center justify-content-between">
+                <div class="w-75">
+                    <form method="GET">
+                        <input type="hidden" name="hotel_id" value="<?= $hotelId ?>">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Chercher une consommation">
+                            <button type="submit" id="search" class="btn btn-outline-primary">Chercher</button>
+                        </div>
+                    </form>
+                </div>
+                <div>  
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Ajouter Conso Client
+                    </button>
+                </div>
             </div>
     
             <div class="card p-4 border-0 bt-3 shadow">
@@ -70,6 +77,48 @@
                     </nav>  
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="">
+                <div class="modal-body">
+                    <div class="container">
+                        Dénomination :
+                        <select id="menu" name="menu">
+                            <?php
+                                foreach($allConsommations as $consommation){
+                                    echo "<option value='".$consommation["id_conso"]."'>".$consommation["denomination"]."</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <br><br>
+                    Quantité : <input type="number" step="1" name="quantite">
+                    <br><br>
+                    Numéro séjour :
+                    <select id="sejour" name="sejour">
+                        <?php
+                            foreach($allSejours as $sejour){
+                                echo "<option value='".$sejour['id_sejour']."'>".$sejour['id_sejour']."</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

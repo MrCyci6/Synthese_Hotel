@@ -3,6 +3,13 @@
     require_once 'models/Database.php';
 
     class Conso {
+        
+        static function getListConsos(){
+            $statement = Database::preparedQuery("SELECT * FROM conso;", array());
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
+
         static function getConsoAndPrice(int $hotelId = -1) {
             $query = "SELECT  conso.denomination,prix_conso.id_conso as id,conso.id_conso,id_hotel,prix from prix_conso
                         join conso on conso.id_conso=prix_conso.id_conso
@@ -91,7 +98,15 @@
             return $statement->fetch()['count'];
         }
 
-        static function ajoutConso($nom,$prix,int $hotelId = -1) {
+
+        static function AjoutConsoClient($sejour,$id_conso,$quantite){
+            $stmt=Database::preparedQuery(
+                "INSERT INTO conso_client (id_conso, id_sejour, nombre, date_conso) VALUES (:id_conso, :id_sejour, :nombre, :date_conso)",
+                array(":id_conso"=>$id_conso,':id_sejour'=>$sejour,":nombre"=>$quantite,":date_conso"=>date("Y-m-d"))
+            );
+        }
+
+        static function ajoutConso($nom, $prix, int $hotelId = -1) {
             $query = "INSERT INTO Conso (denomination) VALUES (:nom) RETURNING id_conso";
             $statement = Database::preparedQuery($query, array(':nom'=>$nom));
             $id_conso = $statement->fetchColumn();
