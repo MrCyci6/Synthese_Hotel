@@ -64,4 +64,10 @@ class Search {
 		$stmt = Database::preparedQuery($query, $params);
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public static function getHotelId() : array {
+		$query = "SELECT nom, id_hotel as id FROM hotel;";
+		$stmt = Database::preparedQuery($query, []);
+		return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+	}
 }
