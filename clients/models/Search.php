@@ -49,7 +49,7 @@ class Search {
 	}
 
 	public static function getAvailableRooms(int $hotelId, string $dateDebut, string $dateFin): array {
-		$query = "SELECT c.id_chambre, c.nom, c.capacite, c.prix 
+		$query = "SELECT c.id_chambre
               FROM chambre c
               WHERE c.id_hotel = :id_hotel
               AND c.id_chambre NOT IN (
