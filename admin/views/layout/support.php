@@ -26,9 +26,6 @@
             </div>
             <div id="rooms" class="card p-5 shadow d-flex justify-content-center align-item-center flex-column">
                 <a href="index.html?roomId=${roomId}" class="d-flex justify-content-between">
-                    <span>bencn-jeizb-5z54-jkb</span>
-                    <span>1 utilisateur(s)</span>
-                    <span>0 message(s)</span>
                 </a>
             </div>
         </div>

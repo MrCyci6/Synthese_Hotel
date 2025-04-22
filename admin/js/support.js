@@ -47,8 +47,8 @@ websocket.onmessage = (event) => {
             $('#rooms').html(
                 $('#rooms').html() + `<a href="support?hotel_id=${hotelId}&room_id=${roomId}" class="d-flex justify-content-between">
                     <span>${roomId}</span>
-                    <span>${room.senders.length} utilisateurs</span>
-                    <span>${room.messages.length} messages</span>
+                    <span>${room.senders.length} utilisateur(s)</span>
+                    <span>${room.messages.length} message(s)</span>
                 </a>`
             )
         }
