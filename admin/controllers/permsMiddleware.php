@@ -36,7 +36,8 @@
         "rooms-price" => [1, 4],
         "consums-price" => [1, 5],
         "consums" => [1, 3],
-        "logs" => [1, 7]
+        "logs" => [1, 7],
+        "support" => []
     ];
 
     if(isset($routePerms[$route]) && !User::isAdmin($userId)) {

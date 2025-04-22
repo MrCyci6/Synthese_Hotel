@@ -18,7 +18,8 @@
         "rooms-price" => "controllers/rooms/RoomsPriceController.php",
         "consums-price" => "controllers/consums/ConsumsPriceController.php",
         "consums" => "controllers/consums/ConsumsController.php",
-        "logs" => "controllers/layout/LogsController.php"
+        "logs" => "controllers/layout/LogsController.php",
+        "support" => "controllers/layout/SupportController.php"
     ];
 
     if(isset($routes[$route]))

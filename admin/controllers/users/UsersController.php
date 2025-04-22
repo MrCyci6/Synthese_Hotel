@@ -26,13 +26,6 @@
         }
     }
 
-    // Perms
-    $hotels = Perms::getFilteredPermissionsByUser($userId);
-    if(!isset($hotels[$hotelId])) {
-        header('Location: choice');
-        exit();
-    }  
-
     // Create
     if(isset($_GET['action']) && $_GET['action'] == "create") {
         if(isset($_GET['email']) && !empty($_GET['email'])) {
