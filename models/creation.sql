@@ -28,6 +28,7 @@ create table Hotel
 (
 	id_hotel SERIAL,
 	nom varchar(50) not null,
+    localisation varchar(50) not null,
 	id_classe int not null,
 PRIMARY KEY(id_hotel),
 FOREIGN KEY (id_classe) REFERENCES Classe (id_classe)

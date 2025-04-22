@@ -25,7 +25,7 @@
                 <path d="M10 22v-6.5m4 0V22"></path>
             </svg>
             <a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="#navbarNav">
-                LUXE
+                HOTEL 2 LUXE
                 <span class="fs-6">HOTELS & RESORTS</span>
             </a>
         </div>
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="#Bedroom">Nos chambres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Service">nos service</a>
+                    <a class="nav-link" href="#Service">Nos services</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-info" href="#Book-place">Reserver maintenant</a>
@@ -59,7 +59,7 @@
 
 <!-- Choix du type de service -->
 <header class="position-relative d-flex align-items-center justify-content-center text-center"
-        style="height: 90vh; background: url('Images/hotel-7885138_1280.jpg') center/cover no-repeat;">
+        style="height: 90vh; background: url('images/hotel-7885138_1280.jpg') center/cover no-repeat;">
 
     <div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
 

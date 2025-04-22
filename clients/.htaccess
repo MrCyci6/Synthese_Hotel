@@ -15,3 +15,6 @@ RewriteRule ^dashboard/?$ controllers/dashboard.php?page=dashboard&view=home [QS
 
 # Pour /search/hotel/{id}/dates/{dates}
 RewriteRule ^search/hotel/([^/]+)/dates/([^/]+)/?$ controllers/search.php?page=search&hotel=$1&dates=$2 [QSA,L]
+
+# Pour /info_hotel
+RewriteRule ^info_hotels/?$ controllers/info_hotels.php [QSA,L]
