@@ -58,171 +58,178 @@
 
 
 <!-- Choix du type de service -->
-<header class="position-relative d-flex align-items-center justify-content-center text-center"
-        style="height: 90vh; background: url('Images/hotel-7885138_1280.jpg') center/cover no-repeat;">
+<form method="post" action="info_chambre.php">
+    <header class="position-relative d-flex align-items-center justify-content-center text-center"
+            style="height: 90vh; background: url('Images/hotel-7885138_1280.jpg') center/cover no-repeat;">
 
-    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
 
-    <div class="position-relative text-white">
-        <h1 class="display-4 fw-bold">Bienvenue à l'hôtel LE LUXE</h1>
-        <p class="lead">Vous trouverez dans nos hôtels des offres alléchantes.</p>
+        <div class="position-relative text-white">
+            <h1 class="display-4 fw-bold">Bienvenue à l'hôtel LE LUXE</h1>
+            <p class="lead">Vous trouverez dans nos hôtels des offres alléchantes.</p>
 
-        <div class="bg-black p-3 rounded d-inline-flex flex-wrap gap-2" id="Book-place">
-            <!-- Liste des destinations -->
-            <div>
-                <label for="destination" class="form-label text-white">Destination</label>
-                <select id="destination" class="form-select form-select-sm" required>
-                    <option disabled selected>Où allez-vous ?</option>
-                    <?php
-                    $code="";
-                    for($i =0;$i<3;$i++){
-                       $code.=`<option value='$hotel_id_name[$i]['id']'>$hotel_id_name[$i]['nom']</option><br>`;
-                    }
-                    echo $code;
-                    ?>
-                </select>
-            </div>
+            <div class="bg-black p-3 rounded d-inline-flex flex-wrap gap-2" id="Book-place">
+                <!-- Liste des destinations -->
+                <div>
+                    <label for="destination" class="form-label text-white">Destination</label>
+                    <select id="destination" class="form-select form-select-sm"  name="hotel" required>
+                        <option disabled selected>Où allez-vous ?</option>
+                        <?php
+                        $code = '';
+                        foreach ($info_hotel as $hotel) {
+                            $id = htmlspecialchars($hotel['id']);
+                            $nom = htmlspecialchars($hotel['nom']);
+                            $code .= "<option value=\"$id\">$nom</option>";
+                        }
+                        echo $code;
+                        ?>
+                    </select>
+                </div>
 
-            <!-- Dates d'arrivée et de départ -->
-            <div>
-                <label for="date-arrivee" class="form-label text-white">Arrivée</label>
-                <input id="date-arrivee" type="date" class="form-control form-control-sm" required>
-            </div>
-            <div>
-                <label for="date-depart" class="form-label text-white">Départ</label>
-                <input id="date-depart" type="date" class="form-control form-control-sm" required>
-            </div>
-            <?php
+                <!-- Dates d'arrivée et de départ -->
+                <div>
+                    <label for="date-arrivee" class="form-label text-white">Arrivée</label>
+                    <input id="date-arrivee" type="date" name="arriver" class="form-control form-control-sm" required>
+                </div>
+                <div>
+                    <label for="date-depart" class="form-label text-white">Départ</label>
+                    <input id="date-depart" type="date" name="depart" class="form-control form-control-sm" required>
+                </div>
 
-            ?>
-            <!-- Nombre d'adultes -->
-            <div>
-                <label for="adults" class="form-label text-white">Nombres d'adultes</label>
-                <select id="adults" class="form-select form-select-sm" required>
-                    <option disabled selected>Choisir</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
 
-            <!-- Bouton de recherche -->
-            <div class="d-flex align-items-end">
-                <button class="btn btn-warning w-100">Rechercher</button>
+                <!-- Bouton de recherche -->
+                <div class="d-flex align-items-end">
+                    <button class="btn btn-warning w-100">Rechercher</button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
+</form>
 
-
-<!-- Les chambres disponibles -->
+<!-- Présentation de l'hôtel -->
 <section class="container text-center mt-5">
-    <h2>Available Accommodations</h2>
-    <p>Discover our carefully curated selection of luxury accommodations, each offering unique experiences and unparalleled comfort.</p>
+    <h2>APERÇU DE NOS HÔTELS</h2>
+    <p>Découvrez un aperçu de nos hôtels exceptionnels avec des vues sur les chambres, la réception et d'autres espaces.</p>
 </section>
-<!-- Les chambres disponibles -->
-<div class="container mt-5" id="Bedroom">
-    <div class="row justify-content-around">
 
-        <!-- Hôtel 1 -->
-
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel de luxe">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Le Prestige</h5>
-                    <p class="fw-bold">📍 Paris, France</p>
-                    <p class="card-text">🏨 Chambre: Deluxe</p>
-                    <p class="card-text">💰 Prix: 150€ par nuit</p>
-                    <p class="card-text">Un hôtel luxueux avec vue imprenable et service 5 étoiles.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hôtel 2 -->
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel moderne">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Élégance</h5>
-                    <p class="fw-bold">📍 Nice, France</p>
-                    <p class="card-text">🏨 Chambre: Supérieure</p>
-                    <p class="card-text">💰 Prix: 180€ par nuit</p>
-                    <p class="card-text">Un cadre idyllique avec un spa et une piscine privée.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hôtel 3 -->
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel romantique">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Belle Vue</h5>
-                    <p class="fw-bold">📍 Lyon, France</p>
-                    <p class="card-text">🏨 Chambre: Standard</p>
-                    <p class="card-text">💰 Prix: 120€ par nuit</p>
-                    <p class="card-text">Un hôtel charmant en plein cœur de la ville avec restaurant gastronomique.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+<!-- Carrousel d'images Bootstrap -->
+<!-- Hôtel 1 -->
 <div class="container mt-5">
-    <div class="row justify-content-around">
-
-        <!-- Hôtel 1 -->
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel de luxe">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Le Prestige</h5>
-                    <p class="fw-bold">📍 Paris, France</p>
-                    <p class="card-text">🏨 Chambre: Deluxe</p>
-                    <p class="card-text">💰 Prix: 150€ par nuit</p>
-                    <p class="card-text">Un hôtel luxueux avec vue imprenable et service 5 étoiles.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
+    <h2 class="text-center mb-3">Hôtel 1</h2>
+    <div id="hotelCarousel1" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Images/Hotel1/img1.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Chambre de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel1/img2.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Réception de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel1/img3.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel1/img4.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
             </div>
         </div>
-
-        <!-- Hôtel 2 -->
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel moderne">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Élégance</h5>
-                    <p class="fw-bold">📍 Nice, France</p>
-                    <p class="card-text">🏨 Chambre: Supérieure</p>
-                    <p class="card-text">💰 Prix: 180€ par nuit</p>
-                    <p class="card-text">Un cadre idyllique avec un spa et une piscine privée.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hôtel 3 -->
-        <div class="col-md-4 col-sm-12 mb-4">
-            <div class="card" style="width: 100%;">
-                <img src="Images/OIP.jpg" class="card-img-top" alt="Hôtel romantique">
-                <div class="card-body">
-                    <h5 class="card-title">Hôtel Belle Vue</h5>
-                    <p class="fw-bold">📍 Lyon, France</p>
-                    <p class="card-text">🏨 Chambre: Standard</p>
-                    <p class="card-text">💰 Prix: 120€ par nuit</p>
-                    <p class="card-text">Un hôtel charmant en plein cœur de la ville avec restaurant gastronomique.</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-
+        <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel1" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
     </div>
 </div>
+
+<!-- Hôtel 2 -->
+<div class="container mt-5">
+    <h2 class="text-center mb-3">Hôtel 2</h2>
+    <div id="hotelCarousel2" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Images/Hotel2/img1.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Chambre de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel2/img2.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Réception de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel2/img3.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel2/img4.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel2" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+</div>
+
+<!-- Hôtel 3 -->
+<div class="container mt-5">
+    <h2 class="text-center mb-3">Hôtel 3</h2>
+    <div id="hotelCarousel3" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Images/Hotel3/img1.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Chambre de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel3/img2.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Réception de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel3/img3.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel3/img4.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel3" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel3" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+</div>
+
+<!-- Hôtel 4 -->
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-3">Hôtel 4</h2>
+    <div id="hotelCarousel4" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Images/Hotel4/img1.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Chambre de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel4/img2.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Réception de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel4/img3.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Hotel4/img4.jpg" class="d-block w-100 img-fluid" style="height: 400px; object-fit: cover;" alt="Vue extérieure de l'hôtel">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel4" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel4" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+</div>
+
+
 <!-- services de restoration  -->
 <div class="container my-5" id="Service">
     <h2 class="text-center mb-4">Nos Services de Restauration</h2>
@@ -260,9 +267,8 @@
         </div>
     </div>
 </div>
-<?php
-echo $hotel_id_name[0]["hotel_nom"];
-?>
+
+
 <!-- Footer -->
 <footer class="text-center text-lg-start text-white" style="background-color: #2c3e50;">
     <div class="container d-flex justify-content-center py-4">
@@ -280,17 +286,12 @@ echo $hotel_id_name[0]["hotel_nom"];
         </a>
     </div>
 
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(43, 8, 219, 0.2);">
         © 2024 Luxe Hotels & Resorts. Tous droits réservés.
     </div>
 </footer>
-
-<?php
-   echo $hotel_id_name;
-?>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

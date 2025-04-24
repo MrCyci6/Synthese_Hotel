@@ -9,14 +9,5 @@ class Hotel{
     }
 
 }
-$tab = Hotel::getHotelIdName();
-
-echo $tab[4]['id'];
-
-
-
-
-
-
 
 ?>
