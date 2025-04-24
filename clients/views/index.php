@@ -30,7 +30,7 @@
             </a>
         </div>
 
-        <!-- Bouton burger pour mobile -->
+        <!-- Bouton burger-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="#Bedroom">Nos chambres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Service">nos service</a>
+                    <a class="nav-link" href="#Service">Nos services</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-info" href="#Book-place">Reserver maintenant</a>
