@@ -8,10 +8,14 @@ class Search {
 	 * @return array Liste des hôtels (id, nom et catégorie).
 	 */
 	public static function getHotelList(): array {
-		$query = "SELECT h.id_hotel, h.nom, cl.denomination AS categorie 
-                  FROM hotel h 
-                  JOIN classe cl ON h.id_classe = cl.id_classe 
-                  ORDER BY h.nom";
+		$query = "SELECT h.id_hotel, h.nom, h.localisation, cl.denomination AS categorie,
+                     MIN(prix_ch.prix) AS prix_min
+              FROM hotel h 
+              JOIN classe cl ON h.id_classe = cl.id_classe 
+              LEFT JOIN chambre ch ON ch.id_hotel = h.id_hotel
+              LEFT JOIN prix_chambre prix_ch ON ch.id_categorie = prix_ch.id_categorie
+              GROUP BY h.id_hotel, h.nom, h.localisation, cl.denomination
+              ORDER BY h.nom";
 		$stmt = Database::preparedQuery($query, []);
 		return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
 	}
@@ -67,6 +71,14 @@ class Search {
 
 	public static function getHotelId() : array {
 		$query = "SELECT nom, id_hotel as id FROM hotel;";
+		$stmt = Database::preparedQuery($query, []);
+		return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+	}
+
+	public static function getServices(): array {
+		$query = "SELECT id_service, nom, description, image_url 
+              FROM services 
+              ORDER BY nom";
 		$stmt = Database::preparedQuery($query, []);
 		return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
 	}

@@ -1,0 +1,55 @@
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#Bedroom .carousel-item {
+    padding: 20px;
+}
+#Bedroom .card {
+    margin: 0 auto;
+}
+#Bedroom .carousel-control-prev,
+#Bedroom .carousel-control-next {
+    width: 5%;
+    color: #000000;
+}
+#Bedroom .carousel-control-prev-icon,
+#Bedroom .carousel-control-next-icon {
+    background-image: none;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-color: #000000;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(90deg);
+}
+#Bedroom .carousel-control-prev-icon {
+    transform: rotate(-90deg);
+}
+
+#Service .card {
+    transition: transform 0.3s;
+}
+#Service .card:hover {
+    transform: translateY(-5px);
+}
+footer .btn-sm {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer h5 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+footer p {
+    color: #d1d1d1;
+}
+
+.card {
+    border-radius: 3.4375rem !important;
+    overflow: hidden;
+    transition: transform .3s ease-out;
+}

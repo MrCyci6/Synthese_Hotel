@@ -3,17 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>LUXE HOTELS</title>
+	<title>HÔTEL 2 LUXE</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../../styles/dashboard-global.css">
+	<link rel="stylesheet" href="../../styles/home.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 </head>
-<body class="bg-white text-dark">
+<body class="d-flex flex-column min-vh-100">
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 px-4" id="navBar">
 	<div class="container-fluid d-flex justify-content-between align-items-center">
@@ -31,8 +32,8 @@
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
 			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="#">
-				HOTEL 2 LUXE
-				<span class="fs-6">HOTELS & RESORTS</span>
+				HÔTEL 2 LUXE
+				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
 		</div>
 
@@ -48,13 +49,13 @@
 					<a class="nav-link active" aria-current="page" href="#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#Bedroom">Nos chambres</a>
+					<a class="nav-link" href="#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-info" href="#Book-place">Reserver maintenant</a>
+					<a class="btn btn-outline-info" href="#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="login" id="userDropdown" role="button" aria-expanded="false">
@@ -66,243 +67,177 @@
 	</div>
 </nav>
 
-
-
 <!-- Choix du type de service -->
 <header class="position-relative d-flex align-items-center justify-content-center text-center"
         style="height: 90vh; background: url('images/hotel-7885138_1280.jpg') center/cover no-repeat;">
-
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
-
 	<div class="position-relative text-white">
-		<h1 class="display-4 fw-bold">Bienvenue à l'hôtel LE LUXE</h1>
-		<p class="lead">Vous trouverez dans nos hôtels des offres alléchantes.</p>
-
-		<div class="bg-black p-3 rounded d-inline-flex flex-wrap gap-2" id="Book-place">
-			<!-- Liste des destinations -->
-			<div>
-				<label for="destination" class="form-label text-white">Destination</label>
-				<select id="destination" class="form-select form-select-sm" required>
-					<option disabled selected>Où allez-vous ?</option>
-					<?php
-					$code="";
-					for($i =0;$i<3;$i++){
-						$code.=`<option value='$hotel_id_name[$i]['id']'>$hotel_id_name[$i]['nom']</option><br>`;
-					}
-					echo $code;
-					?>
-				</select>
-			</div>
-
-			<!-- Dates d'arrivée et de départ -->
-			<div>
-				<label for="date-arrivee" class="form-label text-white">Arrivée</label>
-				<input id="date-arrivee" type="date" class="form-control form-control-sm" required>
-			</div>
-			<div>
-				<label for="date-depart" class="form-label text-white">Départ</label>
-				<input id="date-depart" type="date" class="form-control form-control-sm" required>
-			</div>
-			<?php
-
-			?>
-			<!-- Nombre d'adultes -->
-			<div>
-				<label for="adults" class="form-label text-white">Nombres d'adultes</label>
-				<select id="adults" class="form-select form-select-sm" required>
-					<option disabled selected>Choisir</option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-				</select>
-			</div>
-
-			<!-- Bouton de recherche -->
-			<div class="d-flex align-items-end">
-				<button class="btn btn-warning w-100">Rechercher</button>
-			</div>
+		<h1 class="display-4 fw-bold">Bienvenue à l'Hôtel 2 Luxe</h1>
+		<p class="lead">Découvrez des offres exceptionnelles dans nos hôtels de prestige.</p>
+		<div class="bg-black p-3 rounded" id="Book-place">
+			<form action="/info_chambre" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
+				<!-- Liste des destinations -->
+				<div class="flex-fill">
+					<label for="destination" class="form-label text-white">Destination</label>
+					<select id="destination" name="hotel" class="form-select form-select-sm" required>
+						<option disabled selected>Où allez-vous ?</option>
+						<?php foreach ($hotel_id_name as $hotel): ?>
+							<option value="<?= htmlspecialchars($hotel['id']) ?>"><?= htmlspecialchars($hotel['nom']) ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<!-- Dates d'arrivée et de départ -->
+				<div class="flex-fill">
+					<label for="date-arrivee" class="form-label text-white">Arrivée</label>
+					<input id="date-arrivee" name="arriver" type="date" class="form-control form-control-sm" required>
+				</div>
+				<div class="flex-fill">
+					<label for="date-depart" class="form-label text-white">Départ</label>
+					<input id="date-depart" name="depart" type="date" class="form-control form-control-sm" required>
+				</div>
+				<!-- Nombre d'adultes -->
+				<div class="flex-fill">
+					<label for="adults" class="form-label text-white">Nombre d'adultes</label>
+					<select id="adults" name="adults" class="form-select form-select-sm" required>
+						<option disabled selected>Choisir</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+				<!-- Bouton de recherche -->
+				<div class="flex-fill">
+					<button type="submit" class="btn btn-warning w-100">Rechercher</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </header>
 
+<?php if (isset($_GET['error'])): ?>
+	<div class="alert alert-danger text-center">
+		<?php
+		if ($_GET['error'] === 'invalid_dates') {
+			echo "La date d'arrivée doit être antérieure à la date de départ.";
+		} elseif ($_GET['error'] === 'missing_data') {
+			echo "Veuillez remplir tous les champs du formulaire.";
+		}
+		?>
+	</div>
+<?php endif; ?>
 
-<!-- Les chambres disponibles -->
-<section class="container text-center mt-5">
-	<h2>Available Accommodations</h2>
-	<p>Discover our carefully curated selection of luxury accommodations, each offering unique experiences and unparalleled comfort.</p>
+<!-- Nos hôtels -->
+<section class="container text-center mt-5" id="Bedroom-link">
+	<h2>Nos Hôtels Disponibles</h2>
+	<p>Découvrez notre sélection d'hôtels de luxe, chacun offrant des expériences uniques et un confort exceptionnel.</p>
 </section>
-<!-- Les chambres disponibles -->
 <div class="container mt-5" id="Bedroom">
-	<div class="row justify-content-around">
-
-		<!-- Hôtel 1 -->
-
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel de luxe">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Le Prestige</h5>
-					<p class="fw-bold">📍 Paris, France</p>
-					<p class="card-text">🏨 Chambre: Deluxe</p>
-					<p class="card-text">💰 Prix: 150€ par nuit</p>
-					<p class="card-text">Un hôtel luxueux avec vue imprenable et service 5 étoiles.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
+	<div id="hotelCarousel" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<?php foreach ($hotels as $index => $hotel): ?>
+				<div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+					<div class="d-flex justify-content-center">
+						<div class="card" style="max-width: 400px;">
+							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= htmlspecialchars($hotel['nom']) ?>">
+							<div class="card-body">
+								<h5 class="card-title"><?= htmlspecialchars($hotel['nom']) ?></h5>
+								<p class="fw-bold">📍 <?= htmlspecialchars($hotel['localisation'] ?? 'Non précisé') ?></p>
+								<p class="card-text">🏨 Catégorie : <?= htmlspecialchars($hotel['categorie']) ?></p>
+								<p class="card-text">💰 Prix : À partir de <?= htmlspecialchars($hotel['prix_min'] ?? '120') ?>€ par nuit</p>
+								<p class="card-text">Un hôtel de luxe offrant confort et services haut de gamme.</p>
+								<a href="/search/hotel/<?= $hotel['id_hotel'] ?>/dates/<?= date('Y-m-d') ?>_<?= date('Y-m-d', strtotime('+1 day')) ?>" class="btn btn-primary">Voir plus</a>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			<?php endforeach; ?>
 		</div>
-
-		<!-- Hôtel 2 -->
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel moderne">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Élégance</h5>
-					<p class="fw-bold">📍 Nice, France</p>
-					<p class="card-text">🏨 Chambre: Supérieure</p>
-					<p class="card-text">💰 Prix: 180€ par nuit</p>
-					<p class="card-text">Un cadre idyllique avec un spa et une piscine privée.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- Hôtel 3 -->
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel romantique">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Belle Vue</h5>
-					<p class="fw-bold">📍 Lyon, France</p>
-					<p class="card-text">🏨 Chambre: Standard</p>
-					<p class="card-text">💰 Prix: 120€ par nuit</p>
-					<p class="card-text">Un hôtel charmant en plein cœur de la ville avec restaurant gastronomique.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
-				</div>
-			</div>
-		</div>
-
+		<button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Précédent</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Suivant</span>
+		</button>
 	</div>
 </div>
-<div class="container mt-5">
-	<div class="row justify-content-around">
 
-		<!-- Hôtel 1 -->
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel de luxe">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Le Prestige</h5>
-					<p class="fw-bold">📍 Paris, France</p>
-					<p class="card-text">🏨 Chambre: Deluxe</p>
-					<p class="card-text">💰 Prix: 150€ par nuit</p>
-					<p class="card-text">Un hôtel luxueux avec vue imprenable et service 5 étoiles.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- Hôtel 2 -->
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel moderne">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Élégance</h5>
-					<p class="fw-bold">📍 Nice, France</p>
-					<p class="card-text">🏨 Chambre: Supérieure</p>
-					<p class="card-text">💰 Prix: 180€ par nuit</p>
-					<p class="card-text">Un cadre idyllique avec un spa et une piscine privée.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- Hôtel 3 -->
-		<div class="col-md-4 col-sm-12 mb-4">
-			<div class="card" style="width: 100%;">
-				<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel romantique">
-				<div class="card-body">
-					<h5 class="card-title">Hôtel Belle Vue</h5>
-					<p class="fw-bold">📍 Lyon, France</p>
-					<p class="card-text">🏨 Chambre: Standard</p>
-					<p class="card-text">💰 Prix: 120€ par nuit</p>
-					<p class="card-text">Un hôtel charmant en plein cœur de la ville avec restaurant gastronomique.</p>
-					<a href="#" class="btn btn-primary">Voir plus</a>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</div>
-<!-- services de restoration  -->
+<!-- Services de restauration -->
 <div class="container my-5" id="Service">
-	<h2 class="text-center mb-4">Nos Services de Restauration</h2>
-
-	<!-- Service 1 -->
-	<div class="row align-items-center mb-4">
-		<div class="col-md-6">
-			<img src="images/chef-2585791_1280.jpg" class="img-fluid rounded" alt="Chef cuisinier préparant un plat">
-		</div>
-		<div class="col-md-6">
-			<h4>Gastronomie Raffinée</h4>
-			<p>Découvrez une cuisine exquise préparée par nos chefs étoilés, avec des ingrédients frais et locaux.</p>
-		</div>
-	</div>
-
-	<!-- Service 2 -->
-	<div class="row align-items-center mb-4 flex-md-row-reverse">
-		<div class="col-md-6">
-			<img src="images/restaurant-449952_1280.jpg" class="img-fluid rounded" alt="Salle de restaurant élégante">
-		</div>
-		<div class="col-md-6">
-			<h4>Restaurant Élégant</h4>
-			<p>Profitez d’une ambiance luxueuse avec un service haut de gamme, idéal pour des dîners romantiques ou des repas d’affaires.</p>
-		</div>
-	</div>
-
-	<!-- Service 3 -->
-	<div class="row align-items-center mb-4">
-		<div class="col-md-6">
-			<img src="images/cafe-2265254_1280.jpg" class="img-fluid rounded" alt="Buffet petit-déjeuner">
-		</div>
-		<div class="col-md-6">
-			<h4>Petit-Déjeuner Gourmet</h4>
-			<p>Commencez votre journée avec un petit-déjeuner varié : viennoiseries, fruits frais, et options healthy.</p>
-		</div>
+	<h2 class="text-center mb-5">Nos Services de Restauration</h2>
+	<div class="row g-4">
+		<?php foreach ($services as $service): ?>
+			<div class="col-md-4 col-sm-12">
+				<div class="card h-100 shadow-sm">
+					<img src="<?= htmlspecialchars($service['image_url'] ?? 'images/placeholder.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['nom']) ?>">
+					<div class="card-body">
+						<h4 class="card-title"><?= htmlspecialchars($service['nom']) ?></h4>
+						<p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
+					</div>
+				</div>
+			</div>
+		<?php endforeach; ?>
 	</div>
 </div>
-<?php
-echo $hotel_id_name[0]["hotel_nom"];
-?>
-<!-- Footer -->
-<footer class="text-center text-lg-start text-white" style="background-color: #2c3e50;">
-	<div class="container d-flex justify-content-center py-4">
-		<a href="#" class="btn btn-outline-light btn-lg mx-2">
-			<i class="fab fa-facebook-f"></i>
-		</a>
-		<a href="#" class="btn btn-outline-light btn-lg mx-2">
-			<i class="fab fa-youtube"></i>
-		</a>
-		<a href="#" class="btn btn-outline-light btn-lg mx-2">
-			<i class="fab fa-instagram"></i>
-		</a>
-		<a href="#" class="btn btn-outline-light btn-lg mx-2">
-			<i class="fab fa-twitter"></i>
-		</a>
-	</div>
 
+<!-- Footer -->
+<footer class="text-center text-lg-start text-white pt-5 mt-auto" style="background-color: #2c3e50;">
+	<div class="container">
+		<div class="row">
+			<!-- Logo et description -->
+			<div class="col-md-4 mb-4">
+				<div class="d-flex align-items-center mb-3">
+					<svg class="text-primary me-2" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
+						<path d="m9 16 .348-.240c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
+						<path d="M8 7h.01"></path>
+						<path d="M16 7h.01"></path>
+						<path d="M12 7h.01"></path>
+						<path d="M12 11h.01"></path>
+						<path d="M16 11h.01"></path>
+						<path d="M8 11h.01"></path>
+						<path d="M10 22v-6.5m4 0V22"></path>
+					</svg>
+					<h5 class="mb-0">HÔTEL 2 LUXE</h5>
+				</div>
+				<p>Hôtel 2 Luxe offre une expérience inégalée dans des destinations prestigieuses.</p>
+			</div>
+			<!-- Liens sociaux -->
+			<div class="col-md-4 mb-4">
+				<h5>Suivez-nous</h5>
+				<div class="d-flex justify-content-center justify-content-md-start gap-3">
+					<!-- À remplacer par vos vrais liens -->
+					<a href="https://facebook.com" class="btn btn-outline-light btn-sm">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="https://youtube.com" class="btn btn-outline-light btn-sm">
+						<i class="fab fa-youtube"></i>
+					</a>
+					<a href="https://instagram.com" class="btn btn-outline-light btn-sm">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a href="https://twitter.com" class="btn btn-outline-light btn-sm">
+						<i class="fab fa-twitter"></i>
+					</a>
+				</div>
+			</div>
+			<!-- Contact -->
+			<div class="col-md-4 mb-4">
+				<h5>Contact</h5>
+				<p class="mb-1">Email: contact@luxehotels.com</p>
+				<p class="mb-1">Téléphone: +33 1 23 45 67 89</p>
+				<p>Adresse: 123 Rue du Luxe, Paris, France</p>
+			</div>
+		</div>
+	</div>
 	<!-- Copyright -->
-	<div class="text-center p-3" style="background-color: rgba(43, 8, 219, 0.2);">
-		© 2024 Luxe Hotels & Resorts. Tous droits réservés.
+	<div class="text-center py-3" style="background-color: rgba(0, 0, 0, 0.2);">
+		© 2024 Hôtel 2 Luxe. Tous droits réservés.
 	</div>
 </footer>
 
-<?php
-echo $hotel_id_name;
-?>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>

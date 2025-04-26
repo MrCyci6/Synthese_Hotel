@@ -18,3 +18,5 @@ RewriteRule ^search/hotel/([^/]+)/dates/([^/]+)/?$ controllers/search.php?page=s
 
 # Pour /info_hotel
 RewriteRule ^info_hotels/?$ controllers/info_hotels.php [QSA,L]
+
+RewriteRule ^info_chambre/?$ controllers/info_chambre.php [QSA,L]
