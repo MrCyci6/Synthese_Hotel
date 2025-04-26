@@ -48,8 +48,8 @@ void WebSocketServer::newConnection() {
 
     clientSocket = this->server->nextPendingConnection();
 
-    cout << "Client connect: " << clientSocket->peerAddress()
-        .toString().toStdString() << " (" << clientSocket << ")" << endl;
+    /*cout << "Client connect: " << clientSocket->peerAddress()
+        .toString().toStdString() << " (" << clientSocket << ")" << endl;*/
 
     connect(clientSocket, &QWebSocket::textMessageReceived, this, &WebSocketServer::messageReceived);
     connect(clientSocket, &QWebSocket::disconnected, this, &WebSocketServer::socketDisconnected);
