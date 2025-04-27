@@ -10,77 +10,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .section-title {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-        }
-        .card-body {
-            padding: 2rem;
-        }
-        .form-container {
-            background: #2c3e50;
-            border-radius: 10px;
-            padding: 2rem;
-            color: #fff;
-        }
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-            transition: border-color 0.3s;
-        }
-        .form-control:focus {
-            border-color: #ffc107;
-            box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
-        }
-        .btn-warning {
-            background-color: #ffc107;
-            border-color: #ffc107;
-            font-weight: 500;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn-warning:hover {
-            background-color: #e0a800;
-            border-color: #e0a800;
-        }
-        .alert {
-            border-radius: 5px;
-            margin-bottom: 2rem;
-        }
-        footer {
-            background-color: #2c3e50;
-            color: #fff;
-        }
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #ffc107;
-        }
-        @media (max-width: 576px) {
-            .form-container {
-                padding: 1.5rem;
-            }
-            .card-body {
-                padding: 1.5rem;
-            }
-        }
-	</style>
+	<link rel="stylesheet" href="../../styles/home.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 <!-- Nav Bar -->
@@ -98,7 +28,7 @@
 				<path d="M8 11h.01"></path>
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
-			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/info_hotels">
+			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
 				HÔTEL 2 LUXE
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
@@ -109,16 +39,16 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#navBar">Accueil</a>
+					<a class="nav-link" href="/home#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Bedroom-link">Nos hôtels</a>
+					<a class="nav-link" href="/home#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Service">Nos services</a>
+					<a class="nav-link" href="/home#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-warning" href="/info_hotels#Book-place">Réserver maintenant</a>
+					<a class="btn btn-outline-warning" href="/home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/login" id="userDropdown" role="button" aria-expanded="false">
@@ -145,7 +75,7 @@
 			} elseif ($data['error'] === 'Dates de réservation invalides.') {
 				echo "Les dates sélectionnées ne sont pas valides. Veuillez choisir des dates correctes.";
 			} else {
-				echo htmlspecialchars($data['error']);
+				echo ($data['error']);
 			}
 			?>
 		</div>
@@ -157,14 +87,14 @@
 			<h5 class="card-title">Résumé de la réservation</h5>
 			<div class="row g-3">
 				<div class="col-md-6">
-					<p class="card-text mb-2"><strong>Hôtel :</strong> <?= htmlspecialchars($data['hotel_nom'] ?? 'Hôtel inconnu') ?></p>
-					<p class="card-text mb-2"><strong>Catégorie :</strong> <?= htmlspecialchars($data['categorie'] ?? 'Non spécifié') ?></p>
-					<p class="card-text mb-2"><strong>Prix :</strong> <?= htmlspecialchars($data['prix'] ?? '0') ?> € par nuit</p>
+					<p class="card-text mb-2"><strong>Hôtel :</strong> <?= ($data['hotel_nom'] ?? 'Hôtel inconnu') ?></p>
+					<p class="card-text mb-2"><strong>Catégorie :</strong> <?= ($data['categorie'] ?? 'Non spécifié') ?></p>
+					<p class="card-text mb-2"><strong>Prix :</strong> <?= ($data['prix'] ?? '0') ?> € par nuit</p>
 				</div>
 				<div class="col-md-6">
-					<p class="card-text mb-2"><strong>Arrivée :</strong> <?= htmlspecialchars($data['arriver'] ?? 'Non spécifiée') ?></p>
-					<p class="card-text mb-2"><strong>Départ :</strong> <?= htmlspecialchars($data['depart'] ?? 'Non spécifié') ?></p>
-					<p class="card-text mb-2"><strong>Durée :</strong> <?= htmlspecialchars($data['duree'] ?? 'Non calculée') ?></p>
+					<p class="card-text mb-2"><strong>Arrivée :</strong> <?= ($data['date_arrive'] ?? 'Non spécifiée') ?></p>
+					<p class="card-text mb-2"><strong>Départ :</strong> <?= ($data['date_depart'] ?? 'Non spécifié') ?></p>
+					<p class="card-text mb-2"><strong>Durée :</strong> <?= ($data['duree'] ?? 'Non calculée') ?></p>
 				</div>
 			</div>
 		</div>
@@ -175,11 +105,11 @@
 		<h5 class="mb-4">Informations de paiement</h5>
 		<form action="/confirm_reservation" method="POST" class="row g-3">
 			<!-- Champs cachés -->
-			<input type="hidden" name="hotel_id" value="<?= htmlspecialchars($data['hotel_id'] ?? ($_GET['hotel'] ?? '')) ?>">
-			<input type="hidden" name="categorie" value="<?= htmlspecialchars($data['categorie'] ?? ($_GET['categorie'] ?? '')) ?>">
-			<input type="hidden" name="prix" value="<?= htmlspecialchars($data['prix'] ?? ($_GET['prix'] ?? '')) ?>">
-			<input type="hidden" name="date_arrive" value="<?= htmlspecialchars($data['arriver'] ?? ($_GET['arriver'] ?? '')) ?>">
-			<input type="hidden" name="date_depart" value="<?= htmlspecialchars($data['depart'] ?? ($_GET['depart'] ?? '')) ?>">
+			<input type="hidden" name="hotel_id" value="<?= ($data['hotel_id'] ?? '') ?>">
+			<input type="hidden" name="categorie" value="<?= ($data['categorie'] ?? '') ?>">
+			<input type="hidden" name="prix" value="<?= ($data['prix'] ?? '') ?>">
+			<input type="hidden" name="date_arrive" value="<?= ($data['date_arrive'] ?? '') ?>">
+			<input type="hidden" name="date_depart" value="<?= ($data['date_depart'] ?? '') ?>">
 
 			<!-- Informations de paiement (fictif) -->
 			<div class="col-12">

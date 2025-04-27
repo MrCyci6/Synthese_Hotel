@@ -6,6 +6,6 @@
         exit();
     }
 */
-    header('Location: info_hotels');
+    header('Location: home');
     exit();
 

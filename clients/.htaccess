@@ -17,11 +17,11 @@ RewriteRule ^dashboard/?$ controllers/dashboard.php?page=dashboard&view=home [QS
 RewriteRule ^search/hotel/([^/]+)/dates/([^/]+)/?$ controllers/search.php?page=search&hotel=$1&dates=$2 [QSA,L]
 
 # Pour /info_hotel
-RewriteRule ^info_hotels/?$ controllers/info_hotels.php [QSA,L]
+RewriteRule ^home/?$ controllers/home.php [QSA,L]
 
 RewriteRule ^search_rooms/?$ controllers/search_rooms.php [QSA,L]
 
-RewriteRule ^reservation$ controllers/confirm_reservation.php [L,NC]
+RewriteRule ^reservation$ controllers/reservation.php [L]
 
 RewriteRule ^confirm_reservation$ controllers/confirm_reservation.php [L,NC]
 

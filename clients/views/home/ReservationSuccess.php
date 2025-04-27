@@ -15,10 +15,10 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 <!-- Nav Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 px-4" id="navBar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 px-4">
 	<div class="container-fluid d-flex justify-content-between align-items-center">
 		<div class="d-flex align-items-center">
-			<svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
 				<path d="m9 16 .348-.240c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
 				<path d="M8 7h.01"></path>
@@ -29,7 +29,7 @@
 				<path d="M8 11h.01"></path>
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
-			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/info_hotels">
+			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
 				HÔTEL 2 LUXE
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
@@ -40,16 +40,16 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#navBar">Accueil</a>
+					<a class="nav-link" href="/home#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Bedroom-link">Nos hôtels</a>
+					<a class="nav-link" href="/home#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Service">Nos services</a>
+					<a class="nav-link" href="/home#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-info" href="/info_hotels#Book-place">Réserver maintenant</a>
+					<a class="btn btn-outline-warning" href="/home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/login" id="userDropdown" role="button" aria-expanded="false">

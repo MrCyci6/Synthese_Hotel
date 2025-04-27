@@ -30,7 +30,7 @@
 				<path d="M8 11h.01"></path>
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
-			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/info_hotels">
+			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
 				HÔTEL 2 LUXE
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
@@ -41,16 +41,16 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#navBar">Accueil</a>
+					<a class="nav-link" href="/home#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Bedroom-link">Nos hôtels</a>
+					<a class="nav-link" href="/home#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/info_hotels#Service">Nos services</a>
+					<a class="nav-link" href="/home#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-warning" href="/info_hotels#Book-place">Réserver maintenant</a>
+					<a class="btn btn-outline-warning" href="/home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/login" id="userDropdown" role="button" aria-expanded="false">
@@ -61,10 +61,10 @@
 		</div>
 	</div>
 </nav>
+
 <!-- Choix du type de service -->
-<header class="position-relative d-flex align-items-center justify-content-center text-center"
-        style="height: 90vh; background: url('images/hotel-7885138_1280.jpg') center/cover no-repeat;">
-	<div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
+<header class="position-relative d-flex align-items-center justify-content-center text-center header-hero">
+	<div class="position-absolute top-0 start-0 w-100 h-100 header-overlay"></div>
 	<div class="position-relative text-white">
 		<h1 class="display-4 fw-bold">Bienvenue à l'Hôtel 2 Luxe</h1>
 		<p class="lead">Découvrez des offres exceptionnelles dans nos hôtels de prestige.</p>
@@ -76,18 +76,18 @@
 					<select id="destination" name="hotel" class="form-select form-select-sm" required>
 						<option disabled selected>Où allez-vous ?</option>
 						<?php foreach ($hotel_id_name as $hotel): ?>
-							<option value="<?= htmlspecialchars($hotel['id']) ?>"><?= htmlspecialchars($hotel['nom']) ?></option>
+							<option value="<?= $hotel['id'] ?>"><?= $hotel['nom'] ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
 				<!-- Dates d'arrivée et de départ -->
 				<div class="flex-fill">
 					<label for="date-arrivee" class="form-label text-white">Arrivée</label>
-					<input id="date-arrivee" name="arriver" type="date" class="form-control form-control-sm" required>
+					<input id="date-arrivee" name="date_arrive" type="text" class="form-control form-control-sm date-picker" placeholder="Sélectionnez une date" required>
 				</div>
 				<div class="flex-fill">
 					<label for="date-depart" class="form-label text-white">Départ</label>
-					<input id="date-depart" name="depart" type="date" class="form-control form-control-sm" required>
+					<input id="date-depart" name="date_depart" type="text" class="form-control form-control-sm date-picker" placeholder="Sélectionnez une date" required>
 				</div>
 				<!-- Bouton de recherche -->
 				<div class="flex-fill">
@@ -99,20 +99,42 @@
 </header>
 
 <?php if (isset($_GET['error'])): ?>
-	<div class="alert alert-danger text-center">
-		<?php
-		if ($_GET['error'] === 'invalid_dates') {
-			echo "La date d'arrivée doit être antérieure à la date de départ.";
-		} elseif ($_GET['error'] === 'missing_data') {
-			echo "Veuillez remplir tous les champs du formulaire.";
-		}
-		?>
+	<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content error-modal">
+				<div class="modal-header">
+					<h5 class="modal-title" id="errorModalLabel">Erreur</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<?php
+					if ($_GET['error'] === 'invalid_dates') {
+						echo "La date d'arrivée doit être antérieure à la date de départ.";
+					} elseif ($_GET['error'] === 'missing_data') {
+						echo "Veuillez remplir tous les champs du formulaire.";
+					}
+					?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script>
+		// https://getbootstrap.com/docs/5.0/components/modal/#via-javascript
+		document.addEventListener('DOMContentLoaded', function () {
+			let errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {
+				backdrop: 'static',
+				keyboard: false
+			});
+			errorModal.show();
+		});
+	</script>
 <?php endif; ?>
 
+
 <!-- Nos hôtels -->
-
-
 <section class="container text-center mt-5" id="Bedroom-link">
 	<h2 class="section-title">Nos Hôtels Disponibles</h2>
 	<p>Découvrez notre sélection d'hôtels de luxe, chacun offrant des expériences uniques et un confort exceptionnel.</p>
@@ -124,12 +146,12 @@
 				<div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
 					<div class="d-flex justify-content-center">
 						<div class="card" style="max-width: 400px;">
-							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= htmlspecialchars($hotel['nom']) ?>">
+							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
 							<div class="card-body">
-								<h5 class="card-title"><?= htmlspecialchars($hotel['nom']) ?></h5>
-								<p class="fw-bold">📍 <?= htmlspecialchars($hotel['localisation'] ?? 'Non précisé') ?></p>
-								<p class="card-text">🏨 Catégorie : <?= htmlspecialchars($hotel['categorie']) ?></p>
-								<p class="card-text">💰 Prix : À partir de <?= htmlspecialchars($hotel['prix_min'] ?? '120') ?>€ par nuit</p>
+								<h5 class="card-title"><?= $hotel['nom'] ?></h5>
+								<p class="fw-bold">📍 <?= $hotel['localisation'] ?? 'Non précisé'?></p>
+								<p class="card-text">🏨 Catégorie : <?= ($hotel['categorie']) ?></p>
+								<p class="card-text">💰 Prix : À partir de <?= ($hotel['prix_min'] ?? '120') ?>€ par nuit</p>
 								<p class="card-text">Un hôtel de luxe offrant confort et services haut de gamme.</p>
 								<a href="/search/hotel/<?= $hotel['id_hotel'] ?>/dates/<?= date('Y-m-d') ?>_<?= date('Y-m-d', strtotime('+1 day')) ?>" class="btn btn-primary">Voir plus</a>
 							</div>
@@ -156,10 +178,10 @@
 		<?php foreach ($services as $service): ?>
 			<div class="col-md-4 col-sm-12">
 				<div class="card h-100 shadow-sm">
-					<img src="<?= htmlspecialchars($service['image_url'] ?? 'images/placeholder.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['nom']) ?>">
+					<img src="<?= ($service['image_url'] ?? 'images/placeholder.jpg') ?>" class="card-img-top" alt="<?= ($service['nom']) ?>">
 					<div class="card-body">
-						<h4 class="card-title"><?= htmlspecialchars($service['nom']) ?></h4>
-						<p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
+						<h4 class="card-title"><?= ($service['nom']) ?></h4>
+						<p class="card-text"><?= ($service['description']) ?></p>
 					</div>
 				</div>
 			</div>
@@ -224,5 +246,36 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		// Initialisation du calendrier pour la date d'arrivée
+		const arriveePicker = flatpickr('#date-arrivee', {
+			dateFormat: 'Y-m-d', // Format de date compatible avec le serveur
+			minDate: 'today', // Pas de dates antérieures à aujourd'hui
+			locale: 'fr', // Localisation française
+			onChange: function(selectedDates, dateStr, instance) {
+				// Mettre à jour la date minimum du départ
+				if (selectedDates.length > 0) {
+					departPicker.set('minDate', new Date(selectedDates[0].getTime() + 24 * 60 * 60 * 1000));
+				}
+			}
+		});
+
+		// Initialisation du calendrier pour la date de départ
+		const departPicker = flatpickr('#date-depart', {
+			dateFormat: 'Y-m-d',
+			minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000), // Minimum demain
+			locale: 'fr',
+			onChange: function(selectedDates, dateStr, instance) {
+				// Optionnel : Forcer l'arrivée à être avant le départ
+				if (selectedDates.length > 0) {
+					arriveePicker.set('maxDate', new Date(selectedDates[0].getTime() - 24 * 60 * 60 * 1000));
+				}
+			}
+		});
+	});
+</script>
 </body>
 </html>
