@@ -75,7 +75,7 @@
 		<h1 class="display-4 fw-bold">Bienvenue à l'Hôtel 2 Luxe</h1>
 		<p class="lead">Découvrez des offres exceptionnelles dans nos hôtels de prestige.</p>
 		<div class="bg-black p-3 rounded" id="Book-place">
-			<form action="/info_chambre" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
+			<form action="/search_rooms" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
 				<!-- Liste des destinations -->
 				<div class="flex-fill">
 					<label for="destination" class="form-label text-white">Destination</label>
@@ -94,17 +94,6 @@
 				<div class="flex-fill">
 					<label for="date-depart" class="form-label text-white">Départ</label>
 					<input id="date-depart" name="depart" type="date" class="form-control form-control-sm" required>
-				</div>
-				<!-- Nombre d'adultes -->
-				<div class="flex-fill">
-					<label for="adults" class="form-label text-white">Nombre d'adultes</label>
-					<select id="adults" name="adults" class="form-select form-select-sm" required>
-						<option disabled selected>Choisir</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-					</select>
 				</div>
 				<!-- Bouton de recherche -->
 				<div class="flex-fill">

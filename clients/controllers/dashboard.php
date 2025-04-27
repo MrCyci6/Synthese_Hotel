@@ -57,7 +57,7 @@ if ($page === 'dashboard') {
 		case 'home':
 		default:
 			$pageTitle = "Tableau de bord";
-			$viewFile = 'home.php';
+			$viewFile = 'Home.php';
 			$view = 'home';
 			$clientId = $_SESSION['client_id']['id'];
 			$daysLeft = Reservation::getDaysLeftInCurrentStay($clientId);

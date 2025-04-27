@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Confirmation de réservation - HÔTELS DE LUXE</title>
+	<title>Chambres disponibles - HÔTELS DE LUXE</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -65,60 +65,67 @@
 	</div>
 </nav>
 
-<!-- Formulaire de réservation -->
+<!-- Formulaire de recherche -->
 <section class="container py-5">
-	<h1 class="text-center mb-5">Confirmation de votre réservation</h1>
+	<h1 class="text-center mb-5">Chambres disponibles à <?= $chambres[$id_hotel]['hotel_nom'] ?></h1>
+	<div class="bg-black p-3 rounded mb-5">
+		<form action="/search_rooms" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
+			<!-- Hôtel (caché, car déjà sélectionné) -->
+			<input type="hidden" name="hotel" value="<?= $chambres['form_data']['id_hotel'] ?>">
+			<!-- Dates d'arrivée et de départ -->
+			<div class="flex-fill">
+				<label for="date-arrivee" class="form-label text-white">Arrivée</label>
+				<input id="date-arrivee" name="arriver" type="date" class="form-control form-control-sm" value="<?= htmlspecialchars($chambres['form_data']['date_arrive']) ?>" required>
+			</div>
+			<div class="flex-fill">
+				<label for="date-depart" class="form-label text-white">Départ</label>
+				<input id="date-depart" name="depart" type="date" class="form-control form-control-sm" value="<?= htmlspecialchars($chambres['form_data']['date_depart']) ?>" required>
+			</div>
+			<!-- Bouton de recherche -->
+			<div class="flex-fill">
+				<button type="submit" class="btn btn-warning w-100">Rechercher</button>
+			</div>
+		</form>
+	</div>
 
 	<!-- Affichage des erreurs -->
-	<?php if (isset($data['error']) && $data['error'] === 'login_required'): ?>
+	<?php if (isset($_GET['error'])): ?>
 		<div class="alert alert-danger text-center">
-			Vous devez être connecté pour réserver. Veuillez vous connecter ou créer un compte.
+			<?php
+			if ($_GET['error'] === 'invalid_dates') {
+				echo "La date d'arrivée doit être antérieure à la date de départ.";
+			} elseif ($_GET['error'] === 'missing_data') {
+				echo "Veuillez remplir tous les champs du formulaire.";
+			}
+			?>
 		</div>
 	<?php endif; ?>
 
-	<!-- Résumé de la réservation -->
-	<div class="card mb-5">
-		<div class="card-body">
-			<h5 class="card-title">Résumé de la réservation</h5>
-			<p class="card-text">
-				<strong>Hôtel :</strong> <?= htmlspecialchars($data['hotel_nom']) ?><br>
-				<strong>Catégorie :</strong> <?= htmlspecialchars($data['categorie']) ?><br>
-				<strong>Prix :</strong> <?= htmlspecialchars($data['prix']) ?> € par nuit<br>
-				<strong>Arrivée :</strong> <?= htmlspecialchars($data['arriver']) ?><br>
-				<strong>Départ :</strong> <?= htmlspecialchars($data['depart']) ?><br>
-				<strong>Durée :</strong> <?= htmlspecialchars($data['duree']) ?>
-			</p>
-		</div>
-	</div>
-
-	<!-- Formulaire client -->
-	<div class="bg-black p-3 rounded">
-		<form action="/confirm_reservation" method="POST" class="row g-3">
-			<!-- Champs cachés -->
-			<input type="hidden" name="hotel_id" value="<?= htmlspecialchars($_GET['hotel'] ?? '') ?>">
-			<input type="hidden" name="categorie" value="<?= htmlspecialchars($_GET['categorie'] ?? '') ?>">
-			<input type="hidden" name="prix" value="<?= htmlspecialchars($_GET['prix'] ?? '') ?>">
-			<input type="hidden" name="date_arrive" value="<?= htmlspecialchars($_GET['arriver'] ?? '') ?>">
-			<input type="hidden" name="date_depart" value="<?= htmlspecialchars($_GET['depart'] ?? '') ?>">
-
-			<!-- Informations de paiement (fictif) -->
+	<!-- Chambres disponibles -->
+	<div class="row g-4">
+		<?php if (empty($chambres) || count($chambres) === 1): ?>
 			<div class="col-12">
-				<label for="carte" class="form-label text-white">Numéro de carte (fictif)</label>
-				<input type="text" class="form-control" id="carte" name="carte" placeholder="1234 5678 9012 3456" required>
+				<div class="alert alert-warning text-center">
+					Aucune chambre disponible pour ces dates.
+				</div>
 			</div>
-			<div class="col-md-6">
-				<label for="expiration" class="form-label text-white">Date d'expiration</label>
-				<input type="text" class="form-control" id="expiration" name="expiration" placeholder="MM/AA" required>
-			</div>
-			<div class="col-md-6">
-				<label for="cvv" class="form-label text-white">CVV</label>
-				<input type="text" class="form-control" id="cvv" name="cvv" placeholder="123" required>
-			</div>
-			<!-- Bouton de soumission -->
-			<div class="col-12">
-				<button type="submit" class="btn btn-warning w-100">Confirmer la réservation</button>
-			</div>
-		</form>
+		<?php else: ?>
+			<?php foreach ($chambres as $chambre): ?>
+				<?php if (!is_array($chambre) || !isset($chambre['categorie_nom'])) continue; ?>
+				<div class="col-md-4 col-sm-12">
+					<div class="card h-100 shadow-sm">
+						<img src="<?= $chambre['image_url'] ?? 'images/placeholder.jpg' ?>" class="card-img-top" alt="Chambre <?= $chambre['categorie_nom'] ?>">
+						<div class="card-body">
+							<h5 class="card-title"><?= $chambre['categorie_nom'] ?></h5>
+							<p class="card-text">
+								<strong>Prix :</strong> <?= $chambre['prix'] ?> € par nuit<br>
+								<strong>Disponibilité :</strong> <?= $chambre['chambres_disponibles'] ?> chambre(s)
+							</p>
+							<a href="/reservation?hotel=<?= htmlspecialchars($chambres['form_data']['id_hotel']) ?>&categorie=<?= urlencode($chambre['categorie_nom']) ?>&prix=<?= htmlspecialchars($chambre['prix']) ?>&arriver=<?= htmlspecialchars($chambres['form_data']['date_arrive']) ?>&depart=<?= htmlspecialchars($chambres['form_data']['date_depart']) ?>" class="btn btn-primary">Réserver</a>						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		<?php endif; ?>
 	</div>
 </section>
 

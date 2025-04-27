@@ -4,7 +4,7 @@
 
     require_once 'models/User.php';
     require_once 'models/Perms.php';
-    require_once 'models/Reservation.php';
+    require_once 'models/RoomSelection.php';
 
     $title = "Gestion | Réservations";
     $selected = "rooms"; 

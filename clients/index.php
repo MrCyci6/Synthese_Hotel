@@ -2,7 +2,7 @@
     session_start();
 /*
     if (isset($_SESSION['client_id'])) {
-        header('Location: views/home.php');
+        header('Location: views/Home.php');
         exit();
     }
 */

@@ -7,5 +7,5 @@ $hotels = Search::getHotelList();
 
 $services = Search::getServices();
 
-require __DIR__ . '/../views/home/home.php';
+require __DIR__ . '/../views/home/Home.php';
 ?>

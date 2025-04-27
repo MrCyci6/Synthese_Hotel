@@ -15,7 +15,8 @@
 					<div class="card-body">
 						<h2 class="card-title text-center mb-4">Connexion</h2>
 						<?php if (!empty($error)) echo "<p class='text-danger'>$error</p>"; ?>
-						<form action="../../controllers/login.php" method="POST" id="login-form" autocomplete="off">
+						<form action="/login" method="POST" id="login-form" autocomplete="off">
+							<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? ''?>"> <!-- Champ caché pour la redirection -->
 							<div class="mb-3">
 								<label for="email" class="form-label">Email :</label>
 								<input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com" required>

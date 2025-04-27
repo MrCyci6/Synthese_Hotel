@@ -5,7 +5,7 @@
 
     require_once 'models/Logs.php';
     require_once 'models/Perms.php';
-    require_once 'models/Reservation.php';
+    require_once 'models/RoomSelection.php';
     require_once 'models/User.php';
     require_once 'models/Hotel.php';
     require_once 'models/Conso.php';
