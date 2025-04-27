@@ -4,16 +4,17 @@
     Session::start();
 
     require_once '../models/User.php';
-    require_once '../models/Reservation.php';
-    require_once '../models/Conso.php';
 
     if(!Session::isUserLogged()) {
         header('Location: login');
         exit();
     }
 
-    $pageTitle = "Mes notifications";
+    $userId = $_SESSION['userId'];
+    $user = User::getUser($userId);
+
+    $pageTitle = "Assistance";
 
     require_once 'views/dashboard/layout.php';
-    require_once 'views/dashboard/notifications.php';
+    require_once 'views/dashboard/ticket.php';
 ?>

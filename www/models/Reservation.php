@@ -3,6 +3,85 @@
     require_once '../models/Database.php';
 
     class Reservation {
+
+        public static function createReservationWithTransaction(int $userId, int $hotelId, string $categorie, string $dateDebut, string $dateFin, float $paiement) {
+            $db = Database::getConnection();
+            $db->beginTransaction();
+            try {
+                // Récupérer l'ID de la catégorie
+                $query = "SELECT id_categorie FROM categorie WHERE denomination = :denomination LIMIT 1";
+                $stmt = $db->prepare($query);
+                $stmt->execute([':denomination' => $categorie]);
+                $categorie_row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                if (!$categorie_row) {
+                    throw new Exception('Catégorie de chambre invalide.');
+                }
+                $categorie_id = $categorie_row['id_categorie'];
+    
+                // Rechercher une chambre disponible
+                $query = "
+                    SELECT c.id_chambre 
+                    FROM chambre c
+                    WHERE c.id_hotel = :id_hotel 
+                      AND c.id_categorie = :id_categorie
+                      AND NOT EXISTS (
+                        SELECT 1 
+                        FROM reservation r
+                        WHERE r.id_chambre = c.id_chambre
+                          AND (r.date_debut <= :date_fin AND r.date_fin >= :date_debut)
+                      )
+                    LIMIT 1 FOR UPDATE
+                ";
+                $stmt = $db->prepare($query);
+                $stmt->execute([
+                    ':id_hotel' => $hotelId,
+                    ':id_categorie' => $categorie_id,
+                    ':date_debut' => $dateDebut,
+                    ':date_fin' => $dateFin
+                ]);
+                $chambre = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                if (!$chambre) {
+                    throw new Exception('Aucune chambre disponible pour cette catégorie dans cet hôtel pour les dates sélectionnées.');
+                }
+    
+                $chambre_id = $chambre['id_chambre'];
+    
+                // Créer la réservation
+                $query = "
+                    INSERT INTO reservation 
+                    (id_chambre, id_user, date_debut, date_fin, date_arrivee, paiement, due)
+                    VALUES (:id_chambre, :id_user, :date_debut, :date_fin, :date_arrivee, :paiement, 0)
+                ";
+                $stmt = $db->prepare($query);
+                $stmt->execute([
+                    ':id_chambre' => $chambre_id,
+                    ':id_user' => $userId,
+                    ':date_debut' => $dateDebut,
+                    ':date_fin' => $dateFin,
+                    ':date_arrivee' => $dateDebut,
+                    ':paiement' => $paiement
+                ]);
+    
+                if ($stmt->rowCount() === 0) {
+                    throw new Exception('Échec de l\'insertion de la réservation.');
+                }
+    
+                $reservation_id = (int)$db->lastInsertId();
+                if ($reservation_id <= 0) {
+                    throw new Exception('Échec de la récupération de l\'ID de la réservation.');
+                }
+    
+                $db->commit();
+                return $reservation_id;
+            } catch (Exception $e) {
+                $db->rollBack();
+                error_log('Erreur lors de la création de la réservation: ' . $e->getMessage());
+                return false;
+            }
+        }
+
         /**
          * Récupère toutes les réservations d'un client.
          *
@@ -10,9 +89,11 @@
          * @return array Un tableau associatif des réservations.
          */
         public static function getReservationsByClient(int $userId): array {
-            $query = "SELECT id_sejour, date_debut, date_fin 
-                    FROM reservation 
-                    WHERE id_user = :id_user";
+            $query = "SELECT r.id_sejour, r.date_debut, r.date_fin, h.nom as nom_hotel, ch.numero_chambre FROM reservation r
+                INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
+                INNER JOIN hotel h ON ch.id_hotel=h.id_hotel
+                WHERE id_user = :id_user
+                ORDER BY r.id_sejour DESC";
             $params = [':id_user' => $userId];
             $stmt = Database::preparedQuery($query, $params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -65,11 +146,42 @@
         }
 
         public static function getOngoingReservationsByClient(int $userId): array {
-            $query = "SELECT id_sejour, date_debut, date_fin 
-                      FROM reservation 
-                      WHERE id_user = :id_user
-                        AND date_debut <= CURRENT_DATE
-                        AND date_fin >= CURRENT_DATE";
+            $query = "SELECT r.id_sejour, r.date_debut, r.date_fin, h.nom AS hotel_name
+	              FROM reservation r
+	              JOIN chambre c ON r.id_chambre = c.id_chambre
+	              JOIN hotel h ON c.id_hotel = h.id_hotel
+	              WHERE r.id_user = :id_user
+	                AND r.date_debut <= CURRENT_DATE
+	                AND r.date_fin >= CURRENT_DATE";
+            $params = [':id_user' => $userId];
+            $stmt = Database::preparedQuery($query, $params);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function getReservationById(int $reservationId, int $userId): ?array {
+            $query = "SELECT r.*, h.nom as hotel_name, (r.date_fin >= CURRENT_DATE) as is_ongoing
+                FROM reservation r 
+                JOIN chambre c ON r.id_chambre = c.id_chambre 
+                JOIN hotel h ON c.id_hotel = h.id_hotel 
+                WHERE r.id_sejour = :id_sejour 
+                    AND r.id_user = :id_user";
+            $params = [
+                ':id_sejour' => $reservationId,
+                ':id_user' => $userId
+            ];
+            $stmt = Database::preparedQuery($query, $params);
+            return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+        }
+ 
+
+        public static function getPastReservationsByClient(int $userId): array {
+            $query = "SELECT r.id_sejour, r.date_debut, r.date_fin, h.nom as hotel_name 
+                FROM reservation r 
+                JOIN chambre c ON r.id_chambre = c.id_chambre 
+                JOIN hotel h ON c.id_hotel = h.id_hotel 
+                WHERE r.id_user = :id_user 
+                    AND r.date_fin < CURRENT_DATE 
+                ORDER BY r.date_debut DESC";
             $params = [':id_user' => $userId];
             $stmt = Database::preparedQuery($query, $params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -161,7 +273,7 @@
 
         static function getReservation(int $reservationId) {
             $statement = Database::preparedQuery(
-                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, ch.numero_chambre, ca.id_categorie, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, (r.date_fin-r.date_debut)*pc.prix as total, r.due, paiement, NOW() now FROM reservation r
+                "SELECT r.id_sejour, h.id_hotel, h.nom as nom_hotel, cl.denomination as classe, r.id_chambre, ch.numero_chambre, ca.id_categorie, ca.denomination as categorie, u.id_user, u.nom as nom_user, u.prenom as prenom_user, u.email as email_user, r.date_debut, r.date_fin, r.date_arrivee, r.date_fin-r.date_debut as nuits, (r.date_fin-r.date_debut)*pc.prix as total, r.due, paiement, NOW() now FROM reservation r
                 INNER JOIN chambre ch ON ch.id_chambre=r.id_chambre
                 INNER JOIN hotel h ON h.id_hotel=ch.id_hotel
                 INNER JOIN categorie ca ON ca.id_categorie=ch.id_categorie
@@ -238,6 +350,23 @@
             );
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
+        }
+
+        public static function getChambreInfo(int $chambreId): ?array {
+            $query = "
+                SELECT 
+                    c.id_hotel,
+                    cat.denomination AS categorie,
+                    pc.prix
+                FROM chambre c
+                LEFT JOIN categorie cat ON c.id_categorie = cat.id_categorie
+                LEFT JOIN hotel h ON c.id_hotel = h.id_hotel
+                LEFT JOIN prix_chambre pc ON h.id_classe = pc.id_classe AND c.id_categorie = pc.id_categorie
+                WHERE c.id_chambre = :id
+            ";
+            $params = [':id' => $chambreId];
+            $stmt = Database::preparedQuery($query, $params);
+            return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
         }
 
         static function getCategories() {

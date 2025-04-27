@@ -20,7 +20,7 @@
 	<div class="container-fluid d-flex justify-content-between align-items-center">
 		<!-- Logo et icône -->
 		<div class="d-flex align-items-center">
-			<svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		<svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
 				<path d="m9 16 .348-.240c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
 				<path d="M8 7h.01"></path>
@@ -41,21 +41,19 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
-		<!-- Menu de navigation -->
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#navBar">Accueil</a>
+					<a class="nav-link" href="home#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#Bedroom-link">Nos hôtels</a>
+					<a class="nav-link" href="home#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#Service">Nos services</a>
+					<a class="nav-link" href="home#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-info" href="#Book-place">Réserver maintenant</a>
+					<a class="btn btn-outline-warning" href="home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="login" id="userDropdown" role="button" aria-expanded="false">
@@ -75,25 +73,25 @@
 		<h1 class="display-4 fw-bold">Bienvenue à AU-TEL-2-LUX</h1>
 		<p class="lead">Découvrez des offres exceptionnelles dans nos hôtels de prestige.</p>
 		<div class="bg-black p-3 rounded" id="Book-place">
-			<form action="selection" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
+			<form action="research" method="POST" class="d-flex flex-wrap gap-3 align-items-end">
 				<!-- Liste des destinations -->
 				<div class="flex-fill">
 					<label for="destination" class="form-label text-white">Destination</label>
 					<select id="destination" name="hotel" class="form-select form-select-sm" required>
 						<option disabled selected>Où allez-vous ?</option>
 						<?php foreach ($hotel_id_name as $hotel): ?>
-							<option value="<?= htmlspecialchars($hotel['id']) ?>"><?= htmlspecialchars($hotel['nom']) ?></option>
+							<option value="<?= $hotel['id'] ?>"><?= $hotel['nom'] ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
 				<!-- Dates d'arrivée et de départ -->
 				<div class="flex-fill">
 					<label for="date-arrivee" class="form-label text-white">Arrivée</label>
-					<input id="date-arrivee" name="arriver" type="date" class="form-control form-control-sm" required>
+					<input id="date-arrivee" name="date_arrive" type="date" class="form-control form-control-sm date-picker" placeholder="Sélectionnez une date" required>
 				</div>
 				<div class="flex-fill">
 					<label for="date-depart" class="form-label text-white">Départ</label>
-					<input id="date-depart" name="depart" type="date" class="form-control form-control-sm" required>
+					<input id="date-depart" name="date_depart" type="date" class="form-control form-control-sm date-picker" placeholder="Sélectionnez une date" required>
 				</div>
 				<!-- Bouton de recherche -->
 				<div class="flex-fill">
@@ -104,16 +102,40 @@
 	</div>
 </header>
 
+
 <?php if (isset($_GET['error'])): ?>
-	<div class="alert alert-danger text-center">
-		<?php
-		if ($_GET['error'] === 'invalid_dates') {
-			echo "La date d'arrivée doit être antérieure à la date de départ.";
-		} elseif ($_GET['error'] === 'missing_data') {
-			echo "Veuillez remplir tous les champs du formulaire.";
-		}
-		?>
+	<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content error-modal">
+				<div class="modal-header">
+					<h5 class="modal-title" id="errorModalLabel">Erreur</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<?php
+					if ($_GET['error'] === 'invalid_dates') {
+						echo "La date d'arrivée doit être antérieure à la date de départ.";
+					} elseif ($_GET['error'] === 'missing_data') {
+						echo "Veuillez remplir tous les champs du formulaire.";
+					}
+					?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script>
+		// https://getbootstrap.com/docs/5.0/components/modal/#via-javascript
+ 		document.addEventListener('DOMContentLoaded', function () {
+ 			let errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {
+ 				backdrop: 'static',
+ 				keyboard: false
+ 			});
+ 			errorModal.show();
+ 		});
+	</script>
 <?php endif; ?>
 
 <!-- Nos hôtels -->
@@ -128,14 +150,14 @@
 				<div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
 					<div class="d-flex justify-content-center">
 						<div class="card" style="max-width: 400px;">
-							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= htmlspecialchars($hotel['nom']) ?>">
+							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
 							<div class="card-body">
-								<h5 class="card-title"><?= htmlspecialchars($hotel['nom_hotel']) ?></h5>
-								<p class="fw-bold">📍 <?= htmlspecialchars($hotel['localisation'] ?? 'Non précisé') ?></p>
-								<p class="card-text">🏨 Catégorie : <?= htmlspecialchars($hotel['classe']) ?></p>
-								<p class="card-text">💰 Prix : À partir de <?= htmlspecialchars($hotel['prix_min'] ?? '120') ?>€ par nuit</p>
+								<h5 class="card-title"><?= $hotel['nom_hotel'] ?></h5>
+								<p class="fw-bold">📍 <?= $hotel['localisation'] ?? 'Non précisé' ?></p>
+								<p class="card-text">🏨 Catégorie : <?= $hotel['classe'] ?></p>
+								<p class="card-text">💰 Prix : À partir de <?= $hotel['prix_min'] ?? '120' ?>€ par nuit</p>
 								<p class="card-text">Un hôtel de luxe offrant confort et services haut de gamme.</p>
-								<a href="/search/hotel/<?= $hotel['id_hotel'] ?>/dates/<?= date('Y-m-d') ?>_<?= date('Y-m-d', strtotime('+1 day')) ?>" class="btn btn-primary">Voir plus</a>
+								<a href="research?hotel=<?= $hotel['id_hotel'] ?>&date_arrive=<?= date('Y-m-d') ?>&date_depart=<?= date('Y-m-d', strtotime('+1 day')) ?>" class="btn btn-primary">Voir plus</a>
 							</div>
 						</div>
 					</div>
@@ -160,10 +182,10 @@
 		<?php foreach ($services as $service): ?>
 			<div class="col-md-4 col-sm-12">
 				<div class="card h-100 shadow-sm">
-					<img src="<?= htmlspecialchars($service['image_url'] ?? 'images/placeholder.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['nom']) ?>">
+					<img src="<?= $service['image_url'] ?? 'images/placeholder.jpg' ?>" class="card-img-top" alt="<?= $service['nom'] ?>">
 					<div class="card-body">
-						<h4 class="card-title"><?= htmlspecialchars($service['nom']) ?></h4>
-						<p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
+						<h4 class="card-title"><?= $service['nom'] ?></h4>
+						<p class="card-text"><?= $service['description'] ?></p>
 					</div>
 				</div>
 			</div>

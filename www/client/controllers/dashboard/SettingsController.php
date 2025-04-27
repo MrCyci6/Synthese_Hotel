@@ -13,6 +13,7 @@
     }
 
     $pageTitle = "Paramètres";
+    $module = "settings";
 
     require_once 'views/dashboard/layout.php';
     require_once 'views/dashboard/settings.php';

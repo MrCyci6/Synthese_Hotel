@@ -17,14 +17,9 @@
          * @return array Un tableau associatif contenant les consommations.
          */
         public static function getConsommationsForSejour(int $sejourId): array {
-            $query = "
-                SELECT 
-                    cc.id_cc,
-                    cc.date_conso,
-                    cc.nombre,
-                    c.denomination AS conso_name,
-                    pc.prix AS unit_price,
-                    (pc.prix * cc.nombre) AS prix_total
+            $query = "SELECT 
+                cc.id_cc, cc.date_conso, cc.nombre, c.denomination AS conso_name, pc.prix AS unit_price, (pc.prix * cc.nombre) AS prix_total
+                
                 FROM conso_client cc
                 JOIN reservation r ON cc.id_sejour = r.id_sejour
                 JOIN chambre ch ON r.id_chambre = ch.id_chambre

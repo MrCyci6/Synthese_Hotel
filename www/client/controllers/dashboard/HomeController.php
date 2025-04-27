@@ -6,6 +6,7 @@
     require_once '../models/User.php';
     require_once '../models/Reservation.php';
     require_once '../models/Conso.php';
+    require_once '../models/Hotel.php';
 
     if(!Session::isUserLogged()) {
         header('Location: login');
@@ -27,6 +28,7 @@
     }
 
     $pageTitle = "Tableau de bord";
+    $module = "home";
     
     $clientId = $_SESSION['userId'];
     $user = User::getUser($clientId);
@@ -48,6 +50,10 @@
     $historicalConsos = Conso::getHistoricalConsumptionsByClient($clientId);
     $availableConsos = Conso::getListConsos();
     
+    $hotel_id_name = Hotel::getHotelId();
+    $hotels = Hotel::getHotels();
+    $services = Hotel::getServices();
+
     require_once 'views/dashboard/layout.php';
     require_once 'views/dashboard/home.php';
 ?>

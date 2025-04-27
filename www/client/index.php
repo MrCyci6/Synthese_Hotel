@@ -16,15 +16,21 @@
 
         // Home
         "home" => "controllers/home/InfoController.php",
-        "selection" => "controllers/home/SearchController.php",
+        "research" => "controllers/home/SearchController.php",
+        "reservation" => "controllers/home/ReservationController.php",
 
         // Dashboard
         "dashboard" => "controllers/dashboard/HomeController.php",
-        "notifications" => "controllers/dashboard/NotificationsController.php",
-        "search" => "controllers/dashboard/SearchController.php",
         "settings" => "controllers/dashboard/SettingsController.php",
-        "wishlist" => "controllers/dashboard/WishlistController.php",
-        "support" => "controllers/support/TicketController.php"
+        "support" => "controllers/dashboard/TicketController.php",
+        "search" => "controllers/dashboard/search/SearchController.php",
+        "selection" => "controllers/dashboard/search/SelectionController.php",
+        "reservations" => "controllers/dashboard/reservations/ReservationController.php",
+        "details" => "controllers/dashboard/reservations/DetailsController.php",
+        "facture" => "controllers/dashboard/FactureController.php",
+
+        "success" => "controllers/actions/SuccessController.php",
+        "confirm" => "controllers/actions/ConfirmController.php"
     ];
 
     if(isset($routes[$route]))

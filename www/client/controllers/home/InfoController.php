@@ -11,9 +11,7 @@
     }
     
     $hotel_id_name = Hotel::getHotelId();
-
     $hotels = Hotel::getHotels();
-    
     $services = Hotel::getServices();
 
     require_once 'views/home/home.php';
