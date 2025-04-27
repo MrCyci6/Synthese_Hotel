@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../models/Search.php';
-require_once __DIR__ . '/../models/Chambres.php';
+require_once __DIR__ . '/../models/Reservation.php';
 
 if (!isset($_SESSION['id_user'])) {
 	$redirect_url = '/reservation?' . http_build_query($_POST);
@@ -21,7 +21,7 @@ if (!$hotel_id || !$categorie || !$prix || !$date_arrive || !$date_depart) {
 		'categorie' => $categorie ?? 'Non spécifié',
 		'prix' => $prix ?? '0',
 		'date_arrive' => $date_arrive ?? 'Non spécifiée',
-		'date_depart' => $date_depart ?? 'Non spécifié',
+		'date_depart' => $date_depart ?? 'Non spécifiée',
 		'error' => 'Données de réservation incomplètes.',
 		'duree' => 'Non calculée'
 	];
@@ -43,34 +43,28 @@ if (!strtotime($date_arrive) || !strtotime($date_depart)) {
 	exit;
 }
 
-$hotel_info = Search::getHotelById($hotel_id);
-$arrive = new DateTime($date_arrive);
-$depart = new DateTime($date_depart);
-$interval = $arrive->diff($depart);
-$duree = $interval->days . ' nuit(s)';
-
-$reservation_id = Chambres::createReservation(
+$reservation_id = Reservation::createReservationWithTransaction(
+	(int)$_SESSION['id_user'],
 	(int)$hotel_id,
 	$categorie,
-	floatval($prix),
 	$date_arrive,
 	$date_depart,
-	(int)$_SESSION['id_user']
+	floatval($prix)
 );
 
-if ($reservation_id) {
-	header('Location: /reservation_success?reservation_id=' . $reservation_id);
+if ($reservation_id === false || !is_int($reservation_id) || $reservation_id <= 0) {
+	$data = [
+		'hotel_nom' => Search::getHotelById($hotel_id)['nom'] ?? 'Hôtel inconnu',
+		'categorie' => $categorie,
+		'prix' => $prix,
+		'date_arrive' => $date_arrive,
+		'date_depart' => $date_depart,
+		'error' => 'Échec de la création de la réservation.',
+		'duree' => (new DateTime($date_depart))->diff(new DateTime($date_arrive))->days . ' nuit(s)'
+	];
+	require __DIR__ . '/../views/home/Reservation.php';
 	exit;
 }
 
-$data = [
-	'hotel_nom' => $hotel_info['nom'] ?? 'Hôtel inconnu',
-	'categorie' => $categorie,
-	'prix' => $prix,
-	'date_arrive' => $date_arrive,
-	'date_depart' => $date_depart,
-	'error' => 'Erreur lors de la création de la réservation. Aucune chambre disponible.',
-	'duree' => $duree
-];
-require __DIR__ . '/../views/home/Reservation.php';
-?>
+header('Location: /reservation_success?reservation_id=' . $reservation_id);
+exit;

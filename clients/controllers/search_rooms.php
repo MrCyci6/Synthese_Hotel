@@ -7,18 +7,18 @@ $date_depart = $_POST['date_depart'] ?? null;
 $id_hotel = isset($_POST['hotel']) ? (int)$_POST['hotel'] : null;
 
 if (empty($date_arrive) || empty($date_depart) || empty($id_hotel)) {
-	header('Location: /info_hotels?error=missing_data');
+	header('Location: /home?error=missing_data');
 	exit;
 }
 
 if (!strtotime($date_arrive) || !strtotime($date_depart) || strtotime($date_arrive) >= strtotime($date_depart)) {
-	header('Location: /info_hotels?error=invalid_dates');
+	header('Location: /home?error=invalid_dates');
 	exit;
 }
 
 $chambres = Chambres::getRoomInfos($id_hotel, $date_arrive, $date_depart);
 if (empty($chambres)) {
-	header('Location: /info_hotels?error=no_rooms_available');
+	header('Location: /home?error=no_rooms_available');
 	exit;
 }
 

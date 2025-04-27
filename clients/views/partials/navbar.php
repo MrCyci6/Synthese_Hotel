@@ -14,7 +14,7 @@
 					<path d="M8 11h.01"></path>
 					<path d="M10 22v-6.5m4 0V22"></path>
 				</svg>
-				<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/info_hotels">
+				<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
 					HÔTEL 2 LUXE
 					<span class="fs-6">HÔTELS & RESORTS</span>
 				</a>
@@ -26,7 +26,7 @@
 							<i class="bi bi-person-circle fs-5"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-							<li><a class="dropdown-item" href="/info_hotels">Home</a></li>
+							<li><a class="dropdown-item" href="/home">Home</a></li>
 							<li><a class="dropdown-item" href="#">Support</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li>

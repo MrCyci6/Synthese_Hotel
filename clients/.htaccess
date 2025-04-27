@@ -25,4 +25,4 @@ RewriteRule ^reservation$ controllers/reservation.php [L]
 
 RewriteRule ^confirm_reservation$ controllers/confirm_reservation.php [L,NC]
 
-RewriteRule ^reservation_success$ reservation_success.php [L,NC]
+RewriteRule ^reservation_success$ controllers/reservation_success.php [L,NC]
