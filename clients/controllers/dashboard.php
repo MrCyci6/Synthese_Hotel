@@ -39,20 +39,27 @@ if ($page === 'logout') {
 
 if ($page === 'dashboard') {
 	switch ($view) {
-		case 'wishlist':
-			$pageTitle = "Ma Wishlist";
-			$viewFile = 'wishlist.php';
+		case 'reservations':
+			$pageTitle = "Mes Réservations";
+			$viewFile = 'reservations.php';
+			$clientId = $_SESSION['client_id']['id'];
+			$ongoingReservations = Reservation::getOngoingReservationsByClient($clientId);
+			$pastReservations = Reservation::getPastReservationsByClient($clientId);
 			break;
-		case 'notifications':
-			$pageTitle = "Mes Notifications";
-			$viewFile = 'notifications.php';
-			break;
-		case 'search':
-			require_once __DIR__ . '/../controllers/search.php';
+		case 'reservation_details':
+			$pageTitle = "Détails de la Réservation";
+			$viewFile = 'reservation_details.php';
+			$clientId = $_SESSION['client_id']['id'];
+			$reservationId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+			$reservation = Reservation::getReservationById($reservationId, $clientId);
+			$consommations = Conso::getConsommationsForSejour($reservationId);
 			break;
 		case 'settings':
 			$pageTitle = "Paramètres";
 			$viewFile = 'settings.php';
+			break;
+		case 'search':
+			require_once __DIR__ . '/../controllers/search.php';
 			break;
 		case 'home':
 		default:
@@ -61,7 +68,7 @@ if ($page === 'dashboard') {
 			$view = 'home';
 			$clientId = $_SESSION['client_id']['id'];
 			$daysLeft = Reservation::getDaysLeftInCurrentStay($clientId);
-            $nextDeparture = Reservation::getNextDepartureDate($clientId);
+			$nextDeparture = Reservation::getNextDepartureDate($clientId);
 			$occupancyRate = Reservation::getOccupancyRate($clientId);
 			$ongoingReservations = Reservation::getOngoingReservationsByClient($clientId);
 			if (!empty($ongoingReservations)) {
@@ -75,8 +82,9 @@ if ($page === 'dashboard') {
 			}
 			$historicalConsos = Conso::getHistoricalConsumptionsByClient($clientId);
 			$availableConsos = Conso::getAllAvailableConsos();
-		break;
+			break;
 	}
 }
 
 require_once __DIR__ . '/../views/layout.php';
+?>

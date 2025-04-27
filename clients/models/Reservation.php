@@ -177,14 +177,16 @@ class Reservation {
 	}
 
 	public static function getOngoingReservationsByClient(int $userId): array {
-		$query = "SELECT id_sejour, date_debut, date_fin 
-                  FROM reservation 
-                  WHERE id_user = :id_user
-                    AND date_debut <= CURRENT_DATE
-                    AND date_fin >= CURRENT_DATE";
-		$params = [':id_user' => $userId];
-		$stmt = Database::preparedQuery($query, $params);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	    $query = "SELECT r.id_sejour, r.date_debut, r.date_fin, h.nom AS hotel_name
+	              FROM reservation r
+	              JOIN chambre c ON r.id_chambre = c.id_chambre
+	              JOIN hotel h ON c.id_hotel = h.id_hotel
+	              WHERE r.id_user = :id_user
+	                AND r.date_debut <= CURRENT_DATE
+	                AND r.date_fin >= CURRENT_DATE";
+	    $params = [':id_user' => $userId];
+	    $stmt = Database::preparedQuery($query, $params);
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public static function getOccupancyRate(int $userId): ?float {
@@ -243,5 +245,47 @@ class Reservation {
 
 		$query2 = "DELETE FROM reservation WHERE id_sejour = :id_sejour";
 		return Database::preparedQuery($query2, $params) !== false;
+	}
+
+	/**
+	 * Récupère les réservations passées d'un client.
+	 *
+	 * @param int $userId L'identifiant du client.
+	 * @return array Un tableau associatif des réservations passées.
+	 */
+	public static function getPastReservationsByClient(int $userId): array {
+		$query = "SELECT r.id_sejour, r.date_debut, r.date_fin, h.nom as hotel_name 
+              FROM reservation r 
+              JOIN chambre c ON r.id_chambre = c.id_chambre 
+              JOIN hotel h ON c.id_hotel = h.id_hotel 
+              WHERE r.id_user = :id_user 
+                AND r.date_fin < CURRENT_DATE 
+              ORDER BY r.date_debut DESC";
+		$params = [':id_user' => $userId];
+		$stmt = Database::preparedQuery($query, $params);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Récupère une réservation spécifique par son identifiant et l'identifiant du client.
+	 *
+	 * @param int $reservationId L'identifiant de la réservation.
+	 * @param int $userId L'identifiant du client.
+	 * @return array|null La réservation sous forme de tableau associatif, ou null si non trouvée.
+	 */
+	public static function getReservationById(int $reservationId, int $userId): ?array {
+		$query = "SELECT r.*, h.nom as hotel_name, 
+                     (r.date_fin >= CURRENT_DATE) as is_ongoing
+              FROM reservation r 
+              JOIN chambre c ON r.id_chambre = c.id_chambre 
+              JOIN hotel h ON c.id_hotel = h.id_hotel 
+              WHERE r.id_sejour = :id_sejour 
+                AND r.id_user = :id_user";
+		$params = [
+			':id_sejour' => $reservationId,
+			':id_user' => $userId
+		];
+		$stmt = Database::preparedQuery($query, $params);
+		return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 	}
 }

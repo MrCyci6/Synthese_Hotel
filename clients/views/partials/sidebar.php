@@ -7,16 +7,16 @@
 					<a href="/dashboard/home" class="nav-link <?php echo ($view === 'home') ? 'active' : ''; ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="/dashboard/search" class="nav-link <?php echo ($view === 'search') ? 'active' : ''; ?>" "><i class="bi bi-search"></i></a>
+					<a href="/dashboard/search" class="nav-link <?php echo ($view === 'search') ? 'active' : ''; ?>"><i class="bi bi-search"></i></a>
 				</li>
 				<li class="nav-item">
-					<a href="/dashboard/wishlist" class="nav-link <?php echo ($view === 'wishlist') ? 'active' : ''; ?>"><i class="bi bi-heart"></i></a>
-				</li>
-				<li class="nav-item">
-					<a href="/dashboard/notifications" class="nav-link <?php echo ($view === 'notifications') ? 'active' : ''; ?>"><i class="bi bi-bell"></i></a>
+					<a href="/dashboard/reservations" class="nav-link <?php echo ($view === 'reservations' || $view === 'reservation_details') ? 'active' : ''; ?>"><i class="bi bi-book"></i></a>
 				</li>
 				<li class="nav-item">
 					<a href="/dashboard/settings" class="nav-link <?php echo ($view === 'settings') ? 'active' : ''; ?>"><i class="bi bi-gear"></i></a>
+				</li>
+				<li class="nav-item">
+					<a href="?page=logout" class="nav-link"><i class="bi bi-box-arrow-right"></i></a>
 				</li>
 			</ul>
 		</nav>
