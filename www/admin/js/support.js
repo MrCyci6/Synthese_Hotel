@@ -10,9 +10,9 @@ let user = {
 
 websocket = new WebSocket('ws://192.168.186.88:12345');
 
-websocket.onopen = (event) => {
+websocket.onopen = () => {
     const params = new URLSearchParams(document.location.search);
-    const roomId = params.get("roomId");
+    const roomId = params.get("room_id");
     
     if(roomId) {
         websocket.send(JSON.stringify({
@@ -41,12 +41,14 @@ websocket.onmessage = (event) => {
     } else if(data.type == "rooms") {
         for(const roomId in data.rooms) {
             const room = data.rooms[roomId];
+            const params = new URLSearchParams(document.location.search);
+            const hotelId = params.get("hotel_id");
             
             $('#rooms').html(
-                $('#rooms').html() + `<a href="index.html?roomId=${roomId}" class="d-flex justify-content-between">
+                $('#rooms').html() + `<a href="support?hotel_id=${hotelId}&room_id=${roomId}" class="d-flex justify-content-between">
                     <span>${roomId}</span>
-                    <span>${room.senders.length} utilisateurs</span>
-                    <span>${room.messages.length} messages</span>
+                    <span>${room.senders.length} utilisateur(s)</span>
+                    <span>${room.messages.length} message(s)</span>
                 </a>`
             )
         }
@@ -62,17 +64,17 @@ websocket.onclose = (event) => {
 document.addEventListener("submit", (event) => {
     event.preventDefault();
     let message = event.target.input.value;
-    if(message == "/rooms") {
-        websocket.send(JSON.stringify({"type": "rooms"}))
-    } else {
-        websocket.send(JSON.stringify(
-            {
-                "type": "message",
-                "sender": user.name,
-                "content": message,
-                "timestamp": Date.now()
-            }
-        ))
-    }
+
+    console.log(message)
+    
+    websocket.send(JSON.stringify(
+        {
+            "type": "message",
+            "sender": user.name,
+            "content": message,
+            "timestamp": Date.now()
+        }
+    ));
+    
     event.target.input.value = "";
 })
