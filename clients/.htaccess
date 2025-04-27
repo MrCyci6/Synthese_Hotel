@@ -23,6 +23,6 @@ RewriteRule ^search_rooms/?$ controllers/search_rooms.php [QSA,L]
 
 RewriteRule ^reservation$ controllers/confirm_reservation.php [L,NC]
 
-RewriteRule ^confirm_reservation$ confirm_reservation.php [L,NC]
+RewriteRule ^confirm_reservation$ controllers/confirm_reservation.php [L,NC]
 
 RewriteRule ^reservation_success$ reservation_success.php [L,NC]

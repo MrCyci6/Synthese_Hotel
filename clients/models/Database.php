@@ -30,6 +30,13 @@
             $statement->execute($params);
             return $statement;
         }
+
+	    static function lastInsertId(): int
+	    {
+		    $conn = Database::getConnection();
+		    if (!$conn) return 0;
+		    return (int)$conn->lastInsertId('reservation_id_sejour_seq');
+	    }
     }
 
 ?>

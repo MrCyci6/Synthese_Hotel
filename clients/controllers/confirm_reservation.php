@@ -1,38 +1,76 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 session_start();
+require_once __DIR__ . '/../models/Search.php';
+require_once __DIR__ . '/../models/Chambres.php';
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['id_user'])) {
-	// Rediriger vers la page de connexion avec un message d'erreur
 	$redirect_url = '/reservation?' . http_build_query($_GET);
 	header('Location: /login?redirect=' . urlencode($redirect_url) . '&error=login_required');
-	exit();
+	exit;
 }
 
-// Récupérer le nom de l'hôtel
-require_once __DIR__ . '/../models/Search.php';
-$hotel_id = $_GET['hotel'] ?? null;
-$hotel_info = $hotel_id ? Search::getHotelById($hotel_id) : null;
-$hotel_nom = $hotel_info['nom'] ?? 'Hôtel inconnu';
+$hotel_id = $_POST['hotel_id'] ?? null;
+$categorie = $_POST['categorie'] ?? null;
+$prix = $_POST['prix'] ?? null;
+$date_arrive = $_POST['date_arrive'] ?? null;
+$date_depart = $_POST['date_depart'] ?? null;
 
-// Préparer les données pour la vue
-$data = [
-	'hotel_nom' => $hotel_nom,
-	'categorie' => $_GET['categorie'] ?? 'Non spécifié',
-	'prix' => $_GET['prix'] ?? '0',
-	'arriver' => $_GET['arriver'] ?? '-',
-	'depart' => $_GET['depart'] ?? '-',
-	'error' => $_GET['error'] ?? null,
-];
+if (!$hotel_id || !$categorie || !$prix || !$date_arrive || !$date_depart) {
+	$data = [
+		'hotel_nom' => 'Hôtel inconnu',
+		'categorie' => $categorie ?? 'Non spécifié',
+		'prix' => $prix ?? '0',
+		'arriver' => $date_arrive,
+		'depart' => $date_depart,
+		'error' => 'Données de réservation incomplètes.',
+		'duree' => 'Non calculée'
+	];
+	require __DIR__ . '/../views/home/Reservation.php';
+	exit;
+}
 
-$arrive = new DateTime($data['arriver']);
-$depart = new DateTime($data['depart']);
+if (!strtotime($date_arrive) || !strtotime($date_depart)) {
+	$data = [
+		'hotel_nom' => 'Hôtel inconnu',
+		'categorie' => $categorie,
+		'prix' => $prix,
+		'arriver' => $date_arrive,
+		'depart' => $date_depart,
+		'error' => 'Dates de réservation invalides.',
+		'duree' => 'Non calculée'
+	];
+	require __DIR__ . '/../views/home/Reservation.php';
+	exit;
+}
+
+$hotel_info = Search::getHotelById($hotel_id);
+$arrive = new DateTime($date_arrive);
+$depart = new DateTime($date_depart);
 $interval = $arrive->diff($depart);
-$data['duree'] = $interval->days . ' nuit(s)';
+$duree = $interval->days . ' nuit(s)';
 
-// Inclure la vue
-require_once __DIR__ . '/../views/home/Reservation.php';
+$reservation_id = Chambres::createReservation(
+	(int)$hotel_id,
+	$categorie,
+	floatval($prix),
+	$date_arrive,
+	$date_depart,
+	(int)$_SESSION['id_user']
+);
+
+if ($reservation_id) {
+	header('Location: /reservation_success?reservation_id=' . $reservation_id);
+	exit;
+}
+
+$data = [
+	'hotel_nom' => $hotel_info['nom'] ?? 'Hôtel inconnu',
+	'categorie' => $categorie,
+	'prix' => $prix,
+	'arriver' => $date_arrive,
+	'depart' => $date_depart,
+	'error' => 'Erreur lors de la création de la réservation. Aucune chambre disponible.',
+	'duree' => $duree
+];
+require __DIR__ . '/../views/home/Reservation.php';
 ?>
