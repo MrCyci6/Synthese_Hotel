@@ -10,6 +10,11 @@
         "logout" => "controllers/auth/LogoutController.php",
         "login" => "controllers/auth/LoginController.php",
         "register" => "controllers/auth/RegisterController.php",
+        "dashboard" => "controllers/dashboard/HomeController.php",
+        "notifications" => "controllers/dashboard/NotificationsController.php",
+        "search" => "controllers/dashboard/SearchController.php",
+        "settings" => "controllers/dashboard/SettingsController.php",
+        "wishlist" => "controllers/dashboard/WishlistController.php",
         "support" => "controllers/support/TicketController.php"
     ];
 

@@ -9,7 +9,7 @@
     require_once '../models/Logs.php';
 
     if(Session::isUserLogged()) {
-        header('Location: support');
+        header('Location: dashboard');
         exit();
     }
 
@@ -25,7 +25,7 @@
             Session::loginUser($id);
             
             Logs::addLog($id, 1, "Connexion: ".$_SERVER['REMOTE_ADDR']);
-            header('Location: support');
+            header('Location: dashboard');
             exit();
         }
     }
