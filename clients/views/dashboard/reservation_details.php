@@ -4,7 +4,7 @@
 	<?php if ($reservation): ?>
 		<div class="card mb-3 border-0 shadow-sm rounded-3 bg-light">
 			<div class="card-body p-3">
-				<h4 class="card-title fw-semibold fs-4 text-primary"><?php echo htmlspecialchars($reservation['hotel_name']); ?></h4>
+				<h4 class="card-title fw-semibold fs-4 text-primary"><?php echo $reservation['hotel_name']; ?></h4>
 				<p class="card-text fs-5 text-muted">
 					Période : Du <?php echo $reservation['date_debut']; ?> au <?php echo $reservation['date_fin']; ?><br>
 					Statut : <span class="badge <?php echo $reservation['is_ongoing'] ? 'bg-primary' : 'bg-secondary'; ?> fs-6 px-2 py-1">
@@ -21,7 +21,7 @@
 					<li class="list-group-item border-0 rounded-2 mb-2 bg-light p-2">
 						<div class="d-flex justify-content-between align-items-center">
 							<div>
-								<strong class="fs-5"><?php echo htmlspecialchars($conso['conso_name']); ?></strong>
+								<strong class="fs-5"><?php echo ($conso['conso_name']); ?></strong>
 								<p class="mb-0 text-muted">
 									(<?php echo $conso['date_conso']; ?>) –
 									<?php echo $conso['nombre']; ?> unité(s) –

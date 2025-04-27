@@ -23,7 +23,7 @@
 						<div class="col-12 col-md-6">
 							<div class="card border-0 shadow-sm rounded-3 bg-light">
 								<div class="card-body p-3">
-									<h5 class="card-title fw-semibold fs-4 text-primary"><?php echo htmlspecialchars($reservation['hotel_name']); ?></h5>
+									<h5 class="card-title fw-semibold fs-4 text-primary"><?php echo ($reservation['hotel_name']); ?></h5>
 									<p class="card-text fs-5 text-muted">
 										Du <?php echo $reservation['date_debut']; ?> au <?php echo $reservation['date_fin']; ?><br>
 										Statut : <span class="badge bg-primary fs-6 px-2 py-1">En cours</span><br>
@@ -49,9 +49,9 @@
 						<div class="col-12 col-md-6">
 							<div class="card border-0 shadow-sm rounded-3 bg-light">
 								<div class="card-body p-3">
-									<h5 class="card-title fw-semibold fs-4 text-primary"><?php echo htmlspecialchars($reservation['hotel_name']); ?></h5>
+									<h5 class="card-title fw-semibold fs-4 text-primary"><?php echo ($reservation['hotel_name']); ?></h5>
 									<p class="card-text fs-5 text-muted">
-										Hôtel : <?php echo htmlspecialchars($reservation['hotel_name']); ?><br>
+										Hôtel : <?php echo ($reservation['hotel_name']); ?><br>
 										Du <?php echo $reservation['date_debut']; ?> au <?php echo $reservation['date_fin']; ?><br>
 										Statut : <span class="badge bg-secondary fs-6 px-2 py-1">Terminée</span><br>
 										Total consommations : <?php echo number_format(Conso::getTotalConsommationsAmount($reservation['id_sejour']), 2, ',', ' '); ?> €
