@@ -59,6 +59,6 @@
         <p style="text-align:center; font-size:12px;">Merci d'avoir choisi Au-Tel 2 Lux. Nous espérons vous revoir bientôt !</p>
     </div>
 
-    <script src="js/bills.js"></script>
+    <script src="assets/js/bills.js"></script>
 </body>
 </html>

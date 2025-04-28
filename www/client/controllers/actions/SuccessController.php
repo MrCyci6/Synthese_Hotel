@@ -40,7 +40,7 @@
     $duree = $arrive->diff($depart)->days . ' nuit(s)';
 
     $data = [
-        'hotel_nom' => $hotel_info['nom'] ?? 'Hôtel inconnu',
+        'hotel_nom' => $hotel_info['nom_hotel'] ?? 'Hôtel inconnu',
         'categorie' => $chambre_info['categorie'] ?? 'Non spécifié',
         'prix' => $chambre_info['prix'] ?? $reservation['paiement'] ?? '0',
         'date_arrive' => $reservation['date_arrivee'] ?? 'Non spécifiée',
