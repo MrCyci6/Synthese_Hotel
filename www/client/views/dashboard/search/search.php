@@ -1,5 +1,5 @@
 <div class="main-section flex-fill p-3 m-3 shadow-lg bg-white d-flex flex-column h-100">
-	<section class="d-flex flex-fill align-items-center justify-content-center text-center position-relative" style="border-radius: 0.625rem; background: white url('images/image.webp') no-repeat center;">
+	<section class="d-flex flex-fill align-items-center justify-content-center text-center position-relative" style="border-radius: 0.625rem; background: white url('assets/images/image.webp') no-repeat center;">
 		<div class="position-absolute top-0 start-0 w-100 h-100 opacity-50"></div>
 		<div class="position-relative text-white m-2">
 			<h1 class="display-4 fw-bold">Trouvez votre meilleur séjour</h1>

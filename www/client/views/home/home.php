@@ -11,7 +11,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../../styles/home.css">
+	<link rel="stylesheet" href="assets/styles/home.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -56,7 +56,7 @@
 					<a class="btn btn-outline-warning" href="home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="login" id="userDropdown" role="button" aria-expanded="false">
+					<a class="nav-link" href="dashboard" id="userDropdown" role="button" aria-expanded="false">
 						<i class="bi bi-person-circle fs-5 text-white"></i>
 					</a>
 				</li>

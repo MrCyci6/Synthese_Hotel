@@ -7,11 +7,11 @@ insert into Prix_chambre(id_classe, id_categorie, prix) values
 (2, 1, 59), (2, 2, 89), (2, 3, 99),
 (3, 1, 69), (3, 2, 99), (3, 3, 109);
 
-insert into Hotel(nom, id_classe) values
-('Hotel de Caen', 1),
-('Hotel de Brest', 1),
-('Hotel de Paris', 2),
-('Hotel de Nantes', 2);
+insert into Hotel(nom, id_classe, localisation) values
+('Hotel de Caen', 1, "123 rue de Caen"),
+('Hotel de Brest', 1, "123 rue de Brest"),
+('Hotel de Paris', 2, "123 rue de Paris"),
+('Hotel de Nantes', 2, "123 rue de Nantes");
 
 insert into Conso(denomination)
 values ('Petit déjeuner'),
@@ -158,3 +158,7 @@ INSERT INTO perms_users(id_user, id_perm, id_hotel) VALUES (2, 1, 1), (2, 1, 2),
 
 INSERT INTO logs(id_user, id_hotel, content, date) VALUES 
 (2, 1, 'Connexion: 127.0.0.1', NOW());
+
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (1, 'Gastronomie Raffinée', 'Découvrez une cuisine exquise préparée par nos chefs étoilés, avec des ingrédients frais et locaux.', 'images/chef-2585791_1280.jpg');
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (2, 'Restaurant Élégant', 'Profitez d’une ambiance luxueuse avec un service haut de gamme, idéal pour des dîners romantiques ou des repas d’affaires.', 'images/restaurant-449952_1280.jpg');
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (3, 'Petit-Déjeuner Gourmet', 'Commencez votre journée avec un petit-déjeuner varié : viennoiseries, fruits frais, et options healthy.', 'images/cafe-2265254_1280.jpg');

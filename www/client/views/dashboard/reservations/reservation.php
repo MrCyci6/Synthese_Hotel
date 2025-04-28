@@ -57,8 +57,8 @@
 										Total consommations : <?php echo number_format(Conso::getTotalConsommationsAmount($reservation['id_sejour']), 2, ',', ' '); ?> €
 									</p>
 									<div class="d-flex gap-2">
-										<a href="?page=dashboard&view=reservation_details&id=<?php echo $reservation['id_sejour']; ?>" class="btn btn-outline-primary fs-6 px-3">Voir détails</a>
-										<button class="btn btn-outline-success fs-6 px-3">Générer facture</button>
+										<a href="details?id=<?php echo $reservation['id_sejour']; ?>" class="btn btn-outline-primary fs-6 px-3">Voir détails</a>
+										<a href="facture?id=<?= $reservation["id_sejour"] ?>" class="btn btn-outline-success fs-6 px-3">Générer facture</a>
 									</div>
 								</div>
 							</div>
