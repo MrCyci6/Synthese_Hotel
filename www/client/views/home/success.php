@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Réservation confirmée - HÔTEL 2 LUXE</title>
+	<title>Réservation confirmée - AU-TEL 2 LUX</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,7 +29,7 @@
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
 			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
-				HÔTEL 2 LUXE
+				AU-TEL 2 LUX
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
 		</div>
@@ -39,19 +39,19 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="/home#navBar">Accueil</a>
+					<a class="nav-link" href="home#navBar">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/home#Bedroom-link">Nos hôtels</a>
+					<a class="nav-link" href="home#Bedroom-link">Nos hôtels</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/home#Service">Nos services</a>
+					<a class="nav-link" href="home#Service">Nos services</a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-warning" href="/home#Book-place">Réserver maintenant</a>
+					<a class="btn btn-outline-warning" href="home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/login" id="userDropdown" role="button" aria-expanded="false">
+					<a class="nav-link" href="login" id="userDropdown" role="button" aria-expanded="false">
 						<i class="bi bi-person-circle fs-5 text-white"></i>
 					</a>
 				</li>
@@ -87,9 +87,9 @@
 	</div>
 
 	<div class="text-center">
-		<a href="/home" class="btn btn-primary me-2">Retour à l'accueil</a>
-		<?php if (isset($_SESSION['id_user'])): ?>
-			<a href="/dashboard/reservations" class="btn btn-outline-primary">Voir mes réservations</a>
+		<a href="home" class="btn btn-primary me-2">Retour à l'accueil</a>
+		<?php if (isset($_SESSION['userId'])): ?>
+			<a href="reservations" class="btn btn-outline-primary">Voir mes réservations</a>
 		<?php endif; ?>
 	</div>
 </section>
@@ -111,7 +111,7 @@
 						<path d="M8 11h.01"></path>
 						<path d="M10 22v-6.5m4 0V22"></path>
 					</svg>
-					<h5 class="mb-0">HÔTEL 2 LUXE</h5>
+					<h5 class="mb-0">AU-TEL 2 LUX</h5>
 				</div>
 				<p>Hôtel 2 Luxe offre une expérience inégalée dans des destinations prestigieuses.</p>
 			</div>
