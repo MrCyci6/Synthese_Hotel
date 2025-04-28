@@ -8,10 +8,10 @@ insert into Prix_chambre(id_classe, id_categorie, prix) values
 (3, 1, 69), (3, 2, 99), (3, 3, 109);
 
 insert into Hotel(nom, id_classe, localisation) values
-('Hotel de Caen', 1, "123 rue de Caen"),
-('Hotel de Brest', 1, "123 rue de Brest"),
-('Hotel de Paris', 2, "123 rue de Paris"),
-('Hotel de Nantes', 2, "123 rue de Nantes");
+('Hotel de Caen', 1, '123 rue de Caen'),
+('Hotel de Brest', 1, '123 rue de Brest'),
+('Hotel de Paris', 2, '123 rue de Paris'),
+('Hotel de Nantes', 2, '123 rue de Nantes');
 
 insert into Conso(denomination)
 values ('Petit déjeuner'),
@@ -279,5 +279,4 @@ INSERT INTO public.conso_client (id_sejour, id_conso, date_conso, nombre) VALUES
 (25, 3, '2025-04-11', 2),
 (26, 1, '2025-04-21', 2),
 (26, 4, '2025-04-21', 1),
-(26, 5, '2025-04-21', 1);
 (26, 5, '2025-04-21', 1);

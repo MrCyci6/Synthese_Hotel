@@ -29,7 +29,7 @@ create table Hotel
 	id_hotel SERIAL,
 	nom varchar(50) not null,
 	id_classe int not null,
-	localisation varchar(50) not null
+	localisation varchar(50) not null,
 PRIMARY KEY(id_hotel),
 FOREIGN KEY (id_classe) REFERENCES Classe (id_classe)
 );
@@ -135,9 +135,8 @@ FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE CASCADE
 
 create table Services
 (
-    id_service  serial
-        primary key,
-    nom         varchar(100) not null,
-    description text         not null,
-    image_url   varchar(255) default NULL::character varying
+    id_service  serial primary key,
+    nom varchar(100) not null,
+    description text not null,
+    image_url varchar(255) default NULL::character varying
 );
