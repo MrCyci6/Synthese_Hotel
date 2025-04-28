@@ -6,14 +6,14 @@
 
     <title><?= $title ?></title>
 
-    <link rel="stylesheet" href="./assets/styles/_root.scss">
-    <link rel="stylesheet" href="./assets/styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/_root.scss">
+    <link rel="stylesheet" href="./styles/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <script src="./assets/js/darkmode.js"></script>
+    <script src="./js/darkmode.js"></script>
 
     <div class="sidebar d-flex flex-column border-end">
         <!-- Header -->

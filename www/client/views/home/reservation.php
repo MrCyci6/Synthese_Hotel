@@ -10,7 +10,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="assets/styles/home.css">
+	<link rel="stylesheet" href="../../styles/home.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 <!-- Nav Bar -->
@@ -51,7 +51,7 @@
 					<a class="btn btn-outline-warning" href="home#Book-place">Réserver maintenant</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="dashboard" id="userDropdown" role="button" aria-expanded="false">
+					<a class="nav-link" href="login" id="userDropdown" role="button" aria-expanded="false">
 						<i class="bi bi-person-circle fs-5 text-white"></i>
 					</a>
 				</li>
