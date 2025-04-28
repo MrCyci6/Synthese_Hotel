@@ -2,12 +2,23 @@
 	<!-- Barre de navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white px-3">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="home">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="m-2">
-					<path d="M7 14C8.66 14 10 12.66 10 11C10 9.34 8.66 8 7 8C5.34 8 4 9.34 4 11C4 12.66 5.34 14 7 14ZM7 10C7.55 10 8 10.45 8 11C8 11.55 7.55 12 7 12C6.45 12 6 11.55 6 11C6 10.45 6.45 10 7 10ZM19 7H11V15H3V5H1V20H3V17H21V20H23V11C23 8.79 21.21 7 19 7ZM21 15H13V9H19C20.1 9 21 9.9 21 11V15Z" fill="black"/>
+			<div class="d-flex align-items-center">
+				<svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
+					<path d="m9 16 .348-.240c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
+					<path d="M8 7h.01"></path>
+					<path d="M16 7h.01"></path>
+					<path d="M12 7h.01"></path>
+					<path d="M12 11h.01"></path>
+					<path d="M16 11h.01"></path>
+					<path d="M8 11h.01"></path>
+					<path d="M10 22v-6.5m4 0V22"></path>
 				</svg>
-				Au Tel 2 Lux
-			</a>
+				<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="home">
+					AU-TEL-2-LUX
+					<span class="fs-6">HÔTELS & RESORTS</span>
+				</a>
+			</div>
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item dropdown">
