@@ -67,7 +67,7 @@
 
 <!-- Choix du type de service -->
 <header class="position-relative d-flex align-items-center justify-content-center text-center"
-        style="height: 90vh; background: url('images/hotel.jpg') center/cover no-repeat;">
+        style="height: 90vh; background: url('assets/images/hotel.jpg') center/cover no-repeat;">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
 	<div class="position-relative text-white">
 		<h1 class="display-4 fw-bold">Bienvenue à AU-TEL-2-LUX</h1>
