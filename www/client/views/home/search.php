@@ -30,7 +30,7 @@
 				<path d="M8 11h.01"></path>
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
-			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
+			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="home">
 				AU-TEL 2 LUX
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
