@@ -162,3 +162,17 @@ INSERT INTO logs(id_user, id_hotel, content, date) VALUES
 INSERT INTO public.services (id_service, nom, description, image_url) VALUES (1, 'Gastronomie Raffinée', 'Découvrez une cuisine exquise préparée par nos chefs étoilés, avec des ingrédients frais et locaux.', 'images/chef-2585791_1280.jpg');
 INSERT INTO public.services (id_service, nom, description, image_url) VALUES (2, 'Restaurant Élégant', 'Profitez d’une ambiance luxueuse avec un service haut de gamme, idéal pour des dîners romantiques ou des repas d’affaires.', 'images/restaurant-449952_1280.jpg');
 INSERT INTO public.services (id_service, nom, description, image_url) VALUES (3, 'Petit-Déjeuner Gourmet', 'Commencez votre journée avec un petit-déjeuner varié : viennoiseries, fruits frais, et options healthy.', 'images/cafe-2265254_1280.jpg');
+
+INSERT INTO public.reservation (id_chambre, date_debut, date_fin, date_arrivee, id_user, paiement, due) VALUES
+                                                                                                            (1, '2025-04-01', '2025-04-05', '2025-04-01', 2, 276, 276),
+                                                                                                            (2, '2025-04-10', '2025-04-15', NULL, 2, 345, 345),
+                                                                                                            (5, '2025-04-20', '2025-04-27', '2025-04-20', 2, 413, 413);
+
+INSERT INTO public.conso_client (id_sejour, id_conso, date_conso, nombre) VALUES
+(24, 1, '2025-04-02', 2),
+(24, 2, '2025-04-02', 1),
+(25, 5, '2025-04-11', 1),
+(25, 3, '2025-04-11', 2),
+(26, 1, '2025-04-21', 2),
+(26, 4, '2025-04-21', 1),
+(26, 5, '2025-04-21', 1);
