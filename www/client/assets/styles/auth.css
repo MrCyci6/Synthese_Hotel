@@ -1,5 +1,5 @@
 body {
-    background: url('assets/images/hotel.jpg') center/cover no-repeat;
+    background: url('../images/hotel.jpg') center/cover no-repeat;
     height: 100vh;
     display: flex;
     justify-content: center;
