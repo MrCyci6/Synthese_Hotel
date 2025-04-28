@@ -263,10 +263,9 @@ INSERT INTO Perms_Users (id_user, id_perm, id_hotel) VALUES
 INSERT INTO Logs (id_user, id_hotel, content, date) VALUES
 (2, 1, 'Connexion: 127.0.0.1', NOW());
 
-INSERT INTO public.services (id_service, nom, description, image_url) VALUES
-(1, 'Gastronomie Raffinée', 'Découvrez une cuisine exquise préparée par nos chefs étoilés, avec des ingrédients frais et locaux.', 'images/chef-2585791_1280.jpg'),
-(2, 'Restaurant Élégant', 'Profitez d’une ambiance luxueuse avec un service haut de gamme, idéal pour des dîners romantiques ou des repas d’affaires.', 'images/restaurant-449952_1280.jpg'),
-(3, 'Petit-Déjeuner Gourmet', 'Commencez votre journée avec un petit-déjeuner varié : viennoiseries, fruits frais, et options healthy.', 'images/cafe-2265254_1280.jpg');
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (1, 'Gastronomie Raffinée', 'Découvrez une cuisine exquise préparée par nos chefs étoilés, avec des ingrédients frais et locaux.', 'images/chef-2585791_1280.jpg');
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (2, 'Restaurant Élégant', 'Profitez d’une ambiance luxueuse avec un service haut de gamme, idéal pour des dîners romantiques ou des repas d’affaires.', 'images/restaurant-449952_1280.jpg');
+INSERT INTO public.services (id_service, nom, description, image_url) VALUES (3, 'Petit-Déjeuner Gourmet', 'Commencez votre journée avec un petit-déjeuner varié : viennoiseries, fruits frais, et options healthy.', 'images/cafe-2265254_1280.jpg');
 
 INSERT INTO public.reservation (id_chambre, date_debut, date_fin, date_arrivee, id_user, paiement, due) VALUES
 (1, '2025-04-01', '2025-04-05', '2025-04-01', 2, 276, 276),
@@ -280,4 +279,5 @@ INSERT INTO public.conso_client (id_sejour, id_conso, date_conso, nombre) VALUES
 (25, 3, '2025-04-11', 2),
 (26, 1, '2025-04-21', 2),
 (26, 4, '2025-04-21', 1),
+(26, 5, '2025-04-21', 1);
 (26, 5, '2025-04-21', 1);
