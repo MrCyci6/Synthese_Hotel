@@ -151,7 +151,7 @@
 					</svg>
 					<h5 class="mb-0">AU-TEL 2 LUX</h5>
 				</div>
-				<p>Hôtel 2 Luxe offre une expérience inégalée dans des destinations prestigieuses.</p>
+				<p>Au-Tel 2 Lux offre une expérience inégalée dans des destinations prestigieuses.</p>
 			</div>
 			<div class="col-md-4 mb-4">
 				<h5>Suivez-nous</h5>
