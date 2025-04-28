@@ -32,7 +32,7 @@
     }
     
     $hotel_info = Hotel::getHotel($id_hotel);
-    $chambres['hotel_nom'] = $hotel_info['nom'] ?? 'Hôtel inconnu';
+    $chambres['hotel_nom'] = $hotel_info['nom_hotel'] ?? 'Hôtel inconnu';
     $chambres['form_data'] = [
         'date_arrive' => $date_arrive,
         'date_depart' => $date_depart,
