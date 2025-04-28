@@ -143,7 +143,7 @@
 				?>
 				<div class="col-md-4 col-sm-12">
 					<div class="card room-card h-100">
-						<img src="<?= $chambre['image_url'] ?? '/images/img.png' ?>" class="card-img-top" alt="Chambre <?= ($chambre['categorie_nom']) ?>">
+						<img src="<?= $chambre['image_url'] ?? 'assets/images/img.png' ?>" class="card-img-top" alt="Chambre <?= ($chambre['categorie_nom']) ?>">
 						<div class="card-body">
 							<h5 class="card-title"><?= ($chambre['categorie_nom']) ?></h5>
 							<p class="card-text">

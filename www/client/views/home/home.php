@@ -150,7 +150,7 @@
 				<div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
 					<div class="d-flex justify-content-center">
 						<div class="card" style="max-width: 400px;">
-							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
+							<img src="assets/images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
 							<div class="card-body">
 								<h5 class="card-title"><?= $hotel['nom_hotel'] ?></h5>
 								<p class="fw-bold">📍 <?= $hotel['localisation'] ?? 'Non précisé' ?></p>
