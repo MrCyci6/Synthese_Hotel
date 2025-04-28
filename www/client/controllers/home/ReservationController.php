@@ -40,7 +40,7 @@
         // Préparation des données pour la vue
         $data = [
             'hotel_id' => $hotel_id,
-            'hotel_nom' => $hotel_info['nom'] ?? 'Hôtel inconnu',
+            'hotel_nom' => $hotel_info['nom_hotel'] ?? 'Hôtel inconnu',
             'categorie' => $categorie,
             'prix' => $prix,
             'date_arrive' => $date_arrive,
