@@ -62,7 +62,7 @@
 						</li>
 					</ul>
 					<div class="d-flex flex-row justify-content-center w-100">
-						<a class="nav-link" href="dashboard.php?page=logout"><i class="bi bi-box-arrow-up-right p-2"></i> Déconnexion</a>
+						<a class="nav-link" href="logout"><i class="bi bi-box-arrow-up-right p-2"></i> Déconnexion</a>
 					</div>
 				</div>
 			</div>
