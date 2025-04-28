@@ -1,0 +1,190 @@
+body {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #000000;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    font-weight: 600;
+}
+
+.navbar .nav-link {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #ffc107;
+}
+
+.navbar .btn-outline-warning {
+    border-color: #ffc107;
+    color: #ffc107;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.navbar .btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-container {
+    background: #2c3e50;
+    border-radius: 10px;
+    padding: 2rem;
+    color: #fff;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+
+.room-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.room-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-card .card-body {
+    padding: 2rem;
+}
+
+.room-card .card-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.room-card .card-text {
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.room-card .btn-warning {
+    font-weight: 500;
+}
+
+.alert {
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ffc107;
+}
+
+.footer .btn-sm {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer h5 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    color: #d1d1d1;
+}
+
+.footer-copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.error-modal {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.error-modal .modal-header {
+    background-color: #2c3e50;
+    color: #fff;
+    border-bottom: none;
+}
+
+.error-modal .modal-title {
+    font-weight: 600;
+}
+
+.error-modal .btn-close {
+    filter: invert(1);
+}
+
+.error-modal .modal-body {
+    padding: 1.5rem;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.error-modal .modal-footer {
+    border-top: none;
+    padding: 1rem;
+}
+
+.error-modal .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.error-modal .btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
