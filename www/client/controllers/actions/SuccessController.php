@@ -49,5 +49,5 @@
         'reservation_id' => $reservation_id
     ];
 
-    header("Location: details?id=$reservation_id");
+    require 'views/home/success.php';
 ?>
