@@ -6,7 +6,6 @@
     const DB_PORT = 5432;
 
     const ADMIN_ID = 1;
-    
     const USER_LIST_STEP = 10;
     const ROOMS_LIST_STEP = 10;
     const LOGS_LIST_STEP = 10;

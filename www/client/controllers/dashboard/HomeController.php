@@ -22,7 +22,7 @@
         $sejourId = (int)$_POST['reservationSelect']; // évite les erreur de conversions avec la Db avec (int)
         $consoId = (int)$_POST['consoName'];
         $consoQty = (int)$_POST['consoQty'];
-        Conso::addConsommation($sejourId, $consoId, $consoQty);
+        Conso::AjoutConsoClient($sejourId, $consoId, $consoQty);
         header("Location: dashboard"); // PRG
         exit();
     }

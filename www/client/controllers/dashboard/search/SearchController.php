@@ -25,24 +25,25 @@
 			if (empty($hotel_id)) $error .= '_no_hotel';
 			if (empty($date_arrive)) $error .= '_no_date_arrive';
 			if (empty($date_depart)) $error .= '_no_date_depart';
-			header('Location: search&error=' . $error);
+			header('Location: search?error=' . $error);
 			exit;
 		}
 
 		if (!strtotime($date_arrive) || !strtotime($date_depart) || strtotime($date_arrive) >= strtotime($date_depart)) {
-			header('Location: search&error=invalid_dates');
+			header('Location: search?error=invalid_dates');
 			exit;
 		}
 
 		$chambres = Chambre::getRoomInfos($hotel_id, $date_arrive, $date_depart);
 		if (empty($chambres)) {
-			header('Location: search&error=no_rooms_available');
+			header('Location: search?error=no_rooms_available');
 			exit;
 		}
-
+		
+        $hotel_info = Hotel::getHotel($hotel_id);
 		$_SESSION['search_results'] = [
 			'chambres' => $chambres,
-			'hotel_nom' => $hotel_info['nom'] ?? 'Hôtel inconnu',
+			'hotel_nom' => $hotel_info['nom_hotel'] ?? 'Hôtel inconnu',
 			'form_data' => [
 				'date_arrive' => $date_arrive,
 				'date_depart' => $date_depart,

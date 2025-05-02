@@ -30,7 +30,7 @@
 				<path d="M8 11h.01"></path>
 				<path d="M10 22v-6.5m4 0V22"></path>
 			</svg>
-			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="/home">
+			<a class="navbar-brand fw-semibold d-flex flex-column ms-2" href="home">
 				AU-TEL 2 LUX
 				<span class="fs-6">HÔTELS & RESORTS</span>
 			</a>
@@ -143,7 +143,7 @@
 				?>
 				<div class="col-md-4 col-sm-12">
 					<div class="card room-card h-100">
-						<img src="<?= $chambre['image_url'] ?? '/images/img.png' ?>" class="card-img-top" alt="Chambre <?= ($chambre['categorie_nom']) ?>">
+						<img src="<?= $chambre['image_url'] ?? 'assets/images/img.png' ?>" class="card-img-top" alt="Chambre <?= ($chambre['categorie_nom']) ?>">
 						<div class="card-body">
 							<h5 class="card-title"><?= ($chambre['categorie_nom']) ?></h5>
 							<p class="card-text">
@@ -178,7 +178,7 @@
 					</svg>
 					<h5 class="mb-0">AU-TEL 2 LUX</h5>
 				</div>
-				<p>Hôtel 2 Luxe offre une expérience inégalée dans des destinations prestigieuses.</p>
+				<p>Au-Tel 2 Lux offre une expérience inégalée dans des destinations prestigieuses.</p>
 			</div>
 			<div class="col-md-4 mb-4">
 				<h5>Suivez-nous</h5>

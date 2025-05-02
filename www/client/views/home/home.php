@@ -20,7 +20,7 @@
 	<div class="container-fluid d-flex justify-content-between align-items-center">
 		<!-- Logo et icône -->
 		<div class="d-flex align-items-center">
-		<svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<svg class="text-warning" xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
 				<path d="m9 16 .348-.240c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
 				<path d="M8 7h.01"></path>
@@ -67,7 +67,7 @@
 
 <!-- Choix du type de service -->
 <header class="position-relative d-flex align-items-center justify-content-center text-center"
-        style="height: 90vh; background: url('images/hotel.jpg') center/cover no-repeat;">
+        style="height: 90vh; background: url('assets/images/hotel.jpg') center/cover no-repeat;">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-75"></div>
 	<div class="position-relative text-white">
 		<h1 class="display-4 fw-bold">Bienvenue à AU-TEL-2-LUX</h1>
@@ -150,7 +150,7 @@
 				<div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
 					<div class="d-flex justify-content-center">
 						<div class="card" style="max-width: 400px;">
-							<img src="images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
+							<img src="assets/images/OIP.jpg" class="card-img-top" alt="Hôtel <?= $hotel['nom'] ?>">
 							<div class="card-body">
 								<h5 class="card-title"><?= $hotel['nom_hotel'] ?></h5>
 								<p class="fw-bold">📍 <?= $hotel['localisation'] ?? 'Non précisé' ?></p>
@@ -211,9 +211,9 @@
 						<path d="M8 11h.01"></path>
 						<path d="M10 22v-6.5m4 0V22"></path>
 					</svg>
-					<h5 class="mb-0">HÔTEL 2 LUXE</h5>
+					<h5 class="mb-0">AU-TEL 2 LUX</h5>
 				</div>
-				<p>Hôtel 2 Luxe offre une expérience inégalée dans des destinations prestigieuses.</p>
+				<p>Au-Tel 2 Lux offre une expérience inégalée dans des destinations prestigieuses.</p>
 			</div>
 			<!-- Liens sociaux -->
 			<div class="col-md-4 mb-4">

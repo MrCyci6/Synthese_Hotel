@@ -41,7 +41,7 @@
                 WHERE h.id_hotel=?;",
                 [$hotelId]
             );
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $statement->fetch();
             return $results;
         }
 
