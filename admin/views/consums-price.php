@@ -44,17 +44,13 @@
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" action="">
+                        <form method="get" action="">
                             <div class="modal-body">
                                 <div class="container">
                                     Dénomination :
-                                    <select id="menu" name="menu" onchange="toggleInput()">
+                                    <select id="menu" name="menu" onchange="">
                                         <option value="option1" selected>Autre (Saisissez du texte)</option>
-                                        <?php
-                                            for ($i = 0; $i < $nbNoConso; $i++){
-                                                echo "<option value='".$noConso[$i]["id_conso"]."'>".$noConso[$i]["denomination"]."</option>";
-                                            }
-                                        ?>
+
                                     </select>
                                     <input type="text" id="new_conso" name="new_conso" placeholder="Saisissez du texte...">
                                 </div>
